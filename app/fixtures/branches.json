@@ -1,0 +1,149 @@
+[
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "La California"
+    },
+    "pk": 1
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. Lider"
+    },
+    "pk": 2
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. Millenium"
+    },
+    "pk": 3
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "Av. Rómulo Gallegos"
+    },
+    "pk": 4
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "Av. Luis Roche"
+    },
+    "pk": 5
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "Centro Plaza"
+    },
+    "pk": 6
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. Sambil"
+    },
+    "pk": 7
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C.C.T"
+    },
+    "pk": 8
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "Santa Mónica"
+    },
+    "pk": 9
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "La Trinidad"
+    },
+    "pk": 10
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "Boulevard Sabana Grande"
+    },
+    "pk": 11
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "Plaza Venezuela"
+    },
+    "pk": 12
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. Metrocenter"
+    },
+    "pk": 13
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. Propatria"
+    },
+    "pk": 14
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. La Cascada"
+    },
+    "pk": 15
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "El Silencio"
+    },
+    "pk": 16
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "Maternidad"
+    },
+    "pk": 17
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. Multiplaza Paraiso"
+    },
+    "pk": 18
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. Galerias Ávila"
+    },
+    "pk": 19
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "La Candelaria"
+    },
+    "pk": 20
+  },
+  {
+    "model": "Api_Bank_app.branches",
+    "fields": {
+        "name": "C.C. Los Molinos"
+    },
+    "pk": 21
+  }
+]

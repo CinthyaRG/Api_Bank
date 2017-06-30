@@ -1,0 +1,20 @@
+[
+  {
+    "model": "Api_Bank_app.bank",
+    "fields": {
+        "name":"BANCO MERCANTIL, C.A.",
+        "cod":"0105",
+        "branchesBank": 3
+    },
+    "pk": 8
+  },
+  {
+    "model": "Api_Bank_app.bank",
+    "fields": {
+        "name":"BANCO MERCANTIL, C.A.",
+        "cod":"0105",
+        "branchesBank": 19
+    },
+    "pk": 8
+  }
+]
