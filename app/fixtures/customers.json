@@ -1,444 +1,164 @@
 [
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name": "100% BANCO",
-        "cod": "0156",
-        "branchesBank": 1
+        "first_name": "María Gabriela",
+        "last_name": "Pérez López",
+        "ident": "V-18234123"
     },
     "pk": 1
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name": "ABN AMRO BANK",
-        "cod": "0196",
-        "branchesBank": 9
+        "first_name": "Gabriel José",
+        "last_name": "Pérez Gimenez",
+        "ident": "E-82345213"
     },
     "pk": 2
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCAMIGA BANCO MICROFINANCIERO, C.A.",
-        "cod":"0172",
-        "branchesBank": 3
+        "first_name":"Luisa Carolina",
+        "last_name":"Gutierrez Blanco",
+        "ident": "V-9276996"
     },
     "pk": 3
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO DEL CARIBE, C.A.",
-        "cod":"0114",
-        "branchesBank": 1
+        "first_name":"Gustavo Argenis",
+        "last_name":"Ramos Hernández",
+        "ident": "V-10626124"
     },
     "pk": 4
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANESCO BANCO UNIVERSAL",
-        "cod":"0134",
-        "branchesBank": 1
+        "first_name":"Banavih Aportes FAOV",
+        "last_name":"Servicio",
+        "ident": "J-198276576"
     },
     "pk": 5
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANESCO BANCO UNIVERSAL",
-        "cod":"0134",
-        "branchesBank": 15
+        "first_name":"Electricidad de Caracas",
+        "last_name":"Servicio",
+        "ident": "J-298123875"
     },
     "pk": 6
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANESCO BANCO UNIVERSAL",
-        "cod":"0134",
-        "branchesBank": 18
+        "first_name":"DirecTV",
+        "last_name":"Servicio",
+        "ident": "J-198756432"
     },
     "pk": 7
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 3
+        "first_name":"Digitel",
+        "last_name":"Telefonía",
+        "ident": "J-239867431"
     },
     "pk": 8
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 19
+        "first_name":"Movistar",
+        "last_name":"Telefonía",
+        "ident": "J-196524365"
     },
     "pk": 9
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 13
+        "first_name":"Movilnet",
+        "last_name":"Telefonía",
+        "ident": "J-209847912"
     },
     "pk": 10
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 16
+        "first_name":"Anthony Mauricio",
+        "last_name":"Ramos Gómez",
+        "ident": "V-27103451"
     },
     "pk": 11
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 2
+        "first_name":"Sixta Del Carmen",
+        "last_name":"Gómez Figuera",
+        "ident": "V-9934354"
     },
     "pk": 12
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 5
+        "first_name":"Cinthya Carolina",
+        "last_name":"Ramos Gómez",
+        "ident": "V-20799009"
     },
     "pk": 13
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 6
+        "first_name":"Patricia Roxana",
+        "last_name":"Valencia Gómez",
+        "ident": "V-19293949"
     },
     "pk": 14
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 1
+        "first_name":"Honorio José",
+        "last_name":"Rodríguez Morelo",
+        "ident": "V-19782283"
     },
     "pk": 15
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 7
+        "first_name":"Luis Eduardo",
+        "last_name":"González Pérez",
+        "ident": "V-20953529"
     },
     "pk": 16
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 1
+        "first_name":"Daniela Stefany",
+        "last_name":"López Martínez",
+        "ident": "V-15289354"
     },
     "pk": 17
   },
   {
-    "model": "Api_Bank_app.bank",
+    "model": "app.customer",
     "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 6
+        "first_name":"Miguel Ángel",
+        "last_name":"Blanco Guzmán",
+        "ident": "E-82928735"
     },
     "pk": 18
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 10
-    },
-    "pk": 19
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 14
-    },
-    "pk": 20
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 12
-    },
-    "pk": 21
-  }
-  ,
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name": "ABN AMRO BANK",
-        "cod": "0196",
-        "branchesBank": 3
-    },
-    "pk": 22
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCAMIGA BANCO MICROFINANCIERO, C.A.",
-        "cod":"0172",
-        "branchesBank": 12
-    },
-    "pk": 23
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO DEL CARIBE, C.A.",
-        "cod":"0114",
-        "branchesBank": 9
-    },
-    "pk": 24
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANESCO BANCO UNIVERSAL",
-        "cod":"0134",
-        "branchesBank": 21
-    },
-    "pk": 25
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 20
-    },
-    "pk": 26
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO DEL CARIBE, C.A.",
-        "cod":"0114",
-        "branchesBank": 8
-    },
-    "pk": 27
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO DEL CARIBE, C.A.",
-        "cod":"0114",
-        "branchesBank": 21
-    },
-    "pk": 28
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO DEL CARIBE, C.A.",
-        "cod":"0114",
-        "branchesBank": 18
-    },
-    "pk": 29
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO DEL CARIBE, C.A.",
-        "cod":"0114",
-        "branchesBank": 16
-    },
-    "pk": 30
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO DEL CARIBE, C.A.",
-        "cod":"0114",
-        "branchesBank": 11
-    },
-    "pk": 31
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANESCO BANCO UNIVERSAL",
-        "cod":"0134",
-        "branchesBank": 12
-    },
-    "pk": 32
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANESCO BANCO UNIVERSAL",
-        "cod":"0134",
-        "branchesBank": 19
-    },
-    "pk": 33
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANESCO BANCO UNIVERSAL",
-        "cod":"0134",
-        "branchesBank": 16
-    },
-    "pk": 34
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 7
-    },
-    "pk": 35
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO MERCANTIL, C.A.",
-        "cod":"0105",
-        "branchesBank": 18
-    },
-    "pk": 36
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 4
-    },
-    "pk": 37
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 17
-    },
-    "pk": 38
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 20
-    },
-    "pk": 39
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 19
-    },
-    "pk": 40
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCO ACTIO CAPITAL, C.A.",
-        "cod":"0180",
-        "branchesBank": 21
-    },
-    "pk": 41
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name": "100% BANCO",
-        "cod": "0156",
-        "branchesBank": 8
-    },
-    "pk": 42
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name": "100% BANCO",
-        "cod": "0156",
-        "branchesBank": 7
-    },
-    "pk": 43
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name": "ABN AMRO BANK",
-        "cod": "0196",
-        "branchesBank": 6
-    },
-    "pk": 44
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name": "ABN AMRO BANK",
-        "cod": "0196",
-        "branchesBank": 19
-    },
-    "pk": 45
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name": "ABN AMRO BANK",
-        "cod": "0196",
-        "branchesBank": 8
-    },
-    "pk": 46
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCAMIGA BANCO MICROFINANCIERO, C.A.",
-        "cod":"0172",
-        "branchesBank": 17
-    },
-    "pk": 47
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCAMIGA BANCO MICROFINANCIERO, C.A.",
-        "cod":"0172",
-        "branchesBank": 21
-    },
-    "pk": 48
-  },
-  {
-    "model": "Api_Bank_app.bank",
-    "fields": {
-        "name":"BANCAMIGA BANCO MICROFINANCIERO, C.A.",
-        "cod":"0172",
-        "branchesBank": 19
-    },
-    "pk": 49
   }
 ]

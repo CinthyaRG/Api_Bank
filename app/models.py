@@ -1,17 +1,16 @@
-from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 
 # Validador para cédula
 ID_VALIDATOR = RegexValidator(
-    regex=r'^[VE]{1}-\d{6,8}$',
+    regex=r'^[VEJ]{1}-\d{6,9}$',
     message="Formato de cédula inválido.",
 )
 
 
 class Bank(models.Model):
     name = models.CharField(max_length=150)
-    cod = models.IntegerField(blank=False)
+    cod = models.CharField(blank=False, max_length=4)
 
     def __str__(self):
         return self.name
@@ -20,49 +19,48 @@ class Bank(models.Model):
         unique_together = ('name', 'cod')
 
 
-class Branches(models.Model):
-    name = models.CharField(unique=True, max_length=64)
+class Branch(models.Model):
+    name = models.CharField(max_length=64)
     bank = models.ForeignKey(Bank)
 
     def __str__(self):
         return self.name
 
 
-class Customers(models.Model):
-    user = models.OneToOneField(User)
-    ident = models.CharField(validators=[ID_VALIDATOR], primary_key=True, max_length=10)
-    bank = models.ManyToManyField(Bank, through='Product')
+class Customer(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    ident = models.CharField(validators=[ID_VALIDATOR], max_length=11)
 
     def get_name(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.first_name + " " + self.last_name
 
     def __str__(self):
-        return str(self.id) + " " + self.user.first_name + " " + self.user.last_name
-
-
-class Appointment(models.Model):
-    bank = models.ForeignKey(Branches)
-    customer = models.ForeignKey(Customers)
-    date_appointment = models.DateField()
+        return str(self.ident) + " " + self.first_name + " " + self.last_name
 
 
 class Product(models.Model):
-    bank = models.ForeignKey(Bank)
-    customer = models.ForeignKey(Customers)
+    customer = models.ForeignKey(Customer)
     num_card = models.CharField(unique=True, max_length=20)
-    month = models.IntegerField()
-    year = models.IntegerField()
-    ccv = models.IntegerField()
+    month = models.CharField(max_length=2)
+    year = models.CharField(max_length=2)
+    ccv = models.CharField(max_length=3)
 
     def __str__(self):
-        return self.bank.name + "(" + self.customer.user.first_name + \
-               self.customer.user.last_name + ")"
+        return self.num_card + "(" + self.customer.first_name + \
+               self.customer.last_name + ")"
 
 
-class Balances(models.Model):
-    available = models.IntegerField(blank=False)
+class Balance(models.Model):
+    available = models.DecimalField(blank=False)
     deferrer = models.IntegerField(blank=True)
     lock = models.IntegerField(blank=True)
+
+
+class Appointment(models.Model):
+    bank = models.ForeignKey(Branch)
+    customer = models.ForeignKey(Customer)
+    date_appointment = models.DateField()
 
 
 class Account(models.Model):
@@ -72,10 +70,10 @@ class Account(models.Model):
     ]
     product = models.ForeignKey(Product)
     name = models.CharField(choices=product_bank, max_length=16)
-    pin = models.IntegerField()
+    pin = models.CharField(max_length=4)
     num_acc = models.CharField(max_length=20)
-    branch = models.ForeignKey(Branches)
-    balances = models.ForeignKey(Balances)
+    branch = models.ForeignKey(Branch)
+    balances = models.ForeignKey(Balance)
 
     def __str__(self):
         return self.name + "(" + self.num_acc + ")"
@@ -100,7 +98,7 @@ class Tdc(models.Model):
     status = models.BooleanField()
 
 
-class Loans(models.Model):
+class Loan(models.Model):
     product = models.ForeignKey(Product)
     num_installments = models.IntegerField()
     paid_installments = models.IntegerField()
