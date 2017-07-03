@@ -187,5 +187,14 @@
         "lock": 0
     },
     "pk": 21
+  },
+  {
+    "model": "app.balance",
+    "fields": {
+        "available": 5938722.98,
+        "deferrer": 0,
+        "lock": 0
+    },
+    "pk": 22
   }
 ]

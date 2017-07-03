@@ -145,7 +145,8 @@ class Transaction_Simple(models.Model):
         ('POS', 'POS'),
     ]
     movement = models.ForeignKey(Movement)
-    account = models.ForeignKey(Account)
+    account = models.ForeignKey(Account, null=True, blank=True)
+    tdc = models.ForeignKey(Tdc, null=True, blank=True)
     type = models.CharField(choices=transaction_type, max_length=10)
 
 

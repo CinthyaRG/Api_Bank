@@ -306,5 +306,16 @@
         "ccv": "123"
     },
     "pk": 28
+  },
+  {
+    "model": "app.product",
+    "fields": {        
+        "customer": 19,
+        "num_card": "212803042901238574",
+        "month": "04",
+        "year": "21",
+        "ccv": "409"
+    },
+    "pk": 29
   }
 ]

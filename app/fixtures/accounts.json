@@ -242,7 +242,7 @@
   {
     "model": "app.account",
     "fields": {
-        "product": 6,
+        "product": 11,
         "name": "Cuenta Ahorro",
         "pin": "1962",
         "num_acc": "01805012874102563987",
@@ -250,5 +250,17 @@
         "balances": 21
     },
     "pk": 21
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 29,
+        "name": "Cuenta Ahorro",
+        "pin": "1093",
+        "num_acc": "01805012778274620482",
+        "branch": 28,
+        "balances": 22
+    },
+    "pk": 22
   }
 ]

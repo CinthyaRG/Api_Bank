@@ -64,7 +64,7 @@
     "fields": {
         "ref": "8065712",
         "amount": 45201.25,
-        "details": "pago de impuestos mes mayo",
+        "details": "pago de Banavih mes mayo",
         "date": "2017-05-10"
     },
     "pk": 7
@@ -274,8 +274,8 @@
     "fields": {
         "ref": "8065713",
         "amount": 2300,
-        "details": "Pago Banavih mayo-2017",
-        "date": "2017-05-10"
+        "details": "Pago Banavih junio-2017",
+        "date": "2017-06-10"
     },
     "pk": 28
   }

@@ -65,7 +65,7 @@
   {
     "model": "app.customer",
     "fields": {
-        "first_name":"Digitel",
+        "first_name":"DIGITEL",
         "last_name":"Telefonía",
         "ident": "J-239867431"
     },
@@ -74,7 +74,7 @@
   {
     "model": "app.customer",
     "fields": {
-        "first_name":"Movistar",
+        "first_name":"MOVISTAR",
         "last_name":"Telefonía",
         "ident": "J-196524365"
     },
@@ -83,7 +83,7 @@
   {
     "model": "app.customer",
     "fields": {
-        "first_name":"Movilnet",
+        "first_name":"MOVILNET",
         "last_name":"Telefonía",
         "ident": "J-209847912"
     },
@@ -160,5 +160,14 @@
         "ident": "E-82928735"
     },
     "pk": 18
+  },
+  {
+    "model": "app.customer",
+    "fields": {
+        "first_name":"CANTV",
+        "last_name":"Telefonía",
+        "ident": "J-267828740"
+    },
+    "pk": 19
   }
 ]

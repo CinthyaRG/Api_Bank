@@ -20,8 +20,12 @@ from app import views
 
 router = routers.DefaultRouter()
 router.register(r'clientes', views.CustomersViewSet)
-router.register(r'bank', views.BanksViewSet)
-router.register(r'branch', views.BranchesViewSet)
+router.register(r'bancos', views.BanksViewSet)
+router.register(r'sucursales', views.BranchesViewSet)
+router.register(r'productos', views.ProductsViewSet)
+router.register(r'cuentas', views.AccountsViewSet)
+router.register(r'tdc', views.TdcViewSet)
+router.register(r'prestamos', views.LoansViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
