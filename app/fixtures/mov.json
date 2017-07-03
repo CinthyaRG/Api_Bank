@@ -1,0 +1,282 @@
+[
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8482651",
+        "amount": 12585.58,
+        "details": "pago de herramientas",
+        "date": "2017-05-10"
+    },
+    "pk": 1
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8482652",
+        "amount": 2500.00,
+        "details": "pagos varios",
+        "date": "2017-05-02"
+    },
+    "pk": 2
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "6869801",
+        "amount": 12500.00,
+        "details": "Depósito realizado en la agencia La California",
+        "date": "2017-05-15"
+    },
+    "pk": 3
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8269841",
+        "amount": 16500,
+        "details": "Retiro realizado en la agencia C.C. Milenium",
+        "date": "2017-05-25"
+    },
+    "pk": 4
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8065711",
+        "amount": 28000,
+        "details": "Pago de electricidad 05/2017",
+        "date": "2017-05-03"
+    },
+    "pk": 5
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8468671",
+        "amount": 6315.85,
+        "details": "Pago de tarjeta de crédito",
+        "date": "2017-06-05"
+    },
+    "pk": 6
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8065712",
+        "amount": 45201.25,
+        "details": "pago de impuestos mes mayo",
+        "date": "2017-05-10"
+    },
+    "pk": 7
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8469761",
+        "amount": 1500,
+        "details": "recarga digitel",
+        "date": "2017-05-21"
+    },
+    "pk": 8
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8079831",
+        "amount": 15842.26,
+        "details": "Compra POS",
+        "date": "2017-05-02"
+    },
+    "pk": 9
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8079832",
+        "amount": 32548.50,
+        "details": "Compra POS",
+        "date": "2017-05-08"
+    },
+    "pk": 10
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8079833",
+        "amount": 9652.26,
+        "details": "Compra POS",
+        "date": "2017-05-25"
+    },
+    "pk": 11
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8079834",
+        "amount": 2058.26,
+        "details": "Compra POS",
+        "date": "2017-05-22"
+    },
+    "pk": 12
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8079835",
+        "amount": 9652.85,
+        "details": "Compra POS",
+        "date": "2017-05-30"
+    },
+    "pk": 13
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8468672",
+        "amount": 15658.00,
+        "details": "Pago de tarjeta de crédito",
+        "date": "2017-05-02"
+    },
+    "pk": 14
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8468673",
+        "amount": 8523.00,
+        "details": "Pago de tarjeta de crédito",
+        "date": "2017-05-03"
+    },
+    "pk": 15
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8482653",
+        "amount": 65000,
+        "details": "Pagos de trabajos varios",
+        "date": "2017-05-18"
+    },
+    "pk": 16
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "6869802",
+        "amount": 52000,
+        "details": "Depósito realizado en la agencia La trinidad",
+        "date": "2017-05-12"
+    },
+    "pk": 17
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "6869803",
+        "amount": 22500,
+        "details": "Depósito realizado en la agencia C.C.C.T",
+        "date": "2017-05-14"
+    },
+    "pk": 18
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8269842",
+        "amount": 10000,
+        "details": "Retiro realizado en la agencia Santa Mónica",
+        "date": "2017-05-09"
+    },
+    "pk": 19
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8269843",
+        "amount": 5400,
+        "details": "Retiro realizado en la agencia Plaza Venezuela",
+        "date": "2017-05-26"
+    },
+    "pk": 20
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8269844",
+        "amount": 36000,
+        "details": "Retiro realizado en la agencia C.C. Lider",
+        "date": "2017-05-15"
+    },
+    "pk": 21
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8079836",
+        "amount": 32548.50,
+        "details": "Compra POS",
+        "date": "2017-06-03"
+    },
+    "pk": 22
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8079837",
+        "amount": 81256.50,
+        "details": "Compra POS",
+        "date": "2017-06-06"
+    },
+    "pk": 23
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8079838",
+        "amount": 95000,
+        "details": "Compra POS",
+        "date": "2017-06-10"
+    },
+    "pk": 24
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8482654",
+        "amount": 52360,
+        "details": "Pago de compra de articulos de oficina",
+        "date": "2017-06-08"
+    },
+    "pk": 25
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8482655",
+        "amount": 21500,
+        "details": "Pagos varios",
+        "date": "2017-06-14"
+    },
+    "pk": 26
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8469762",
+        "amount": 2600,
+        "details": "Recarga de teléfono movistar",
+        "date": "2017-06-26"
+    },
+    "pk": 27
+  },
+  {
+    "model": "app.movement",
+    "fields": {
+        "ref": "8065713",
+        "amount": 2300,
+        "details": "Pago Banavih mayo-2017",
+        "date": "2017-05-10"
+    },
+    "pk": 28
+  }
+]

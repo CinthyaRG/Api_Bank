@@ -1,0 +1,254 @@
+[
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 1,
+        "name": "Cuenta Ahorro",
+        "pin": "1234",
+        "num_acc": "01805012287436912048",
+        "branch": 10,
+        "balances": 1
+    },
+    "pk": 1
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 1,
+        "name": "Cuenta Corriente",
+        "pin": "2014",
+        "num_acc": "01805015961458732569",
+        "branch": 10,
+        "balances": 2
+    },
+    "pk": 2
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 2,
+        "name": "Cuenta Corriente",
+        "pin": "0714",
+        "num_acc": "01805015987432561002",
+        "branch": 5,
+        "balances": 3
+    },
+    "pk": 3
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 3,
+        "name": "Cuenta Ahorro",
+        "pin": "0354",
+        "num_acc": "01805012654523657812",
+        "branch": 7,
+        "balances": 4
+    },
+    "pk": 4
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 4,
+        "name": "Cuenta Ahorro",
+        "pin": "0412",
+        "num_acc": "01805012452145896325",
+        "branch": 32,
+        "balances": 5
+    },
+    "pk": 5
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 5,
+        "name": "Cuenta Ahorro",
+        "pin": "1100",
+        "num_acc": "01805012951235786541",
+        "branch": 28,
+        "balances": 6
+    },
+    "pk": 6
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 7,
+        "name": "Cuenta Corriente",
+        "pin": "1870",
+        "num_acc": "01805015689574103698",
+        "branch": 1,
+        "balances": 7
+    },
+    "pk": 7
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 8,
+        "name": "Cuenta Ahorro",
+        "pin": "0118",
+        "num_acc": "01805012543369853007",
+        "branch": 32,
+        "balances": 8
+    },
+    "pk": 8
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 9,
+        "name": "Cuenta Corriente",
+        "pin": "0585",
+        "num_acc": "01805015412001589963",
+        "branch": 5,
+        "balances": 9
+    },
+    "pk": 9
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 10,
+        "name": "Cuenta Ahorro",
+        "pin": "0964",
+        "num_acc": "01805012456532630089",
+        "branch": 10,
+        "balances": 10
+    },
+    "pk": 10
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 11,
+        "name": "Cuenta Corriente",
+        "pin": "9512",
+        "num_acc": "01805015009863578914",
+        "branch": 7,
+        "balances": 11
+    },
+    "pk": 11
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 12,
+        "name": "Cuenta Corriente",
+        "pin": "3654",
+        "num_acc": "01805015127784596201",
+        "branch": 28,
+        "balances": 12
+    },
+    "pk": 12
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 13,
+        "name": "Cuenta Ahorro",
+        "pin": "0489",
+        "num_acc": "01805012236589647586",
+        "branch": 11,
+        "balances": 13
+    },
+    "pk": 13
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 14,
+        "name": "Cuenta Ahorro",
+        "pin": "3879",
+        "num_acc": "01805012145898745362",
+        "branch": 29,
+        "balances": 14
+    },
+    "pk": 14
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 15,
+        "name": "Cuenta Corriente",
+        "pin": "0125",
+        "num_acc": "01805015464678965236",
+        "branch": 54,
+        "balances": 15
+    },
+    "pk": 15
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 16,
+        "name": "Cuenta Ahorro",
+        "pin": "9571",
+        "num_acc": "01805012268415395784",
+        "branch": 30,
+        "balances": 16
+    },
+    "pk": 16
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 17,
+        "name": "Cuenta Corriente",
+        "pin": "0632",
+        "num_acc": "01805015147852369874",
+        "branch": 3,
+        "balances": 17
+    },
+    "pk": 17
+  },
+  {
+    "model": "app.account",
+    "fields": {        
+        "product": 18,
+        "name": "Cuenta Ahorro",
+        "pin": "8745",
+        "num_acc": "01805012968457953210",
+        "branch": 28,
+        "balances": 18
+    },
+    "pk": 18
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 18,
+        "name": "Cuenta Corriente",
+        "pin": "1872",
+        "num_acc": "01805015154789684230",
+        "branch": 28,
+        "balances": 19
+    },
+    "pk": 19
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 6,
+        "name": "Cuenta Corriente",
+        "pin": "7300",
+        "num_acc": "01805015951035789654",
+        "branch": 54,
+        "balances": 20
+    },
+    "pk": 20
+  },
+  {
+    "model": "app.account",
+    "fields": {
+        "product": 6,
+        "name": "Cuenta Ahorro",
+        "pin": "1962",
+        "num_acc": "01805012874102563987",
+        "branch": 54,
+        "balances": 21
+    },
+    "pk": 21
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "model": "app.tdc",
+    "fields": {
+        "product": 19,
+        "name": "VISA",
+        "limit": 150000,
+        "balance": 54265.22,
+        "status": "True"
+    },
+    "pk": 1
+  },
+  {
+    "model": "app.tdc",
+    "fields": {
+        "product": 20,
+        "name": "MASTERCARD",
+        "limit": 70000,
+        "balance": 16985.21,
+        "status": "True"
+    },
+    "pk": 2
+  },
+  {
+    "model": "app.tdc",
+    "fields": {
+        "product": 21,
+        "name": "VISA",
+        "limit": 50000,
+        "balance": 12365.20,
+        "status": "True"
+    },
+    "pk": 3
+  },
+  {
+    "model": "app.tdc",
+    "fields": {
+        "product": 22,
+        "name": "MASTERCARD",
+        "limit": 650000,
+        "balance": 126895.11,
+        "status": "True"
+    },
+    "pk": 4
+  },
+  {
+    "model": "app.tdc",
+    "fields": {
+        "product": 23,
+        "name": "VISA",
+        "limit": 250000,
+        "balance": 68965.87,
+        "status": "True"
+    },
+    "pk": 5
+  },
+  {
+    "model": "app.tdc",
+    "fields": {
+        "product": 24,
+        "name": "AMERICAN EXPRESS",
+        "limit": 425000,
+        "balance": 36524.25,
+        "status": "True"
+    },
+    "pk": 6
+  },
+  {
+    "model": "app.tdc",
+    "fields": {
+        "product": 25,
+        "name": "VISA",
+        "limit": 120000,
+        "balance": 32542.36,
+        "status": "True"
+    },
+    "pk": 7
+  },
+  {
+    "model": "app.tdc",
+    "fields": {        
+        "product": 26,
+        "name": "MASTERCARD",
+        "limit": 1200000,
+        "balance": 356985.24,
+        "status": "True"
+    },
+    "pk": 8
+  },
+  {
+    "model": "app.tdc",
+    "fields": {        
+        "product": 27,
+        "name": "VISA",
+        "limit": 1200000,
+        "balance": 685242.55,
+        "status": "True"
+    },
+    "pk": 9
+  },
+  {
+    "model": "app.tdc",
+    "fields": {        
+        "product": 28,
+        "name": "AMERICAN EXPRESS",
+        "limit": 250000,
+        "balance": 12504.26,
+        "status": "True"
+    },
+    "pk": 10
+  }
+]

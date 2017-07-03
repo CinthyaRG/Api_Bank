@@ -233,7 +233,7 @@
   {
     "model": "app.product",
     "fields": {        
-        "customer": 7,
+        "customer": 3,
         "num_card": "5410987866524537",
         "month": "09",
         "year": "22",
@@ -244,7 +244,7 @@
   {
     "model": "app.product",
     "fields": {        
-        "customer": 9,
+        "customer": 11,
         "num_card": "4501786522009876",
         "month": "05",
         "year": "22",
@@ -266,7 +266,7 @@
   {
     "model": "app.product",
     "fields": {        
-        "customer": 6,
+        "customer": 12,
         "num_card": "4540982263548190",
         "month": "05",
         "year": "18",
@@ -277,7 +277,7 @@
   {
     "model": "app.product",
     "fields": {        
-        "customer": 3,
+        "customer": 14,
         "num_card": "5400982128780981",
         "month": "12",
         "year": "21",

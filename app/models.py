@@ -47,20 +47,28 @@ class Product(models.Model):
     ccv = models.CharField(max_length=3)
 
     def __str__(self):
-        return self.num_card + "(" + self.customer.first_name + \
-               self.customer.last_name + ")"
+        return self.num_card + " (" + self.customer.first_name + \
+               " " + self.customer.last_name + ")"
 
 
 class Balance(models.Model):
-    available = models.DecimalField(blank=False)
-    deferrer = models.IntegerField(blank=True)
-    lock = models.IntegerField(blank=True)
+    available = models.DecimalField(blank=False, max_digits=30, decimal_places=2)
+    deferrer = models.DecimalField(null=True, blank=True, max_digits=30, decimal_places=2, default=0)
+    lock = models.DecimalField(null=True, blank=True, max_digits=30, decimal_places=2, default=0)
+
+    def __str__(self):
+        return str(self.id) + " (Bs." + str(self.available) + "/ Bs." +\
+               str(self.deferrer) + "/ Bs." + str(self.lock) + ")"
 
 
 class Appointment(models.Model):
     bank = models.ForeignKey(Branch)
     customer = models.ForeignKey(Customer)
     date_appointment = models.DateField()
+
+    def __str__(self):
+        return str(self.id) + " (" + str(self.bank) + "/ " +\
+               str(self.customer) + " -- " + str(self.date_appointment) + ")"
 
 
 class Account(models.Model):
@@ -76,13 +84,17 @@ class Account(models.Model):
     balances = models.ForeignKey(Balance)
 
     def __str__(self):
-        return self.name + "(" + self.num_acc + ")"
+        return self.name + " (" + str(self.product) + ")"
 
 
 class Check(models.Model):
     num_check = models.IntegerField(unique=True, primary_key=True)
-    status = models.BooleanField()
+    status = models.BooleanField(default=False)
     account = models.ForeignKey(Account)
+
+    def __str__(self):
+        return str(self.num_check) + " (" + str(self.account) + \
+               " -- " + str(self.status) + ")"
 
 
 class Tdc(models.Model):
@@ -93,26 +105,37 @@ class Tdc(models.Model):
     ]
     name = models.CharField(choices=product_bank, max_length=16)
     product = models.ForeignKey(Product)
-    limit = models.IntegerField(blank=False)
-    balance = models.IntegerField()
+    limit = models.DecimalField(max_digits=30, decimal_places=2)
+    balance = models.DecimalField(max_digits=30, decimal_places=2)
     status = models.BooleanField()
+
+    def __str__(self):
+        return self.name + " (" + str(self.product) + ")"
 
 
 class Loan(models.Model):
-    product = models.ForeignKey(Product)
+    customer = models.ForeignKey(Customer)
+    account = models.ForeignKey(Account)
     num_installments = models.IntegerField()
     paid_installments = models.IntegerField()
     overdue_installments = models.IntegerField()
-    starting_amount = models.IntegerField()
-    paid_amount = models.IntegerField()
+    starting_amount = models.DecimalField(max_digits=30, decimal_places=2)
+    paid_amount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     date = models.DateField()
+
+    def __str__(self):
+        return str(self.id) + " (" + str(self.customer) + " -- " + \
+               str(self.account) + ")"
 
 
 class Movement(models.Model):
     ref = models.CharField(unique=True, max_length=30)
-    amount = models.IntegerField()
+    amount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     details = models.CharField(max_length=128, blank=True)
     date = models.DateField()
+
+    def __str__(self):
+        return self.ref + " (Bs." + str(self.amount) + ")"
 
 
 class Transaction_Simple(models.Model):
