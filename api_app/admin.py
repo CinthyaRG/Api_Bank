@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import *
+from api_app.models import *
 
 admin.site.register(Bank)
 admin.site.register(Branch)

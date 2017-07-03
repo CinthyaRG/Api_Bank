@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from app.serializers import *
+from api_app.serializers import *
 
 
 class CustomersViewSet(viewsets.ReadOnlyModelViewSet):

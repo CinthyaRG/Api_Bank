@@ -1,4 +1,4 @@
-from app.models import *
+from api_app.models import *
 from rest_framework import serializers
 
 
