@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La California",
         "bank":  1
@@ -8,7 +8,7 @@
     "pk": 1
  },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Lider",
         "bank": 25
@@ -16,7 +16,7 @@
     "pk": 2
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Millenium",
         "bank": 1
@@ -24,7 +24,7 @@
     "pk": 3
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Rómulo Gallegos",
         "bank": 4
@@ -32,7 +32,7 @@
     "pk": 4
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Luis Roche",
         "bank": 1
@@ -40,7 +40,7 @@
     "pk": 5
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Centro Plaza",
         "bank": 22
@@ -48,7 +48,7 @@
     "pk": 6
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Sambil",
         "bank": 1
@@ -56,7 +56,7 @@
     "pk": 7
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C.C.T",
         "bank": 22
@@ -64,7 +64,7 @@
     "pk": 8
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Santa Mónica",
         "bank": 22
@@ -72,7 +72,7 @@
     "pk": 9
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La Trinidad",
         "bank": 1
@@ -80,7 +80,7 @@
     "pk": 10
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Boulevard Sabana Grande",
         "bank": 1
@@ -88,7 +88,7 @@
     "pk": 11
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Plaza Venezuela",
         "bank": 25
@@ -96,7 +96,7 @@
     "pk": 12
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Metrocenter",
         "bank": 13
@@ -104,7 +104,7 @@
     "pk": 13
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Propatria",
         "bank": 22
@@ -112,7 +112,7 @@
     "pk": 14
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. La Cascada",
         "bank": 17
@@ -120,7 +120,7 @@
     "pk": 15
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "El Silencio",
         "bank": 22
@@ -128,7 +128,7 @@
     "pk": 16
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Maternidad",
         "bank": 17
@@ -136,7 +136,7 @@
     "pk": 17
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Multiplaza Paraiso",
         "bank": 22
@@ -144,7 +144,7 @@
     "pk": 18
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Galerias Ávila",
         "bank": 17
@@ -152,7 +152,7 @@
     "pk": 19
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La Candelaria",
         "bank": 25
@@ -160,7 +160,7 @@
     "pk": 20
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Los Molinos",
         "bank": 25
@@ -168,7 +168,7 @@
     "pk": 21
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Lider",
         "bank": 17
@@ -176,7 +176,7 @@
     "pk": 22
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Millenium",
         "bank": 25
@@ -184,7 +184,7 @@
     "pk": 23
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Rómulo Gallegos",
         "bank": 22
@@ -192,7 +192,7 @@
     "pk": 24
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Luis Roche",
         "bank": 25
@@ -200,7 +200,7 @@
     "pk": 25
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Centro Plaza",
         "bank": 16
@@ -208,7 +208,7 @@
     "pk": 26
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Sambil",
         "bank": 14
@@ -216,7 +216,7 @@
     "pk": 27
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C.C.T",
         "bank": 1
@@ -224,7 +224,7 @@
     "pk": 28
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Santa Mónica",
         "bank": 1
@@ -232,7 +232,7 @@
     "pk": 29
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La Trinidad",
         "bank": 1
@@ -240,7 +240,7 @@
     "pk": 30
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Boulevard Sabana Grande",
         "bank": 19
@@ -248,7 +248,7 @@
     "pk": 31
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Plaza Venezuela",
         "bank": 1
@@ -256,7 +256,7 @@
     "pk": 32
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Metrocenter",
         "bank": 5
@@ -264,7 +264,7 @@
     "pk": 33
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Propatria",
         "bank": 13
@@ -272,7 +272,7 @@
     "pk": 34
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. La Cascada",
         "bank": 19
@@ -280,7 +280,7 @@
     "pk": 35
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "El Silencio",
         "bank": 20
@@ -288,7 +288,7 @@
     "pk": 36
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Maternidad",
         "bank": 21
@@ -296,7 +296,7 @@
     "pk": 37
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Multiplaza Paraiso",
         "bank": 8
@@ -304,7 +304,7 @@
     "pk": 38
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Galerias Ávila",
         "bank": 7
@@ -312,7 +312,7 @@
     "pk": 39
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La Candelaria",
         "bank": 3
@@ -320,7 +320,7 @@
     "pk": 40
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Los Molinos",
         "bank": 2
@@ -328,7 +328,7 @@
     "pk": 41
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Los Molinos",
         "bank": 6
@@ -336,7 +336,7 @@
     "pk": 42
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Galerias Ávila",
         "bank": 9
@@ -344,7 +344,7 @@
     "pk": 43
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Rómulo Gallegos",
         "bank": 10
@@ -352,7 +352,7 @@
     "pk": 44
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Rómulo Gallegos",
         "bank": 11
@@ -360,7 +360,7 @@
     "pk": 45
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La Trinidad",
         "bank": 12
@@ -368,7 +368,7 @@
     "pk": 46
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La Trinidad",
         "bank": 15
@@ -376,7 +376,7 @@
     "pk": 47
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Galerias Ávila",
         "bank": 18
@@ -384,7 +384,7 @@
     "pk": 48
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Lider",
         "bank": 23
@@ -392,7 +392,7 @@
     "pk": 49
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Centro Plaza",
         "bank": 24
@@ -400,7 +400,7 @@
     "pk": 50
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Luis Roche",
         "bank": 26
@@ -408,7 +408,7 @@
     "pk": 51
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La California",
         "bank": 27
@@ -416,7 +416,7 @@
     "pk": 52
  },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La California",
         "bank": 28
@@ -424,7 +424,7 @@
     "pk": 53
  },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Lider",
         "bank": 1
@@ -432,7 +432,7 @@
     "pk": 54
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C.C.T",
         "bank": 29
@@ -440,7 +440,7 @@
     "pk": 55
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "La Candelaria",
         "bank": 30
@@ -448,7 +448,7 @@
     "pk": 56
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Multiplaza Paraiso",
         "bank": 31
@@ -456,7 +456,7 @@
     "pk": 57
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Multiplaza Paraiso",
         "bank": 32
@@ -464,7 +464,7 @@
     "pk": 58
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Metrocenter",
         "bank": 33
@@ -472,7 +472,7 @@
     "pk": 59
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "C.C. Metrocenter",
         "bank": 34
@@ -480,7 +480,7 @@
     "pk": 60
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Centro Plaza",
         "bank": 33
@@ -488,7 +488,7 @@
     "pk": 61
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Luis Roche",
         "bank": 33
@@ -496,7 +496,7 @@
     "pk": 62
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Centro Plaza",
         "bank": 35
@@ -504,7 +504,7 @@
     "pk": 63
   },
   {
-    "model": "app.branch",
+    "model": "api_app.branch",
     "fields": {
         "name": "Av. Luis Roche",
         "bank": 34

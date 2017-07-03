@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 1,
         "name": "Cuenta Ahorro",
@@ -12,7 +12,7 @@
     "pk": 1
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 1,
         "name": "Cuenta Corriente",
@@ -24,7 +24,7 @@
     "pk": 2
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 2,
         "name": "Cuenta Corriente",
@@ -36,7 +36,7 @@
     "pk": 3
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 3,
         "name": "Cuenta Ahorro",
@@ -48,7 +48,7 @@
     "pk": 4
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 4,
         "name": "Cuenta Ahorro",
@@ -60,7 +60,7 @@
     "pk": 5
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 5,
         "name": "Cuenta Ahorro",
@@ -72,7 +72,7 @@
     "pk": 6
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 7,
         "name": "Cuenta Corriente",
@@ -84,7 +84,7 @@
     "pk": 7
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 8,
         "name": "Cuenta Ahorro",
@@ -96,7 +96,7 @@
     "pk": 8
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 9,
         "name": "Cuenta Corriente",
@@ -108,7 +108,7 @@
     "pk": 9
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 10,
         "name": "Cuenta Ahorro",
@@ -120,7 +120,7 @@
     "pk": 10
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 11,
         "name": "Cuenta Corriente",
@@ -132,7 +132,7 @@
     "pk": 11
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 12,
         "name": "Cuenta Corriente",
@@ -144,7 +144,7 @@
     "pk": 12
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 13,
         "name": "Cuenta Ahorro",
@@ -156,7 +156,7 @@
     "pk": 13
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 14,
         "name": "Cuenta Ahorro",
@@ -168,7 +168,7 @@
     "pk": 14
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 15,
         "name": "Cuenta Corriente",
@@ -180,7 +180,7 @@
     "pk": 15
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 16,
         "name": "Cuenta Ahorro",
@@ -192,7 +192,7 @@
     "pk": 16
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 17,
         "name": "Cuenta Corriente",
@@ -204,7 +204,7 @@
     "pk": 17
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {        
         "product": 18,
         "name": "Cuenta Ahorro",
@@ -216,7 +216,7 @@
     "pk": 18
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 18,
         "name": "Cuenta Corriente",
@@ -228,7 +228,7 @@
     "pk": 19
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 6,
         "name": "Cuenta Corriente",
@@ -240,7 +240,7 @@
     "pk": 20
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 11,
         "name": "Cuenta Ahorro",
@@ -252,7 +252,7 @@
     "pk": 21
   },
   {
-    "model": "app.account",
+    "model": "api_app.account",
     "fields": {
         "product": 29,
         "name": "Cuenta Ahorro",

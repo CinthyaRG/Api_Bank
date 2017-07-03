@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8482651",
         "amount": 12585.58,
@@ -10,7 +10,7 @@
     "pk": 1
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8482652",
         "amount": 2500.00,
@@ -20,7 +20,7 @@
     "pk": 2
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "6869801",
         "amount": 12500.00,
@@ -30,7 +30,7 @@
     "pk": 3
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8269841",
         "amount": 16500,
@@ -40,7 +40,7 @@
     "pk": 4
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8065711",
         "amount": 28000,
@@ -50,7 +50,7 @@
     "pk": 5
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8468671",
         "amount": 6315.85,
@@ -60,7 +60,7 @@
     "pk": 6
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8065712",
         "amount": 45201.25,
@@ -70,7 +70,7 @@
     "pk": 7
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8469761",
         "amount": 1500,
@@ -80,7 +80,7 @@
     "pk": 8
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8079831",
         "amount": 15842.26,
@@ -90,7 +90,7 @@
     "pk": 9
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8079832",
         "amount": 32548.50,
@@ -100,7 +100,7 @@
     "pk": 10
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8079833",
         "amount": 9652.26,
@@ -110,7 +110,7 @@
     "pk": 11
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8079834",
         "amount": 2058.26,
@@ -120,7 +120,7 @@
     "pk": 12
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8079835",
         "amount": 9652.85,
@@ -130,7 +130,7 @@
     "pk": 13
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8468672",
         "amount": 15658.00,
@@ -140,7 +140,7 @@
     "pk": 14
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8468673",
         "amount": 8523.00,
@@ -150,7 +150,7 @@
     "pk": 15
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8482653",
         "amount": 65000,
@@ -160,7 +160,7 @@
     "pk": 16
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "6869802",
         "amount": 52000,
@@ -170,7 +170,7 @@
     "pk": 17
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "6869803",
         "amount": 22500,
@@ -180,7 +180,7 @@
     "pk": 18
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8269842",
         "amount": 10000,
@@ -190,7 +190,7 @@
     "pk": 19
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8269843",
         "amount": 5400,
@@ -200,7 +200,7 @@
     "pk": 20
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8269844",
         "amount": 36000,
@@ -210,7 +210,7 @@
     "pk": 21
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8079836",
         "amount": 32548.50,
@@ -220,7 +220,7 @@
     "pk": 22
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8079837",
         "amount": 81256.50,
@@ -230,7 +230,7 @@
     "pk": 23
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8079838",
         "amount": 95000,
@@ -240,7 +240,7 @@
     "pk": 24
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8482654",
         "amount": 52360,
@@ -250,7 +250,7 @@
     "pk": 25
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8482655",
         "amount": 21500,
@@ -260,7 +260,7 @@
     "pk": 26
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8469762",
         "amount": 2600,
@@ -270,7 +270,7 @@
     "pk": 27
   },
   {
-    "model": "app.movement",
+    "model": "api_app.movement",
     "fields": {
         "ref": "8065713",
         "amount": 2300,

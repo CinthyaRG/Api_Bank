@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.payments_tlf",
+    "model": "api_app.payments_tlf",
     "fields": {
         "movement": 8,
         "account": 5,
@@ -10,7 +10,7 @@
     "pk": 1
   },
   {
-    "model": "app.payments_tlf",
+    "model": "api_app.payments_tlf",
     "fields": {
         "movement": 8,
         "account": 12,
@@ -20,7 +20,7 @@
     "pk": 2
   },
   {
-    "model": "app.payments_tlf",
+    "model": "api_app.payments_tlf",
     "fields": {
         "movement": 8,
         "account": 13,
@@ -30,7 +30,7 @@
     "pk": 3
   },
   {
-    "model": "app.payments_tlf",
+    "model": "api_app.payments_tlf",
     "fields": {
         "movement": 27,
         "account": 1,
@@ -40,7 +40,7 @@
     "pk": 4
   },
   {
-    "model": "app.payments_tlf",
+    "model": "api_app.payments_tlf",
     "fields": {
         "movement": 27,
         "account": 2,
@@ -50,7 +50,7 @@
     "pk": 5
   },
   {
-    "model": "app.payments_tlf",
+    "model": "api_app.payments_tlf",
     "fields": {
         "movement": 27,
         "account": 12,
@@ -60,7 +60,7 @@
     "pk": 6
   },
   {
-    "model": "app.payments_tlf",
+    "model": "api_app.payments_tlf",
     "fields": {
         "movement": 27,
         "account": 21,

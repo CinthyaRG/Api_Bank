@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement":6,
         "account": 1,
@@ -9,7 +9,7 @@
     "pk": 1
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement":6,
         "account": 2,
@@ -18,7 +18,7 @@
     "pk": 2
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement": 6,
         "account": 12,
@@ -27,7 +27,7 @@
     "pk": 3
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement": 6,
         "account": 5,
@@ -36,7 +36,7 @@
     "pk": 4
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement": 6,
         "account": 21,
@@ -45,7 +45,7 @@
     "pk": 5
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement": 14,
         "account": 2,
@@ -54,7 +54,7 @@
     "pk": 6
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement": 14,
         "account": 1,
@@ -63,7 +63,7 @@
     "pk": 7
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement": 14,
         "account": 5,
@@ -72,7 +72,7 @@
     "pk": 8
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement": 15,
         "account": 11,
@@ -81,7 +81,7 @@
     "pk": 9
   },
   {
-    "model": "app.payments_tdc",
+    "model": "api_app.payments_tdc",
     "fields": {
         "movement": 15,
         "account": 12,

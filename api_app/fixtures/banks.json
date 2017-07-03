@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO ACTIO CAPITAL, C.A.",
         "cod":"0180"
@@ -8,7 +8,7 @@
     "pk": 1
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name": "ABN AMRO BANK",
         "cod": "0196"
@@ -16,7 +16,7 @@
     "pk": 2
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCAMIGA BANCO MICROFINANCIERO, C.A.",
         "cod":"0172"
@@ -24,7 +24,7 @@
     "pk": 3
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO ACTIVO BANCO COMERCIAL, C.A.",
         "cod":"0171"
@@ -32,7 +32,7 @@
     "pk": 4
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO AGRICOLA",
         "cod":"0166"
@@ -40,7 +40,7 @@
     "pk": 5
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO BICENTENARIO",
         "cod":"0175"
@@ -48,7 +48,7 @@
     "pk": 6
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO CARONI, C.A. BANCO UNIVERSAL",
         "cod":"0128"
@@ -56,7 +56,7 @@
     "pk": 7
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO DE DESARROLLO DEL MICROEMPRESARIO",
         "cod":"0164"
@@ -64,7 +64,7 @@
     "pk": 8
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO DE VENEZUELA S.A.I.C.A.",
         "cod":"0102"
@@ -72,7 +72,7 @@
     "pk": 9
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO DEL CARIBE, C.A.",
         "cod":"0114"
@@ -80,7 +80,7 @@
     "pk": 10
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO DEL PUEBLO SOBERANO, C.A.",
         "cod":"0149"
@@ -88,7 +88,7 @@
     "pk": 11
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO DEL TESORO",
         "cod":"0163"
@@ -96,7 +96,7 @@
     "pk": 12
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO ESPIRITO SANTO, S.A.",
         "cod":"0176"
@@ -104,7 +104,7 @@
     "pk": 13
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO EXTERIOR, C.A.",
         "cod":"0115"
@@ -112,7 +112,7 @@
     "pk": 14
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO INDUSTRIAL DE VENEZUELA.",
         "cod":"0003"
@@ -120,7 +120,7 @@
     "pk": 15
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO INTERNACIONAL DE DESARROLLO, C.A.",
         "cod":"0173"
@@ -128,7 +128,7 @@
     "pk": 16
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO MERCANTIL, C.A.",
         "cod":"0105"
@@ -136,7 +136,7 @@
     "pk": 17
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"100% BANCO",
         "cod":"0156"
@@ -144,7 +144,7 @@
     "pk": 18
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BNC BANCO NACIONAL DE CREDITO",
         "cod":"0191"
@@ -152,7 +152,7 @@
     "pk": 19
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BOD BANCO OCCIDENTAL DE DESCUENTO",
         "cod":"0116"
@@ -160,7 +160,7 @@
     "pk": 20
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO PLAZA",
         "cod":"0138"
@@ -169,7 +169,7 @@
   }
   ,
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO PROVINCIAL BBVA",
         "cod":"0108"
@@ -177,7 +177,7 @@
     "pk": 22
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCO VENEZOLANO DE CREDITO, S.A.",
         "cod":"0104"
@@ -185,7 +185,7 @@
     "pk": 23
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANCRECER S.A. BANCO DE DESARROLLO",
         "cod":"0168"
@@ -193,7 +193,7 @@
     "pk": 24
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANESCO BANCO UNIVERSAL",
         "cod":"0134"
@@ -201,7 +201,7 @@
     "pk": 25
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANFANB",
         "cod":"0177"
@@ -209,7 +209,7 @@
     "pk": 26
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANGENTE",
         "cod":"0146"
@@ -217,7 +217,7 @@
     "pk": 27
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BANPLUS BANCO COMERCIAL, C.A",
         "cod":"0174"
@@ -225,7 +225,7 @@
     "pk": 28
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"CITIBANK",
         "cod":"0190"
@@ -233,7 +233,7 @@
     "pk": 29
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"CORP BANCA.",
         "cod":"0121"
@@ -241,7 +241,7 @@
     "pk": 30
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"DELSUR BANCO UNIVERSAL",
         "cod":"0157"
@@ -249,7 +249,7 @@
     "pk": 31
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"BFC BANCO FONDO COMÚN",
         "cod":"0151"
@@ -257,7 +257,7 @@
     "pk": 32
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"INSTITUTO MUNICIPAL DE CRÉDITO POPULAR",
         "cod":"0601"
@@ -265,7 +265,7 @@
     "pk": 33
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"MIBANCO BANCO DE DESARROLLO, C.A.",
         "cod":"0169"
@@ -273,7 +273,7 @@
     "pk": 34
   },
   {
-    "model": "app.bank",
+    "model": "api_app.bank",
     "fields": {
         "name":"SOFITASA",
         "cod":"0137"

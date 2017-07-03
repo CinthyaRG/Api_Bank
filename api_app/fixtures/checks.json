@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12365478,
       "status": "True",
@@ -8,7 +8,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12384752,
       "status": "False",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12395478,
       "status": "True",
@@ -24,7 +24,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12358965,
       "status": "True",
@@ -32,7 +32,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12354785,
       "status": "True",
@@ -40,7 +40,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12354720,
       "status": "False",
@@ -48,7 +48,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12395102,
       "status": "False",
@@ -56,7 +56,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12369850,
       "status": "False",
@@ -64,7 +64,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12347125,
       "status": "True",
@@ -72,7 +72,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12352014,
       "status": "True",
@@ -80,7 +80,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12347856,
       "status": "True",
@@ -88,7 +88,7 @@
     }
   },
   {
-    "model": "app.check",
+    "model": "api_app.check",
     "fields": {
       "num_check": 12358204,
       "status": "False",

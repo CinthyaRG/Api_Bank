@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name": "María Gabriela",
         "last_name": "Pérez López",
@@ -9,7 +9,7 @@
     "pk": 1
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name": "Gabriel José",
         "last_name": "Pérez Gimenez",
@@ -18,7 +18,7 @@
     "pk": 2
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Luisa Carolina",
         "last_name":"Gutierrez Blanco",
@@ -27,7 +27,7 @@
     "pk": 3
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Gustavo Argenis",
         "last_name":"Ramos Hernández",
@@ -36,7 +36,7 @@
     "pk": 4
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Banavih Aportes FAOV",
         "last_name":"Servicio",
@@ -45,7 +45,7 @@
     "pk": 5
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Electricidad de Caracas",
         "last_name":"Servicio",
@@ -54,7 +54,7 @@
     "pk": 6
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"DirecTV",
         "last_name":"Servicio",
@@ -63,7 +63,7 @@
     "pk": 7
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"DIGITEL",
         "last_name":"Telefonía",
@@ -72,7 +72,7 @@
     "pk": 8
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"MOVISTAR",
         "last_name":"Telefonía",
@@ -81,7 +81,7 @@
     "pk": 9
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"MOVILNET",
         "last_name":"Telefonía",
@@ -90,7 +90,7 @@
     "pk": 10
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Anthony Mauricio",
         "last_name":"Ramos Gómez",
@@ -99,7 +99,7 @@
     "pk": 11
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Sixta Del Carmen",
         "last_name":"Gómez Figuera",
@@ -108,7 +108,7 @@
     "pk": 12
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Cinthya Carolina",
         "last_name":"Ramos Gómez",
@@ -117,7 +117,7 @@
     "pk": 13
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Patricia Roxana",
         "last_name":"Valencia Gómez",
@@ -126,7 +126,7 @@
     "pk": 14
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Honorio José",
         "last_name":"Rodríguez Morelo",
@@ -135,7 +135,7 @@
     "pk": 15
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Luis Eduardo",
         "last_name":"González Pérez",
@@ -144,7 +144,7 @@
     "pk": 16
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Daniela Stefany",
         "last_name":"López Martínez",
@@ -153,7 +153,7 @@
     "pk": 17
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"Miguel Ángel",
         "last_name":"Blanco Guzmán",
@@ -162,7 +162,7 @@
     "pk": 18
   },
   {
-    "model": "app.customer",
+    "model": "api_app.customer",
     "fields": {
         "first_name":"CANTV",
         "last_name":"Telefonía",

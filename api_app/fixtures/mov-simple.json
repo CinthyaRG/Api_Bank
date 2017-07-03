@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 3,
         "account": 1,
@@ -9,7 +9,7 @@
     "pk": 1
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 4,
         "account": 2,
@@ -18,7 +18,7 @@
     "pk": 2
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 17,
         "account": 2,
@@ -27,7 +27,7 @@
     "pk": 3
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 18,
         "account": 2,
@@ -36,7 +36,7 @@
     "pk": 4
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 19,
         "account": 1,
@@ -45,7 +45,7 @@
     "pk": 5
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 20,
         "account": 2,
@@ -54,7 +54,7 @@
     "pk": 6
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 21,
         "account": 2,
@@ -63,7 +63,7 @@
     "pk": 7
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 3,
         "account": 5,
@@ -72,7 +72,7 @@
     "pk": 8
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 4,
         "account": 5,
@@ -81,7 +81,7 @@
     "pk": 9
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 17,
         "account": 5,
@@ -90,7 +90,7 @@
     "pk": 10
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 18,
         "account": 11,
@@ -99,7 +99,7 @@
     "pk": 11
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 19,
         "account": 11,
@@ -108,7 +108,7 @@
     "pk": 12
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 20,
         "account": 12,
@@ -117,7 +117,7 @@
     "pk": 13
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 21,
         "account": 12,
@@ -126,7 +126,7 @@
     "pk": 14
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 17,
         "account": 12,
@@ -135,7 +135,7 @@
     "pk": 15
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 18,
         "account": 12,
@@ -144,7 +144,7 @@
     "pk": 16
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 9,
         "account": 2,
@@ -153,7 +153,7 @@
     "pk": 17
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 10,
         "account": 1,
@@ -162,7 +162,7 @@
     "pk": 18
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 11,
         "account": 5,
@@ -171,7 +171,7 @@
     "pk": 19
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 12,
         "account": 5,
@@ -180,7 +180,7 @@
     "pk": 20
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 9,
         "tdc": 1,
@@ -189,7 +189,7 @@
     "pk": 21
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 10,
         "tdc": 1,
@@ -198,7 +198,7 @@
     "pk": 22
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 11,
         "tdc": 2,
@@ -207,7 +207,7 @@
     "pk": 23
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 12,
         "tdc": 2,
@@ -216,7 +216,7 @@
     "pk": 24
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 13,
         "tdc": 2,
@@ -225,7 +225,7 @@
     "pk": 25
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 13,
         "tdc": 1,
@@ -234,7 +234,7 @@
     "pk": 26
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 22,
         "account": 11,
@@ -243,7 +243,7 @@
     "pk": 27
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 23,
         "account": 5,
@@ -252,7 +252,7 @@
     "pk": 28
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 24,
         "account": 12,
@@ -261,7 +261,7 @@
     "pk": 29
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 22,
         "tdc": 2,
@@ -270,7 +270,7 @@
     "pk": 30
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 23,
         "tdc": 1,
@@ -279,7 +279,7 @@
     "pk": 31
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 24,
         "tdc": 5,
@@ -288,7 +288,7 @@
     "pk": 32
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 22,
         "tdc": 5,
@@ -297,7 +297,7 @@
     "pk": 33
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 23,
         "tdc": 7,
@@ -306,7 +306,7 @@
     "pk": 34
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 24,
         "tdc": 7,
@@ -315,7 +315,7 @@
     "pk": 35
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 22,
         "tdc": 7,
@@ -324,7 +324,7 @@
     "pk": 36
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 11,
         "tdc": 5,
@@ -333,7 +333,7 @@
     "pk": 37
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 12,
         "tdc": 2,
@@ -342,7 +342,7 @@
     "pk": 38
   },
   {
-    "model": "app.transaction_simple",
+    "model": "api_app.transaction_simple",
     "fields": {
         "movement": 13,
         "tdc": 7,
