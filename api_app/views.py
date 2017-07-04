@@ -13,29 +13,43 @@ def validate_data(request):
     month = request.POST.get('month', None)
     year = request.POST.get('year', None)
     ci = request.POST.get('ci', None)
+    msj_error = 'Los datos introducidos no son correctos, por favor verifíquelos'
 
-    data = {}
+    data = {
+        'correct': False
+    }
+
+    print(request.POST)
+    print(request.GET)
 
     try:
         product = Product.objects.get(num_card=numtarj)
-        if (product.month == month) and (product.year == year) and (product.ccv == ccv) :
+        if (product.month == month) and (product.year == year) and (product.ccv == ccv):
             try:
                 customer = Customer.objects.get(id=product.customer)
-                if customer.ident == ci :
-                    
-
+                accounts = Account.objects.filter(product=product.id)
+                if customer.ident == ci:
+                    for a in accounts:
+                        if a.pin == pin:
+                            data['correct'] = True
+            except Customer.DoesNotExist:
+                pass
+            except Account.DoesNotExist:
+                pass
     except Product.DoesNotExist:
-        data['error'] = 'El número de tarjeta introducido no existe.'
+        pass
 
-    # data = {
-    #     # 'username_exists': Customer.objects.filter(username=username).exists()
-    #     'correct': True
-    # }
-    #
-    # if data['correct']:
-    #     data['error'] = 'El username escogido no está disponible.'
+    if not(data['correct']):
+        data['error'] = msj_error
 
-    return JsonResponse(data)
+    print(data)
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
 
 
 class CustomersViewSet(viewsets.ReadOnlyModelViewSet):
