@@ -7,42 +7,49 @@ from api_app.serializers import *
 @ensure_csrf_cookie
 def validate_data(request):
     print("ENTRO")
-    numtarj = request.POST.get('numtarj', None)
-    pin = request.POST.get('pin', None)
-    ccv = request.POST.get('ccv', None)
-    month = request.POST.get('month', None)
-    year = request.POST.get('year', None)
-    ci = request.POST.get('ci', None)
+    print(request.POST)
+    print(request.GET)
+    numtarj = request.GET.get('numtarj', None)
+    pin = request.GET.get('pin', None)
+    ccv = request.GET.get('ccv', None)
+    month = request.GET.get('month', None)
+    year = request.GET.get('year', None)
+    ci = request.GET.get('ci', None)
     msj_error = 'Los datos introducidos no son correctos, por favor verifíquelos'
 
     data = {
-        'correct': False
+        'product': Product.objects.filter(num_card=numtarj).exists()
     }
 
-    print(request.POST)
-    print(request.GET)
-
-    try:
+    if data['product']:
         product = Product.objects.get(num_card=numtarj)
         if (product.month == month) and (product.year == year) and (product.ccv == ccv):
-            try:
-                customer = Customer.objects.get(id=product.customer)
+            data['customer'] = Customer.objects.filter(id=product.customer.id).exists()
+            data['account'] = Account.objects.filter(product=product.id).exists()
+            if data['customer'] and data['account']:
+                customer = Customer.objects.get(id=product.customer.id)
                 accounts = Account.objects.filter(product=product.id)
                 if customer.ident == ci:
                     for a in accounts:
                         if a.pin == pin:
                             data['correct'] = True
-            except Customer.DoesNotExist:
-                pass
-            except Account.DoesNotExist:
-                pass
-    except Product.DoesNotExist:
-        pass
+                            data['customer_name'] = customer.first_name
+                            data['customer_last'] = customer.last_name
+                            data['customer_ident'] = customer.ident
+                            break
+                        else:
+                            data['correct'] = False
+                else:
+                    data['correct'] = False
+            else:
+                data['correct'] = False
+        else:
+            data['correct'] = False
+    else:
+        data['correct'] = False
 
     if not(data['correct']):
         data['error'] = msj_error
-
-    print(data)
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
