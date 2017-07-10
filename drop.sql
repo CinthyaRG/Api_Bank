@@ -4,6 +4,7 @@ drop table api_app_check CASCADE;
 drop table api_app_appointment CASCADE;
 drop table api_app_balance CASCADE;
 drop table api_app_branch CASCADE;
+drop table api_app_phone CASCADE;
 drop table api_app_customer CASCADE;
 drop table api_app_product CASCADE;
 drop table api_app_tdc CASCADE;

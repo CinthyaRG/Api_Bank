@@ -27,10 +27,18 @@ class Branch(models.Model):
         return self.name
 
 
+class Phone(models.Model):
+    home = models.CharField(max_length=12, null=True)
+    cellphone = models.CharField(max_length=12, null=True)
+    office = models.CharField(max_length=12, null=True)
+
+
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     ident = models.CharField(validators=[ID_VALIDATOR], max_length=11)
+    phones = models.ForeignKey(Phone)
+    birthday = models.DateField()
 
     def get_name(self):
         return self.first_name + " " + self.last_name

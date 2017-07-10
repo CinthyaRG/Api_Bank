@@ -36,6 +36,10 @@ def validate_data(request):
                             data['customer_name'] = customer.first_name
                             data['customer_last'] = customer.last_name
                             data['customer_ident'] = customer.ident
+                            data['phone_home'] = customer.phones.home
+                            data['cellphone'] = customer.phones.cellphone
+                            data['phone_home'] = customer.phones.office
+                            data['birthday'] = customer.birthday
                             break
                         else:
                             data['correct'] = False
