@@ -38,7 +38,7 @@ def validate_data(request):
                             data['customer_ident'] = customer.ident
                             data['phone_home'] = customer.phones.home
                             data['cellphone'] = customer.phones.cellphone
-                            data['phone_home'] = customer.phones.office
+                            data['phone_office'] = customer.phones.office
                             data['birthday'] = customer.birthday
                             break
                         else:
