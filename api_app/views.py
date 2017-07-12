@@ -36,9 +36,25 @@ def validate_data(request):
                             data['customer_name'] = customer.first_name
                             data['customer_last'] = customer.last_name
                             data['customer_ident'] = customer.ident
-                            data['phone_home'] = customer.phones.home
-                            data['cellphone'] = customer.phones.cellphone
-                            data['phone_office'] = customer.phones.office
+                            print(customer.phones.home)
+                            print(customer.phones.cellphone)
+                            print(customer.phones.office == None)
+
+                            if customer.phones.home == None :
+                                data['phone_home'] = "None-None"
+                            else :
+                                data['phone_home'] = customer.phones.home
+                            
+                            if customer.phones.cellphone == None :
+                                data['cellphone'] = "None-None"
+                            else :
+                                data['cellphone'] = customer.phones.cellphone
+                            
+                            if customer.phones.office == None :
+                                data['phone_office'] = "None-None"
+                            else :
+                                data['phone_office'] = customer.phones.office
+
                             data['birthday'] = customer.birthday
                             break
                         else:
