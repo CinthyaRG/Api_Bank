@@ -6,9 +6,6 @@ from api_app.serializers import *
 
 @ensure_csrf_cookie
 def validate_data(request):
-    print("ENTRO")
-    print(request.POST)
-    print(request.GET)
     numtarj = request.GET.get('numtarj', None)
     pin = request.GET.get('pin', None)
     ccv = request.GET.get('ccv', None)
@@ -17,12 +14,17 @@ def validate_data(request):
     ci = request.GET.get('ci', None)
     msj_error = 'Los datos introducidos no son correctos, por favor verifíquelos'
 
-    data = {
-        'product': Product.objects.filter(num_card=numtarj).exists()
-    }
+    data = {'product': Product.objects.filter(num_card=numtarj).exists(),
+            'ccv': True,
+            'month': True,
+            'year': True,
+            'pin': True,
+            'ci': True}
 
     if data['product']:
+
         product = Product.objects.get(num_card=numtarj)
+
         if (product.month == month) and (product.year == year) and (product.ccv == ccv):
             data['customer'] = Customer.objects.filter(id=product.customer.id).exists()
             data['account'] = Account.objects.filter(product=product.id).exists()
@@ -36,39 +38,115 @@ def validate_data(request):
                             data['customer_name'] = customer.first_name
                             data['customer_last'] = customer.last_name
                             data['customer_ident'] = customer.ident
-                            print(customer.phones.home)
-                            print(customer.phones.cellphone)
-                            print(customer.phones.office == None)
 
-                            if customer.phones.home == None :
+                            if customer.phones.home is None:
                                 data['phone_home'] = "None-None"
-                            else :
+                            else:
                                 data['phone_home'] = customer.phones.home
-                            
-                            if customer.phones.cellphone == None :
+
+                            if customer.phones.cellphone is None:
                                 data['cellphone'] = "None-None"
-                            else :
+                            else:
                                 data['cellphone'] = customer.phones.cellphone
-                            
-                            if customer.phones.office == None :
+
+                            if customer.phones.office is None:
                                 data['phone_office'] = "None-None"
-                            else :
+                            else:
                                 data['phone_office'] = customer.phones.office
 
                             data['birthday'] = customer.birthday
                             break
                         else:
                             data['correct'] = False
+                            data['pin'] = False
                 else:
                     data['correct'] = False
+                    data['ci'] = False
             else:
                 data['correct'] = False
         else:
             data['correct'] = False
+
+            if product.month != month:
+                data['month'] = False
+            if product.year != year:
+                data['year'] = False
+            if product.ccv != ccv:
+                data['ccv'] = False
     else:
         data['correct'] = False
 
     if not(data['correct']):
+        data['error'] = msj_error
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
+
+
+@ensure_csrf_cookie
+def validate_data_forgot(request):
+    numtarj = request.GET.get('numtarj', None)
+    ccv = request.GET.get('ccv', None)
+    month = request.GET.get('month', None)
+    year = request.GET.get('year', None)
+    ci = request.GET.get('ci', None)
+    msj_error = 'Los datos introducidos no son correctos, por favor verifíquelos'
+
+    data = {'product': Product.objects.filter(num_card=numtarj).exists(),
+            'ccv': True,
+            'month': True,
+            'year': True,
+            'ci': True}
+
+    if data['product']:
+        product = Product.objects.get(num_card=numtarj)
+        if (product.month == month) and (product.year == year) and (product.ccv == ccv):
+            data['customer'] = Customer.objects.filter(id=product.customer.id).exists()
+            if data['customer']:
+                customer = Customer.objects.get(id=product.customer.id)
+                if customer.ident == ci:
+                    data['correct'] = True
+                    data['customer_name'] = customer.first_name
+                    data['customer_last'] = customer.last_name
+                    data['customer_ident'] = customer.ident
+
+                    if customer.phones.home is None:
+                        data['phone_home'] = "None-None"
+                    else:
+                        data['phone_home'] = customer.phones.home
+
+                    if customer.phones.cellphone is None:
+                        data['cellphone'] = "None-None"
+                    else:
+                        data['cellphone'] = customer.phones.cellphone
+
+                    if customer.phones.office is None:
+                        data['phone_office'] = "None-None"
+                    else:
+                        data['phone_office'] = customer.phones.office
+
+                    data['birthday'] = customer.birthday
+                else:
+                    data['correct'] = False
+                    data['ci'] = False
+            else:
+                data['correct'] = False
+        else:
+            data['correct'] = False
+            if product.month != month:
+                data['month'] = False
+            if product.year != year:
+                data['year'] = False
+            if product.ccv != ccv:
+                data['ccv'] = False
+    else:
+        data['correct'] = False
+
+    if not (data['correct']):
         data['error'] = msj_error
 
     response = JsonResponse(data)
@@ -136,8 +214,8 @@ class LoansViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 
-        #class UsuarioViewSet(viewsets.ModelViewSet):
-#    """
-#   API endpoint that allows users to be viewed or edited.
-#    """
-#    queryset = Usuarios.objects.all().ord
+    #class UsuarioViewSet(viewsets.ModelViewSet):
+    #    """
+    #   API endpoint that allows users to be viewed or edited.
+    #    """
+    #    queryset = Usuarios.objects.all().ord
