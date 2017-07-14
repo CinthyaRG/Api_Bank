@@ -22,6 +22,7 @@ class Bank(models.Model):
 class Branch(models.Model):
     name = models.CharField(max_length=64)
     bank = models.ForeignKey(Bank)
+    phone = models.OneToOneField(Phone)
 
     def __str__(self):
         return self.name
@@ -36,8 +37,8 @@ class Phone(models.Model):
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    ident = models.CharField(validators=[ID_VALIDATOR], max_length=11)
-    phones = models.ForeignKey(Phone)
+    ident = models.CharField(validators=[ID_VALIDATOR], max_length=11, unique=True)
+    phone = models.OneToOneField(Phone)
     birthday = models.DateField()
 
     def get_name(self):
