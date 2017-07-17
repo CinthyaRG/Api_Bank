@@ -5,7 +5,7 @@ from rest_framework import serializers
 class CustomersSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Customer
-        fields = ('url', 'first_name', 'last_name', 'ident')
+        fields = ('url', 'firstName', 'lastName', 'ident')
 
 
 class BanksSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,13 +23,13 @@ class BranchesSerializer(serializers.HyperlinkedModelSerializer):
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ('url', 'customer', 'num_card', 'month', 'year', 'ccv')
+        fields = ('url', 'customer', 'numCard', 'month', 'year', 'ccv')
 
 
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Account
-        fields = ('url', 'product', 'name', 'num_acc')
+        fields = ('url', 'product', 'name', 'numAcc')
 
 
 class TDCSerializer(serializers.HyperlinkedModelSerializer):
@@ -41,4 +41,4 @@ class TDCSerializer(serializers.HyperlinkedModelSerializer):
 class LoanSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Loan
-        fields = ('url', 'customer', 'account', 'starting_amount')
+        fields = ('url', 'customer', 'account', 'startingAmount')

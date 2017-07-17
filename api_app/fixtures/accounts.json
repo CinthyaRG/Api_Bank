@@ -54,7 +54,7 @@
         "name": "Cuenta Ahorro",
         "pin": "0412",
         "numAcc": "01805012452145896325",
-        "branch": 32,
+        "branch": 12,
         "balance": 5
     },
     "pk": 5
@@ -66,7 +66,7 @@
         "name": "Cuenta Ahorro",
         "pin": "1100",
         "numAcc": "01805012951235786541",
-        "branch": 28,
+        "branch": 21,
         "balance": 6
     },
     "pk": 6
@@ -90,7 +90,7 @@
         "name": "Cuenta Ahorro",
         "pin": "0118",
         "numAcc": "01805012543369853007",
-        "branch": 32,
+        "branch": 3,
         "balance": 8
     },
     "pk": 8
@@ -138,7 +138,7 @@
         "name": "Cuenta Corriente",
         "pin": "3654",
         "numAcc": "01805015127784596201",
-        "branch": 28,
+        "branch": 2,
         "balance": 12
     },
     "pk": 12
@@ -162,7 +162,7 @@
         "name": "Cuenta Ahorro",
         "pin": "3879",
         "numAcc": "01805012145898745362",
-        "branch": 29,
+        "branch": 6,
         "balance": 14
     },
     "pk": 14
@@ -174,7 +174,7 @@
         "name": "Cuenta Corriente",
         "pin": "0125",
         "numAcc": "01805015464678965236",
-        "branch": 54,
+        "branch": 17,
         "balance": 15
     },
     "pk": 15
@@ -186,7 +186,7 @@
         "name": "Cuenta Ahorro",
         "pin": "9571",
         "numAcc": "01805012268415395784",
-        "branch": 30,
+        "branch": 19,
         "balance": 16
     },
     "pk": 16
@@ -198,7 +198,7 @@
         "name": "Cuenta Corriente",
         "pin": "0632",
         "numAcc": "01805015147852369874",
-        "branch": 3,
+        "branch": 4,
         "balance": 17
     },
     "pk": 17
@@ -210,7 +210,7 @@
         "name": "Cuenta Ahorro",
         "pin": "8745",
         "numAcc": "01805012968457953210",
-        "branch": 28,
+        "branch": 18,
         "balance": 18
     },
     "pk": 18
@@ -222,7 +222,7 @@
         "name": "Cuenta Corriente",
         "pin": "1872",
         "numAcc": "01805015154789684230",
-        "branch": 28,
+        "branch": 13,
         "balance": 19
     },
     "pk": 19
@@ -234,7 +234,7 @@
         "name": "Cuenta Corriente",
         "pin": "7300",
         "numAcc": "01805015951035789654",
-        "branch": 54,
+        "branch": 9,
         "balance": 20
     },
     "pk": 20
@@ -246,7 +246,7 @@
         "name": "Cuenta Ahorro",
         "pin": "1962",
         "numAcc": "01805012874102563987",
-        "branch": 54,
+        "branch": 14,
         "balance": 21
     },
     "pk": 21
@@ -258,7 +258,7 @@
         "name": "Cuenta Ahorro",
         "pin": "1093",
         "numAcc": "01805012778274620482",
-        "branch": 28,
+        "branch": 16,
         "balance": 22
     },
     "pk": 22

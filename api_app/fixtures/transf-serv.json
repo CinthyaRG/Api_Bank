@@ -1,211 +1,211 @@
 [
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 1,
         "type": "Transferencia",
-        "acc_source": 1,
-        "acc_dest": 11
+        "accSource": 1,
+        "accDest": 11
     },
     "pk": 1
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 1,
         "type": "Transferencia",
-        "acc_source": 2,
-        "acc_dest": 12
+        "accSource": 2,
+        "accDest": 12
     },
     "pk": 2
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 2,
         "type": "Transferencia",
-        "acc_source": 12,
-        "acc_dest": 1
+        "accSource": 12,
+        "accDest": 1
     },
     "pk": 3
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 16,
         "type": "Transferencia",
-        "acc_source": 13,
-        "acc_dest": 1
+        "accSource": 13,
+        "accDest": 1
     },
     "pk": 4
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 16,
         "type": "Transferencia",
-        "acc_source": 13,
-        "acc_dest": 2
+        "accSource": 13,
+        "accDest": 2
     },
     "pk": 5
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 25,
         "type": "Transferencia",
-        "acc_source": 11,
-        "acc_dest": 2
+        "accSource": 11,
+        "accDest": 2
     },
     "pk": 6
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 25,
         "type": "Transferencia",
-        "acc_source": 12,
-        "acc_dest": 11
+        "accSource": 12,
+        "accDest": 11
     },
     "pk": 7
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 26,
         "type": "Transferencia",
-        "acc_source": 1,
-        "acc_dest": 12
+        "accSource": 1,
+        "accDest": 12
     },
     "pk": 8
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 2,
         "type": "Transferencia",
-        "acc_source": 11,
-        "acc_dest": 5
+        "accSource": 11,
+        "accDest": 5
     },
     "pk": 9
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 25,
         "type": "Transferencia",
-        "acc_source": 5,
-        "acc_dest": 2
+        "accSource": 5,
+        "accDest": 2
     },
     "pk": 10
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 26,
         "type": "Transferencia",
-        "acc_source": 5,
-        "acc_dest": 1
+        "accSource": 5,
+        "accDest": 1
     },
     "pk": 11
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 5,
         "type": "Pagos",
-        "acc_source": 1,
-        "acc_dest": 20
+        "accSource": 1,
+        "accDest": 20
     },
     "pk": 12
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 5,
         "type": "Pagos",
-        "acc_source": 2,
-        "acc_dest": 20
+        "accSource": 2,
+        "accDest": 20
     },
     "pk": 13
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 5,
         "type": "Pagos",
-        "acc_source": 13,
-        "acc_dest": 20
+        "accSource": 13,
+        "accDest": 20
     },
     "pk": 14
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 5,
         "type": "Pagos",
-        "acc_source": 11,
-        "acc_dest": 20
+        "accSource": 11,
+        "accDest": 20
     },
     "pk": 15
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 5,
         "type": "Pagos",
-        "acc_source": 12,
-        "acc_dest": 20
+        "accSource": 12,
+        "accDest": 20
     },
     "pk": 16
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 7,
         "type": "Pagos",
-        "acc_source": 2,
-        "acc_dest": 6
+        "accSource": 2,
+        "accDest": 6
     },
     "pk": 17
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {        
         "movement": 7,
         "type": "Pagos",
-        "acc_source": 12,
-        "acc_dest": 6
+        "accSource": 12,
+        "accDest": 6
     },
     "pk": 18
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 7,
         "type": "Pagos",
-        "acc_source": 5,
-        "acc_dest": 6
+        "accSource": 5,
+        "accDest": 6
     },
     "pk": 19
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 28,
         "type": "Pagos",
-        "acc_source": 5,
-        "acc_dest": 6
+        "accSource": 5,
+        "accDest": 6
     },
     "pk": 20
   },
   {
-    "model": "api_app.transfer_services",
+    "model": "api_app.transferServices",
     "fields": {
         "movement": 28,
         "type": "Pagos",
-        "acc_source": 1,
-        "acc_dest": 6
+        "accSource": 1,
+        "accDest": 6
     },
     "pk": 21
   }

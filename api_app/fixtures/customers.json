@@ -2,10 +2,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name": "María Gabriela",
-        "last_name": "Pérez López",
+        "firstName": "María Gabriela",
+        "lastName": "Pérez López",
         "ident": "V-18234123",
-        "phones": 1,
+        "phone": 1,
         "birthday": "1990-02-28"
     },
     "pk": 1
@@ -13,10 +13,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name": "Gabriel José",
-        "last_name": "Pérez Gimenez",
+        "firstName": "Gabriel José",
+        "lastName": "Pérez Gimenez",
         "ident": "E-82345213",
-        "phones": 2,
+        "phone": 2,
         "birthday": "1969-08-23"
     },
     "pk": 2
@@ -24,10 +24,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Luisa Carolina",
-        "last_name":"Gutierrez Blanco",
+        "firstName":"Luisa Carolina",
+        "lastName":"Gutierrez Blanco",
         "ident": "V-9276996",
-        "phones": 3,
+        "phone": 3,
         "birthday": "1982-10-21"
     },
     "pk": 3
@@ -35,10 +35,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Gustavo Argenis",
-        "last_name":"Ramos Hernández",
+        "firstName":"Gustavo Argenis",
+        "lastName":"Ramos Hernández",
         "ident": "V-10626124",
-        "phones": 4,
+        "phone": 4,
         "birthday": "1968-09-29"
     },
     "pk": 4
@@ -46,10 +46,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Banavih Aportes FAOV",
-        "last_name":"Servicio",
+        "firstName":"Banavih Aportes FAOV",
+        "lastName":"Servicio",
         "ident": "J-198276576",
-        "phones": 5,
+        "phone": 5,
         "birthday": "1990-10-10"
     },
     "pk": 5
@@ -57,10 +57,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Electricidad de Caracas",
-        "last_name":"Servicio",
+        "firstName":"Electricidad de Caracas",
+        "lastName":"Servicio",
         "ident": "J-298123875",
-        "phones": 6,
+        "phone": 6,
         "birthday": "1954-03-12"
     },
     "pk": 6
@@ -68,10 +68,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"DirecTV",
-        "last_name":"Servicio",
+        "firstName":"DirecTV",
+        "lastName":"Servicio",
         "ident": "J-198756432",
-        "phones": 7,
+        "phone": 7,
         "birthday": "2001-05-23"
     },
     "pk": 7
@@ -79,10 +79,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"DIGITEL",
-        "last_name":"Telefonía",
+        "firstName":"DIGITEL",
+        "lastName":"Telefonía",
         "ident": "J-239867431",
-        "phones": 8,
+        "phone": 8,
         "birthday": "1995-06-29"
     },
     "pk": 8
@@ -90,10 +90,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"MOVISTAR",
-        "last_name":"Telefonía",
+        "firstName":"MOVISTAR",
+        "lastName":"Telefonía",
         "ident": "J-196524365",
-        "phones": 9,
+        "phone": 9,
         "birthday": "1994-07-01"
     },
     "pk": 9
@@ -101,10 +101,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"MOVILNET",
-        "last_name":"Telefonía",
+        "firstName":"MOVILNET",
+        "lastName":"Telefonía",
         "ident": "J-209847912",
-        "phones": 10,
+        "phone": 10,
         "birthday": "1995-04-05"
     },
     "pk": 10
@@ -112,10 +112,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Anthony Mauricio",
-        "last_name":"Ramos Gómez",
+        "firstName":"Anthony Mauricio",
+        "lastName":"Ramos Gómez",
         "ident": "V-27103451",
-        "phones": 11,
+        "phone": 11,
         "birthday": "1997-11-04"
     },
     "pk": 11
@@ -123,10 +123,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Sixta Del Carmen",
-        "last_name":"Gómez Figuera",
+        "firstName":"Sixta Del Carmen",
+        "lastName":"Gómez Figuera",
         "ident": "V-9934354",
-        "phones": 12,
+        "phone": 12,
         "birthday": "1967-03-28"
     },
     "pk": 12
@@ -134,10 +134,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Cinthya Carolina",
-        "last_name":"Ramos Gómez",
+        "firstName":"Cinthya Carolina",
+        "lastName":"Ramos Gómez",
         "ident": "V-20799009",
-        "phones": 13,
+        "phone": 13,
         "birthday": "1992-03-21"
     },
     "pk": 13
@@ -145,10 +145,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Patricia Roxana",
-        "last_name":"Valencia Gómez",
+        "firstName":"Patricia Roxana",
+        "lastName":"Valencia Gómez",
         "ident": "V-19293949",
-        "phones": 14,
+        "phone": 14,
         "birthday": "1991-05-13"
     },
     "pk": 14
@@ -156,10 +156,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Honorio José",
-        "last_name":"Rodríguez Morelo",
+        "firstName":"Honorio José",
+        "lastName":"Rodríguez Morelo",
         "ident": "V-19782283",
-        "phones": 15,
+        "phone": 15,
         "birthday": "1990-10-29"
     },
     "pk": 15
@@ -167,10 +167,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Luis Eduardo",
-        "last_name":"González Pérez",
+        "firstName":"Luis Eduardo",
+        "lastName":"González Pérez",
         "ident": "V-20953529",
-        "phones": 16,
+        "phone": 16,
         "birthday": "1992-03-04"
     },
     "pk": 16
@@ -178,10 +178,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Daniela Stefany",
-        "last_name":"López Martínez",
+        "firstName":"Daniela Stefany",
+        "lastName":"López Martínez",
         "ident": "V-15289354",
-        "phones": 17,
+        "phone": 17,
         "birthday": "1975-12-04"
     },
     "pk": 17
@@ -189,10 +189,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"Miguel Ángel",
-        "last_name":"Blanco Guzmán",
+        "firstName":"Miguel Ángel",
+        "lastName":"Blanco Guzmán",
         "ident": "E-82928735",
-        "phones": 18,
+        "phone": 18,
         "birthday": "1980-07-24"
     },
     "pk": 18
@@ -200,10 +200,10 @@
   {
     "model": "api_app.customer",
     "fields": {
-        "first_name":"CANTV",
-        "last_name":"Telefonía",
+        "firstName":"CANTV",
+        "lastName":"Telefonía",
         "ident": "J-267828740",
-        "phones": 19,
+        "phone": 19,
         "birthday": "1945-07-12"
     },
     "pk": 19

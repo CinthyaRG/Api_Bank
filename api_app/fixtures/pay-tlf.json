@@ -1,71 +1,71 @@
 [
   {
-    "model": "api_app.payments_tlf",
+    "model": "api_app.paymentTlf",
     "fields": {
         "movement": 8,
         "account": 5,
         "operator": "DIGITEL",
-        "num_tlf": "04128291625"
+        "numTlf": "04128291625"
     },
     "pk": 1
   },
   {
-    "model": "api_app.payments_tlf",
+    "model": "api_app.paymentTlf",
     "fields": {
         "movement": 8,
         "account": 12,
         "operator": "DIGITEL",
-        "num_tlf": "04129815243"
+        "numTlf": "04129815243"
     },
     "pk": 2
   },
   {
-    "model": "api_app.payments_tlf",
+    "model": "api_app.paymentTlf",
     "fields": {
         "movement": 8,
         "account": 13,
         "operator": "DIGITEL",
-        "num_tlf": "04127263547"
+        "numTlf": "04127263547"
     },
     "pk": 3
   },
   {
-    "model": "api_app.payments_tlf",
+    "model": "api_app.paymentTlf",
     "fields": {
         "movement": 27,
         "account": 1,
         "operator": "MOVISTAR",
-        "num_tlf": "04141928371"
+        "numTlf": "04141928371"
     },
     "pk": 4
   },
   {
-    "model": "api_app.payments_tlf",
+    "model": "api_app.paymentTlf",
     "fields": {
         "movement": 27,
         "account": 2,
         "operator": "MOVISTAR",
-        "num_tlf": "04243928573"
+        "numTlf": "04243928573"
     },
     "pk": 5
   },
   {
-    "model": "api_app.payments_tlf",
+    "model": "api_app.paymentTlf",
     "fields": {
         "movement": 27,
         "account": 12,
         "operator": "MOVISTAR",
-        "num_tlf": "04141009836"
+        "numTlf": "04141009836"
     },
     "pk": 6
   },
   {
-    "model": "api_app.payments_tlf",
+    "model": "api_app.paymentTlf",
     "fields": {
         "movement": 27,
         "account": 21,
         "operator": "MOVISTAR",
-        "num_tlf": "04143857108"
+        "numTlf": "04143857108"
     },
     "pk": 7
   }

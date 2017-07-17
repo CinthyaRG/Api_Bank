@@ -1,6 +1,6 @@
 loaddata banks
-loaddata branches
 loaddata phones
+loaddata branches
 loaddata customers
 loaddata products
 loaddata balances
@@ -10,7 +10,7 @@ loaddata tdc
 loaddata mov
 loaddata mov-simple
 loaddata transf-serv
-loaddata pay-tdc
+loaddata pay-tdc ----> ESTE NOOO!!!!
 loaddata pay-tlf
 
 

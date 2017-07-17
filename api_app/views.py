@@ -14,7 +14,7 @@ def validate_data(request):
     ci = request.GET.get('ci', None)
     msj_error = 'Los datos introducidos no son correctos, por favor verifíquelos'
 
-    data = {'product': Product.objects.filter(num_card=numtarj).exists(),
+    data = {'product': Product.objects.filter(numCard=numtarj).exists(),
             'ccv': True,
             'month': True,
             'year': True,
@@ -23,7 +23,7 @@ def validate_data(request):
 
     if data['product']:
 
-        product = Product.objects.get(num_card=numtarj)
+        product = Product.objects.get(numCard=numtarj)
 
         if (product.month == month) and (product.year == year) and (product.ccv == ccv):
             data['customer'] = Customer.objects.filter(id=product.customer.id).exists()
@@ -35,24 +35,24 @@ def validate_data(request):
                     for a in accounts:
                         if a.pin == pin:
                             data['correct'] = True
-                            data['customer_name'] = customer.first_name
-                            data['customer_last'] = customer.last_name
+                            data['customer_name'] = customer.firstName
+                            data['customer_last'] = customer.lastName
                             data['customer_ident'] = customer.ident
 
-                            if customer.phones.home is None:
+                            if customer.phone.home is None:
                                 data['phone_home'] = "None-None"
                             else:
-                                data['phone_home'] = customer.phones.home
+                                data['phone_home'] = customer.phone.home
 
-                            if customer.phones.cellphone is None:
+                            if customer.phone.cellphone is None:
                                 data['cellphone'] = "None-None"
                             else:
-                                data['cellphone'] = customer.phones.cellphone
+                                data['cellphone'] = customer.phone.cellphone
 
-                            if customer.phones.office is None:
+                            if customer.phone.office is None:
                                 data['phone_office'] = "None-None"
                             else:
-                                data['phone_office'] = customer.phones.office
+                                data['phone_office'] = customer.phone.office
 
                             data['birthday'] = customer.birthday
                             break
@@ -96,38 +96,38 @@ def validate_data_forgot(request):
     ci = request.GET.get('ci', None)
     msj_error = 'Los datos introducidos no son correctos, por favor verifíquelos'
 
-    data = {'product': Product.objects.filter(num_card=numtarj).exists(),
+    data = {'product': Product.objects.filter(numCard=numtarj).exists(),
             'ccv': True,
             'month': True,
             'year': True,
             'ci': True}
 
     if data['product']:
-        product = Product.objects.get(num_card=numtarj)
+        product = Product.objects.get(numCard=numtarj)
         if (product.month == month) and (product.year == year) and (product.ccv == ccv):
             data['customer'] = Customer.objects.filter(id=product.customer.id).exists()
             if data['customer']:
                 customer = Customer.objects.get(id=product.customer.id)
                 if customer.ident == ci:
                     data['correct'] = True
-                    data['customer_name'] = customer.first_name
-                    data['customer_last'] = customer.last_name
+                    data['customer_name'] = customer.firstName
+                    data['customer_last'] = customer.lastName
                     data['customer_ident'] = customer.ident
 
-                    if customer.phones.home is None:
+                    if customer.phone.home is None:
                         data['phone_home'] = "None-None"
                     else:
-                        data['phone_home'] = customer.phones.home
+                        data['phone_home'] = customer.phone.home
 
-                    if customer.phones.cellphone is None:
+                    if customer.phone.cellphone is None:
                         data['cellphone'] = "None-None"
                     else:
-                        data['cellphone'] = customer.phones.cellphone
+                        data['cellphone'] = customer.phone.cellphone
 
-                    if customer.phones.office is None:
+                    if customer.phone.office is None:
                         data['phone_office'] = "None-None"
                     else:
-                        data['phone_office'] = customer.phones.office
+                        data['phone_office'] = customer.phone.office
 
                     data['birthday'] = customer.birthday
                 else:
