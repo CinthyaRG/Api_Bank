@@ -19,26 +19,26 @@ class Bank(models.Model):
         unique_together = ('name', 'cod')
 
 
-class Branch(models.Model):
-    name = models.CharField(max_length=64)
-    bank = models.ForeignKey(Bank)
-    phone = models.OneToOneField(Phone)
-
-    def __str__(self):
-        return self.name
-
-
 class Phone(models.Model):
     home = models.CharField(max_length=12, null=True)
     cellphone = models.CharField(max_length=12, null=True)
     office = models.CharField(max_length=12, null=True)
 
 
+class Branch(models.Model):
+    name = models.CharField(max_length=64)
+    bank = models.ForeignKey(Bank)
+    phone = models.ForeignKey(Phone)
+
+    def __str__(self):
+        return self.name
+
+
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     ident = models.CharField(validators=[ID_VALIDATOR], max_length=11, unique=True)
-    phone = models.OneToOneField(Phone)
+    phone = models.ForeignKey(Phone)
     birthday = models.DateField()
 
     def get_name(self):
@@ -85,24 +85,24 @@ class Account(models.Model):
         ('Cuenta Ahorro', 'Cuenta Ahorro'),
         ('Cuenta Corriente', 'Cuenta Corriente'),
     ]
-    product = models.ForeignKey(Product)
+    product = models.OneToOneField(Product)
     name = models.CharField(choices=product_bank, max_length=16)
     pin = models.CharField(max_length=4)
-    num_acc = models.CharField(max_length=20)
+    numAcc = models.CharField(max_length=20)
     branch = models.ForeignKey(Branch)
-    balances = models.ForeignKey(Balance)
+    balance = models.ForeignKey(Balance)
 
     def __str__(self):
         return self.name + " (" + str(self.product) + ")"
 
 
 class Check(models.Model):
-    num_check = models.IntegerField(unique=True, primary_key=True)
+    numCheck = models.IntegerField(unique=True, primary_key=True)
     status = models.BooleanField(default=False)
     account = models.ForeignKey(Account)
 
     def __str__(self):
-        return str(self.num_check) + " (" + str(self.account) + \
+        return str(self.numCheck) + " (" + str(self.account) + \
                " -- " + str(self.status) + ")"
 
 
@@ -125,11 +125,11 @@ class Tdc(models.Model):
 class Loan(models.Model):
     customer = models.ForeignKey(Customer)
     account = models.ForeignKey(Account)
-    num_installments = models.IntegerField()
-    paid_installments = models.IntegerField()
-    overdue_installments = models.IntegerField()
-    starting_amount = models.DecimalField(max_digits=30, decimal_places=2)
-    paid_amount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
+    numInstallments = models.IntegerField()
+    paidInstallments = models.IntegerField()
+    overdueInstallments = models.IntegerField()
+    startingAmount = models.DecimalField(max_digits=30, decimal_places=2)
+    paidAmount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     date = models.DateField()
 
     def __str__(self):
