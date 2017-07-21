@@ -88,6 +88,26 @@ def validate_data(request):
 
 
 @ensure_csrf_cookie
+def data_customer(request):
+    numtarj = request.GET.get('numtarj', None)
+
+    data = {'product': Product.objects.filter(numCard=numtarj).exists()}
+
+    if data['product']:
+
+        product = Product.objects.get(numCard=numtarj)
+
+
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
+
+
+@ensure_csrf_cookie
 def validate_data_forgot(request):
     numtarj = request.GET.get('numtarj', None)
     ccv = request.GET.get('ccv', None)

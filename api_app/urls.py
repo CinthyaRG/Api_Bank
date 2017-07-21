@@ -10,4 +10,8 @@ urlpatterns = [
         r'^ajax/validate_data_forgot/$',
         validate_data_forgot,
         name='validate_data_forgot'),
+    url(
+        r'^ajax/data-customer/$',
+        data_customer,
+        name='data_customer'),
 ]
