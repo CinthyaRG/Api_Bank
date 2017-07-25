@@ -116,6 +116,7 @@ class Tdc(models.Model):
     limit = models.DecimalField(max_digits=30, decimal_places=2)
     balance = models.DecimalField(max_digits=30, decimal_places=2)
     status = models.BooleanField()
+    date = models.DateField()
     product = models.ForeignKey(Product)
 
     def __str__(self):

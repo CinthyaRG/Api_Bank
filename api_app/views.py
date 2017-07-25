@@ -87,17 +87,62 @@ def validate_data(request):
     return response
 
 
+def conv_int(cadena):
+    s = ''
+    for c in cadena:
+        s = s+str(ord(c))
+        if len(s) == 6:
+            return s
+    return s
+
+
 @ensure_csrf_cookie
 def data_customer(request):
-    numtarj = request.GET.get('numtarj', None)
+    num = request.GET.get('num', None)
+    print(num)
 
-    data = {'product': Product.objects.filter(numCard=numtarj).exists()}
+    data = {'product': Product.objects.filter(numCard=num).exists(),
+            'account': [],
+            'tdc': [],
+            'loan': []
+            }
 
     if data['product']:
+        product = Product.objects.get(numCard=num)
+        customer = Customer.objects.get(pk=product.customer.id)
+        accounts = Account.objects.filter(product=product.id)
+        products = Product.objects.filter(customer=customer.id).exclude(numCard=num)
+        loans = Loan.objects.filter(customer=customer.id)
 
-        product = Product.objects.get(numCard=numtarj)
+        for a in accounts:
+            details_acc = []
+            details_acc.append(a.name)
+            details_acc.append(a.numAcc[:10] + "******" + a.numAcc[16:])
+            details_acc.append("Activa")
+            details_acc.append(a.balance.available)
 
+            data['account'].append(details_acc)
 
+        for p in products:
+            tdc = Tdc.objects.get(product=p.id)
+            details_tdc = []
+            details_tdc.append(tdc.name)
+            details_tdc.append(p.numCard[:4] + "********" + p.numCard[13:])
+            details_tdc.append(tdc.balance)
+            details_tdc.append(tdc.date)
+
+            data['tdc'].append(details_tdc)
+
+        for l in loans:
+            details_loan = []
+            details_loan.append(conv_int('PRESTAMO')+str(l.id))
+            details_loan.append(l.account.name + ' *****' + l.account.numAcc[16:])
+            details_loan.append(l.paidAmount)
+            details_loan.append(l.date)
+
+            data['loan'].append(details_loan)
+
+    print(data)
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'

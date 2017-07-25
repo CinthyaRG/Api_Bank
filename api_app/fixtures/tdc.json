@@ -6,7 +6,8 @@
         "name": "VISA",
         "limit": 150000,
         "balance": 54265.22,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-02"
     },
     "pk": 1
   },
@@ -17,7 +18,8 @@
         "name": "MASTERCARD",
         "limit": 70000,
         "balance": 16985.21,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-18"
     },
     "pk": 2
   },
@@ -28,7 +30,8 @@
         "name": "VISA",
         "limit": 50000,
         "balance": 12365.20,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-13"
     },
     "pk": 3
   },
@@ -39,7 +42,8 @@
         "name": "MASTERCARD",
         "limit": 650000,
         "balance": 126895.11,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-19"
     },
     "pk": 4
   },
@@ -50,7 +54,8 @@
         "name": "VISA",
         "limit": 250000,
         "balance": 68965.87,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-21"
     },
     "pk": 5
   },
@@ -61,7 +66,8 @@
         "name": "AMERICAN EXPRESS",
         "limit": 425000,
         "balance": 36524.25,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-26"
     },
     "pk": 6
   },
@@ -72,7 +78,8 @@
         "name": "VISA",
         "limit": 120000,
         "balance": 32542.36,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-11"
     },
     "pk": 7
   },
@@ -83,7 +90,8 @@
         "name": "MASTERCARD",
         "limit": 1200000,
         "balance": 356985.24,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-29"
     },
     "pk": 8
   },
@@ -94,7 +102,8 @@
         "name": "VISA",
         "limit": 1200000,
         "balance": 685242.55,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-17"
     },
     "pk": 9
   },
@@ -105,7 +114,8 @@
         "name": "AMERICAN EXPRESS",
         "limit": 250000,
         "balance": 12504.26,
-        "status": "True"
+        "status": "True",
+        "date": "2017-08-15"
     },
     "pk": 10
   }
