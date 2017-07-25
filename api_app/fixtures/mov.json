@@ -5,7 +5,7 @@
         "ref": "8482651",
         "amount": 12585.58,
         "details": "pago de herramientas",
-        "date": "2017-05-10"
+        "date": "2017-07-10"
     },
     "pk": 1
   },
@@ -15,7 +15,7 @@
         "ref": "8482652",
         "amount": 2500.00,
         "details": "pagos varios",
-        "date": "2017-05-02"
+        "date": "2017-07-02"
     },
     "pk": 2
   },
@@ -25,7 +25,7 @@
         "ref": "6869801",
         "amount": 12500.00,
         "details": "Depósito realizado en la agencia La California",
-        "date": "2017-05-15"
+        "date": "2017-07-15"
     },
     "pk": 3
   },
@@ -35,7 +35,7 @@
         "ref": "8269841",
         "amount": 16500,
         "details": "Retiro realizado en la agencia C.C. Milenium",
-        "date": "2017-05-25"
+        "date": "2017-07-25"
     },
     "pk": 4
   },
@@ -44,8 +44,8 @@
     "fields": {
         "ref": "8065711",
         "amount": 28000,
-        "details": "Pago de electricidad 05/2017",
-        "date": "2017-05-03"
+        "details": "Pago de electricidad 07/2017",
+        "date": "2017-07-03"
     },
     "pk": 5
   },
@@ -55,7 +55,7 @@
         "ref": "8468671",
         "amount": 6315.85,
         "details": "Pago de tarjeta de crédito",
-        "date": "2017-06-05"
+        "date": "2017-06-07"
     },
     "pk": 6
   },
@@ -65,7 +65,7 @@
         "ref": "8065712",
         "amount": 45201.25,
         "details": "pago de Banavih mes mayo",
-        "date": "2017-05-10"
+        "date": "2017-07-10"
     },
     "pk": 7
   },
@@ -75,7 +75,7 @@
         "ref": "8469761",
         "amount": 1500,
         "details": "recarga digitel",
-        "date": "2017-05-21"
+        "date": "2017-07-21"
     },
     "pk": 8
   },
@@ -85,7 +85,7 @@
         "ref": "8079831",
         "amount": 15842.26,
         "details": "Compra POS",
-        "date": "2017-05-02"
+        "date": "2017-07-02"
     },
     "pk": 9
   },
@@ -95,7 +95,7 @@
         "ref": "8079832",
         "amount": 32548.50,
         "details": "Compra POS",
-        "date": "2017-05-08"
+        "date": "2017-07-08"
     },
     "pk": 10
   },
@@ -105,7 +105,7 @@
         "ref": "8079833",
         "amount": 9652.26,
         "details": "Compra POS",
-        "date": "2017-05-25"
+        "date": "2017-07-25"
     },
     "pk": 11
   },
@@ -113,9 +113,9 @@
     "model": "api_app.movement",
     "fields": {
         "ref": "8079834",
-        "amount": 2058.26,
+        "amount": 2078.26,
         "details": "Compra POS",
-        "date": "2017-05-22"
+        "date": "2017-07-22"
     },
     "pk": 12
   },
@@ -125,7 +125,7 @@
         "ref": "8079835",
         "amount": 9652.85,
         "details": "Compra POS",
-        "date": "2017-05-30"
+        "date": "2017-07-30"
     },
     "pk": 13
   },
@@ -135,7 +135,7 @@
         "ref": "8468672",
         "amount": 15658.00,
         "details": "Pago de tarjeta de crédito",
-        "date": "2017-05-02"
+        "date": "2017-07-02"
     },
     "pk": 14
   },
@@ -145,7 +145,7 @@
         "ref": "8468673",
         "amount": 8523.00,
         "details": "Pago de tarjeta de crédito",
-        "date": "2017-05-03"
+        "date": "2017-07-03"
     },
     "pk": 15
   },
@@ -155,7 +155,7 @@
         "ref": "8482653",
         "amount": 65000,
         "details": "Pagos de trabajos varios",
-        "date": "2017-05-18"
+        "date": "2017-07-18"
     },
     "pk": 16
   },
@@ -165,7 +165,7 @@
         "ref": "6869802",
         "amount": 52000,
         "details": "Depósito realizado en la agencia La trinidad",
-        "date": "2017-05-12"
+        "date": "2017-07-12"
     },
     "pk": 17
   },
@@ -175,7 +175,7 @@
         "ref": "6869803",
         "amount": 22500,
         "details": "Depósito realizado en la agencia C.C.C.T",
-        "date": "2017-05-14"
+        "date": "2017-07-14"
     },
     "pk": 18
   },
@@ -185,7 +185,7 @@
         "ref": "8269842",
         "amount": 10000,
         "details": "Retiro realizado en la agencia Santa Mónica",
-        "date": "2017-05-09"
+        "date": "2017-07-09"
     },
     "pk": 19
   },
@@ -195,7 +195,7 @@
         "ref": "8269843",
         "amount": 5400,
         "details": "Retiro realizado en la agencia Plaza Venezuela",
-        "date": "2017-05-26"
+        "date": "2017-07-26"
     },
     "pk": 20
   },
@@ -205,7 +205,7 @@
         "ref": "8269844",
         "amount": 36000,
         "details": "Retiro realizado en la agencia C.C. Lider",
-        "date": "2017-05-15"
+        "date": "2017-07-15"
     },
     "pk": 21
   },

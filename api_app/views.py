@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import viewsets
 from api_app.serializers import *
+import datetime
 
 
 @ensure_csrf_cookie
@@ -76,7 +77,7 @@ def validate_data(request):
     else:
         data['correct'] = False
 
-    if not(data['correct']):
+    if not (data['correct']):
         data['error'] = msj_error
 
     response = JsonResponse(data)
@@ -90,7 +91,7 @@ def validate_data(request):
 def conv_int(cadena):
     s = ''
     for c in cadena:
-        s = s+str(ord(c))
+        s = s + str(ord(c))
         if len(s) == 6:
             return s
     return s
@@ -104,45 +105,75 @@ def data_customer(request):
     data = {'product': Product.objects.filter(numCard=num).exists(),
             'account': [],
             'tdc': [],
-            'loan': []
+            'loan': [],
+            'mov': [[], []]
             }
 
     if data['product']:
         product = Product.objects.get(numCard=num)
         customer = Customer.objects.get(pk=product.customer.id)
-        accounts = Account.objects.filter(product=product.id)
+        accounts = Account.objects.filter(product=product.id).order_by('name')
         products = Product.objects.filter(customer=customer.id).exclude(numCard=num)
         loans = Loan.objects.filter(customer=customer.id)
 
+        today = datetime.datetime.today()
+
         for a in accounts:
-            details_acc = []
-            details_acc.append(a.name)
-            details_acc.append(a.numAcc[:10] + "******" + a.numAcc[16:])
-            details_acc.append("Activa")
-            details_acc.append(a.balance.available)
+            trans_simple = TransactionSimple.objects.filter(account=a.pk,
+                                                            movement__date__gte=datetime.date(today.year, today.month, 1),
+                                                            movement__date__lte=datetime.date(today.year, today.month, 31))
+
+            print(trans_simple)
+
+            for t in trans_simple:
+                print(t)
+                mov = Movement.objects.get(pk=t.movement.id)
+                details_mov = [mov.date,
+                               mov.ref,
+                               t.type,
+                               mov.amount]
+
+            details_acc = ['Cuenta ' + a.name,
+                           a.numAcc[:10] + "******" + a.numAcc[16:],
+                           "Activa",
+                           [a.balance.available, a.balance.deferrer, a.balance.lock],
+                           a.branch.name]
 
             data['account'].append(details_acc)
 
         for p in products:
             tdc = Tdc.objects.get(product=p.id)
-            details_tdc = []
-            details_tdc.append(tdc.name)
-            details_tdc.append(p.numCard[:4] + "********" + p.numCard[13:])
-            details_tdc.append(tdc.balance)
-            details_tdc.append(tdc.date)
+            details_tdc = [tdc.name,
+                           p.numCard[:4] + "********" + p.numCard[12:],
+                           tdc.balance,
+                           tdc.date]
 
             data['tdc'].append(details_tdc)
 
         for l in loans:
-            details_loan = []
-            details_loan.append(conv_int('PRESTAMO')+str(l.id))
-            details_loan.append(l.account.name + ' *****' + l.account.numAcc[16:])
-            details_loan.append(l.paidAmount)
-            details_loan.append(l.date)
+            details_loan = [conv_int('PRESTAMO') + str(l.id),
+                            'Cuenta ' + l.account.name + ' *****' + l.account.numAcc[16:],
+                            l.paidAmount, l.date]
 
             data['loan'].append(details_loan)
+        #
+        # var
+        # date = ['21/04/2017', '18/04/2017', '17/04/2017', '17/04/2017', '14/04/2017', '13/04/2017'];
+        # var
+        # ref = ['1123456', '1113456', '1109456', '1108756', '1106556', '1102156'];
+        # var
+        # trans = ['Depósito', 'Retiro', 'Pago', 'Transferencia', 'POS', 'POS'];
+        # var
+        # amount = ['+2.000,00', '-700,00', '-21.000,00', '-13.000,00', '-1.760,67', '-14.743,90'];
+        # var
+        # balance = ['172.096,77', '170.796,77', '191.796,77', '204.796,77', '206.556,67', '221.299,64'];
+
+
 
     print(data)
+    print(len(data['account']))
+    print(len(data['tdc']))
+    print(len(data['loan']))
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
@@ -278,8 +309,7 @@ class LoansViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = LoanSerializer
 
 
-
-    #class UsuarioViewSet(viewsets.ModelViewSet):
+    # class UsuarioViewSet(viewsets.ModelViewSet):
     #    """
     #   API endpoint that allows users to be viewed or edited.
     #    """

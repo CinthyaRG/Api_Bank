@@ -82,8 +82,8 @@ class Appointment(models.Model):
 
 class Account(models.Model):
     product_bank = [
-        ('Cuenta Ahorro', 'Cuenta Ahorro'),
-        ('Cuenta Corriente', 'Cuenta Corriente'),
+        ('Ahorro', 'Ahorro'),
+        ('Corriente', 'Corriente'),
     ]
     name = models.CharField(choices=product_bank, max_length=16)
     pin = models.CharField(max_length=4)
