@@ -4,7 +4,8 @@
     "fields": {
         "movement": 3,
         "account": 1,
-        "type": "Deposito"
+        "type": "Deposito",
+        "amountResult": 1169864.24
     },
     "pk": 1
   },
@@ -13,7 +14,8 @@
     "fields": {
         "movement": 4,
         "account": 2,
-        "type": "Retiro"
+        "type": "Retiro",
+        "amountResult": 0
     },
     "pk": 2
   },
@@ -22,7 +24,8 @@
     "fields": {
         "movement": 17,
         "account": 2,
-        "type": "Deposito"
+        "type": "Deposito",
+        "amountResult": 0
     },
     "pk": 3
   },
@@ -31,7 +34,8 @@
     "fields": {
         "movement": 18,
         "account": 2,
-        "type": "Deposito"
+        "type": "Deposito",
+        "amountResult": 0
     },
     "pk": 4
   },
@@ -40,7 +44,8 @@
     "fields": {
         "movement": 19,
         "account": 1,
-        "type": "Retiro"
+        "type": "Retiro",
+        "amountResult": 1169949.82
     },
     "pk": 5
   },
@@ -49,7 +54,8 @@
     "fields": {
         "movement": 20,
         "account": 2,
-        "type": "Retiro"
+        "type": "Retiro",
+        "amountResult": 0
     },
     "pk": 6
   },
@@ -58,7 +64,8 @@
     "fields": {
         "movement": 21,
         "account": 2,
-        "type": "Retiro"
+        "type": "Retiro",
+        "amountResult": 0
     },
     "pk": 7
   },
@@ -67,7 +74,8 @@
     "fields": {
         "movement": 3,
         "account": 5,
-        "type": "Deposito"
+        "type": "Deposito",
+        "amountResult": 0
     },
     "pk": 8
   },
@@ -76,7 +84,8 @@
     "fields": {
         "movement": 4,
         "account": 5,
-        "type": "Retiro"
+        "type": "Retiro",
+        "amountResult": 0
     },
     "pk": 9
   },
@@ -85,7 +94,8 @@
     "fields": {
         "movement": 17,
         "account": 5,
-        "type": "Deposito"
+        "type": "Deposito",
+        "amountResult": 0
     },
     "pk": 10
   },
@@ -94,7 +104,8 @@
     "fields": {
         "movement": 18,
         "account": 11,
-        "type": "Deposito"
+        "type": "Deposito",
+        "amountResult": 0
     },
     "pk": 11
   },
@@ -103,7 +114,8 @@
     "fields": {
         "movement": 19,
         "account": 11,
-        "type": "Retiro"
+        "type": "Retiro",
+        "amountResult": 0
     },
     "pk": 12
   },
@@ -112,7 +124,8 @@
     "fields": {
         "movement": 20,
         "account": 12,
-        "type": "Retiro"
+        "type": "Retiro",
+        "amountResult": 0
     },
     "pk": 13
   },
@@ -121,7 +134,8 @@
     "fields": {
         "movement": 21,
         "account": 12,
-        "type": "Retiro"
+        "type": "Retiro",
+        "amountResult": 0
     },
     "pk": 14
   },
@@ -130,7 +144,8 @@
     "fields": {
         "movement": 17,
         "account": 12,
-        "type": "Deposito"
+        "type": "Deposito",
+        "amountResult": 0
     },
     "pk": 15
   },
@@ -139,7 +154,8 @@
     "fields": {
         "movement": 18,
         "account": 12,
-        "type": "Deposito"
+        "type": "Deposito",
+        "amountResult": 0
     },
     "pk": 16
   },
@@ -148,7 +164,8 @@
     "fields": {
         "movement": 9,
         "account": 2,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 17
   },
@@ -157,7 +174,8 @@
     "fields": {
         "movement": 10,
         "account": 1,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 1179949.82
     },
     "pk": 18
   },
@@ -166,7 +184,8 @@
     "fields": {
         "movement": 11,
         "account": 5,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 19
   },
@@ -175,7 +194,8 @@
     "fields": {
         "movement": 12,
         "account": 5,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 20
   },
@@ -184,7 +204,8 @@
     "fields": {
         "movement": 9,
         "tdc": 1,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 21
   },
@@ -193,7 +214,8 @@
     "fields": {
         "movement": 10,
         "tdc": 1,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 22
   },
@@ -202,7 +224,8 @@
     "fields": {
         "movement": 11,
         "tdc": 2,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 23
   },
@@ -211,7 +234,8 @@
     "fields": {
         "movement": 12,
         "tdc": 2,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 24
   },
@@ -220,7 +244,8 @@
     "fields": {
         "movement": 13,
         "tdc": 2,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 25
   },
@@ -229,7 +254,8 @@
     "fields": {
         "movement": 13,
         "tdc": 1,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 26
   },
@@ -238,7 +264,8 @@
     "fields": {
         "movement": 22,
         "account": 11,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 27
   },
@@ -247,7 +274,8 @@
     "fields": {
         "movement": 23,
         "account": 5,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 28
   },
@@ -256,7 +284,8 @@
     "fields": {
         "movement": 24,
         "account": 12,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 29
   },
@@ -265,7 +294,8 @@
     "fields": {
         "movement": 22,
         "tdc": 2,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 30
   },
@@ -274,7 +304,8 @@
     "fields": {
         "movement": 23,
         "tdc": 1,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 31
   },
@@ -283,7 +314,8 @@
     "fields": {
         "movement": 24,
         "tdc": 5,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 32
   },
@@ -292,7 +324,8 @@
     "fields": {
         "movement": 22,
         "tdc": 5,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 33
   },
@@ -301,7 +334,8 @@
     "fields": {
         "movement": 23,
         "tdc": 7,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 34
   },
@@ -310,7 +344,8 @@
     "fields": {
         "movement": 24,
         "tdc": 7,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 35
   },
@@ -319,7 +354,8 @@
     "fields": {
         "movement": 22,
         "tdc": 7,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 36
   },
@@ -328,7 +364,8 @@
     "fields": {
         "movement": 11,
         "tdc": 5,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 37
   },
@@ -337,7 +374,8 @@
     "fields": {
         "movement": 12,
         "tdc": 2,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 38
   },
@@ -346,27 +384,30 @@
     "fields": {
         "movement": 13,
         "tdc": 7,
-        "type": "POS"
+        "type": "POS",
+        "amountResult": 0
     },
     "pk": 39
   },
   {
     "model": "api_app.transactionSimple",
     "fields": {
-        "movement":6,
+        "movement": 6,
         "account": 1,
         "tdc": 1,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult":  1277456.32
     },
     "pk": 40
   },
   {
     "model": "api_app.transactionSimple",
     "fields": {
-        "movement":6,
+        "movement": 6,
         "account": 2,
         "tdc": 2,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 0
     },
     "pk": 41
   },
@@ -376,7 +417,8 @@
         "movement": 6,
         "account": 12,
         "tdc": 7,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 0
     },
     "pk": 42
   },
@@ -386,7 +428,8 @@
         "movement": 6,
         "account": 5,
         "tdc": 3,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 0
     },
     "pk": 43
   },
@@ -396,7 +439,8 @@
         "movement": 6,
         "account": 21,
         "tdc": 5,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 0
     },
     "pk": 44
   },
@@ -406,7 +450,8 @@
         "movement": 14,
         "account": 2,
         "tdc": 1,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 0
     },
     "pk": 45
   },
@@ -416,7 +461,8 @@
         "movement": 14,
         "account": 1,
         "tdc": 2,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 1240498.32
     },
     "pk": 46
   },
@@ -426,7 +472,8 @@
         "movement": 14,
         "account": 5,
         "tdc": 3,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 0
     },
     "pk": 47
   },
@@ -436,7 +483,8 @@
         "movement": 15,
         "account": 11,
         "tdc": 5,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 0
     },
     "pk": 48
   },
@@ -446,7 +494,8 @@
         "movement": 15,
         "account": 12,
         "tdc": 7,
-        "type": "Pago"
+        "type": "Pagos",
+        "amountResult": 0
     },
     "pk": 49
   }

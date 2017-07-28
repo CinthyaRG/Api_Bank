@@ -5,7 +5,8 @@
         "movement": 8,
         "account": 5,
         "operator": "DIGITEL",
-        "numTlf": "04128291625"
+        "numTlf": "04128291625",
+        "amountResult": 0
     },
     "pk": 1
   },
@@ -15,7 +16,8 @@
         "movement": 8,
         "account": 12,
         "operator": "DIGITEL",
-        "numTlf": "04129815243"
+        "numTlf": "04129815243",
+        "amountResult": 0
     },
     "pk": 2
   },
@@ -25,7 +27,8 @@
         "movement": 8,
         "account": 13,
         "operator": "DIGITEL",
-        "numTlf": "04127263547"
+        "numTlf": "04127263547",
+        "amountResult": 0
     },
     "pk": 3
   },
@@ -35,7 +38,8 @@
         "movement": 27,
         "account": 1,
         "operator": "MOVISTAR",
-        "numTlf": "04141928371"
+        "numTlf": "04141928371",
+        "amountResult": 1283772.17
     },
     "pk": 4
   },
@@ -45,7 +49,8 @@
         "movement": 27,
         "account": 2,
         "operator": "MOVISTAR",
-        "numTlf": "04243928573"
+        "numTlf": "04243928573",
+        "amountResult": 0
     },
     "pk": 5
   },
@@ -55,7 +60,8 @@
         "movement": 27,
         "account": 12,
         "operator": "MOVISTAR",
-        "numTlf": "04141009836"
+        "numTlf": "04141009836",
+        "amountResult": 0
     },
     "pk": 6
   },
@@ -65,7 +71,8 @@
         "movement": 27,
         "account": 21,
         "operator": "MOVISTAR",
-        "numTlf": "04143857108"
+        "numTlf": "04143857108",
+        "amountResult": 0
     },
     "pk": 7
   }

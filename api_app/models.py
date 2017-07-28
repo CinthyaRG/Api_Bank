@@ -66,7 +66,7 @@ class Balance(models.Model):
     lock = models.DecimalField(null=True, blank=True, max_digits=30, decimal_places=2, default=0)
 
     def __str__(self):
-        return str(self.id) + " (Bs." + str(self.available) + "/ Bs." +\
+        return str(self.id) + " (Bs." + str(self.available) + "/ Bs." + \
                str(self.deferrer) + "/ Bs." + str(self.lock) + ")"
 
 
@@ -76,7 +76,7 @@ class Appointment(models.Model):
     customer = models.ForeignKey(Customer)
 
     def __str__(self):
-        return str(self.id) + " (" + str(self.bank) + "/ " +\
+        return str(self.id) + " (" + str(self.bank) + "/ " + \
                str(self.customer) + " -- " + str(self.dateAppointment) + ")"
 
 
@@ -94,6 +94,9 @@ class Account(models.Model):
 
     def __str__(self):
         return self.name + " (" + str(self.product) + ")"
+
+    class Meta:
+        ordering = ["name"]
 
 
 class Check(models.Model):
@@ -142,10 +145,13 @@ class Movement(models.Model):
     ref = models.CharField(unique=True, max_length=30)
     amount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     details = models.CharField(max_length=128, blank=True)
-    date = models.DateField()
+    date = models.DateTimeField()
 
     def __str__(self):
         return self.ref + " (Bs." + str(self.amount) + ")"
+
+    class Meta:
+        ordering = ["date"]
 
 
 class TransactionSimple(models.Model):
@@ -153,12 +159,23 @@ class TransactionSimple(models.Model):
         ('Deposito', 'Depósito'),
         ('Retiro', 'Retiro'),
         ('POS', 'POS'),
-        ('Pago', 'Pago'),
+        ('Pagos', 'Pagos'),
     ]
     type = models.CharField(choices=transaction_type, max_length=10)
     movement = models.ForeignKey(Movement)
+    amountResult = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     account = models.ForeignKey(Account, null=True, blank=True)
     tdc = models.ForeignKey(Tdc, null=True, blank=True)
+
+    # def get_amount(self):
+    #     available = Account.objects.get(pk=self.account.id)
+    #     amount = Movement.objects.get(pk=self.movement.id)
+    #     if self.type == 'Deposito':
+    #         return available + amount
+    #     else:
+    #         return available - amount
+
+    # amount_res = property(get_amount)
 
 
 class TransferServices(models.Model):
@@ -168,8 +185,15 @@ class TransferServices(models.Model):
     ]
     type = models.CharField(choices=transaction_type, max_length=13)
     movement = models.ForeignKey(Movement)
+    amountResult = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     accSource = models.ForeignKey(Account, related_name="accSource")
-    accDest = models.ForeignKey(Account, related_name="accDest")
+    accDest = models.ForeignKey(Account, related_name="accDest", null=True, blank=True)
+
+    def __str__(self):
+        return str(self.id) + ': Origen ->' + str(self.accSource.product.customer) + ' Destino ->' + str(self.accDest.product.customer)
+
+    class Meta:
+        ordering = ["id"]
 
 
 # class PaymentTdc(models.Model):
@@ -187,5 +211,6 @@ class PaymentTlf(models.Model):
     ]
     operator = models.CharField(choices=operator, max_length=10)
     numTlf = models.CharField(max_length=11)
+    amountResult = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     movement = models.ForeignKey(Movement)
     account = models.ForeignKey(Account)

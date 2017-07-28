@@ -6,7 +6,7 @@
         "name": "Corriente",
         "pin": "2014",
         "numAcc": "01805015961458732569",
-        "branch": 10,
+        "branch": 3,
         "balance": 2
     },
     "pk": 1

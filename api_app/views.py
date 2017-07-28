@@ -1,3 +1,5 @@
+import calendar
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import viewsets
@@ -117,21 +119,123 @@ def data_customer(request):
         loans = Loan.objects.filter(customer=customer.id)
 
         today = datetime.datetime.today()
+        end_day = calendar.monthrange(today.year, today.month)[1]
 
         for a in accounts:
             trans_simple = TransactionSimple.objects.filter(account=a.pk,
-                                                            movement__date__gte=datetime.date(today.year, today.month, 1),
-                                                            movement__date__lte=datetime.date(today.year, today.month, 31))
+                                                            movement__date__gte=datetime.date(today.year, today.month,
+                                                                                              1),
+                                                            movement__date__lte=datetime.date(today.year, today.month,
+                                                                                              end_day))
 
-            print(trans_simple)
+            transf_out = TransferServices.objects.filter(accSource=a.pk,
+                                                         movement__date__gte=datetime.date(today.year, today.month, 1),
+                                                         movement__date__lte=datetime.date(today.year, today.month,
+                                                                                           end_day)).order_by('id')
+
+            transf_in = TransferServices.objects.filter(accDest=a.pk,
+                                                        movement__date__gte=datetime.date(today.year, today.month, 1),
+                                                        movement__date__lte=datetime.date(today.year, today.month,
+                                                                                          end_day)).order_by('id')
+
+            transaction = transf_out | transf_in
+
+            payments = PaymentTlf.objects.filter(account=a.pk,
+                                                 movement__date__gte=datetime.date(today.year, today.month, 1),
+                                                 movement__date__lte=datetime.date(today.year, today.month,
+                                                                                   end_day)).order_by('id')
+
+            # transf_in = (TransferServices.objects.filter(accDest=a.pk,
+            #                                              movement__date__gte=datetime.date(today.year, today.month, 1),
+            #                                              movement__date__lte=datetime.date(today.year, today.month,
+            #                                                                                end_day)) |
+            #              TransferServices.objects.filter(accSource=a.pk,
+            #                                              movement__date__gte=datetime.date(today.year, today.month, 1),
+            #                                              movement__date__lte=datetime.date(today.year, today.month,
+            #                                                                                end_day))).order_by('id')
+
+            if a.name == 'Ahorro':
+                i = 0
+            else:
+                i = 1
 
             for t in trans_simple:
-                print(t)
                 mov = Movement.objects.get(pk=t.movement.id)
+                if t.type == 'Deposito':
+                    sig = '+'
+                else:
+                    sig = '-'
                 details_mov = [mov.date,
                                mov.ref,
-                               t.type,
-                               mov.amount]
+                               t.get_type_display(),
+                               sig + str(mov.amount),
+                               t.amountResult]
+
+                if t.type == 'Pagos':
+                    details = mov.details + ' --Pago de TDC ' + t.tdc.name +\
+                              ' perteneciente a ' + t.tdc.product.customer.get_name()
+                else:
+                    details = mov.details
+
+                details_mov.append(details)
+
+                data['mov'][i].append(details_mov)
+
+            for tr in transaction:
+                mov = Movement.objects.get(pk=tr.movement.id)
+                if tr.type == 'Pagos':
+                    w = 'o'
+                else:
+                    w = 'a'
+                details_mov = [mov.date,
+                               mov.ref,
+                               tr.get_type_display(),
+                               '+' + str(mov.amount),
+                               tr.amountResult]
+
+                if tr.accDest.id == a.id:
+                    details = mov.details + ' --' + tr.get_type_display() + ' recibid' +\
+                              w + ' de la cuenta de ' + \
+                              tr.accSource.product.customer.get_name()
+                else:
+                    if tr.accDest is None:
+                        details = mov.details
+                    else:
+                        details = mov.details + ' --' + tr.get_type_display() + ' realizad' +\
+                                  w + ' a la cuenta de ' + \
+                                  tr.accDest.product.customer.get_name()
+
+                details_mov.append(details)
+
+                data['mov'][i].append(details_mov)
+
+            for p in payments:
+                mov = Movement.objects.get(pk=p.movement.id)
+                details_mov = [mov.date,
+                               mov.ref,
+                               'Pagos',
+                               '-' + str(mov.amount),
+                               p.amountResult,
+                               mov.details + ' --Recarga a operadora ' +
+                               p.get_operator_display() + ' al número (' + p.numTlf + ')']
+                data['mov'][i].append(details_mov)
+
+            data['mov'][i].sort(reverse=True)
+
+            # for tr in transf_out:
+            #     mov = Movement.objects.get(pk=tr.movement.id)
+            #     details_mov = [mov.date,
+            #                    mov.ref,
+            #                    tr.get_type_display(),
+            #                    '-' + str(mov.amount)]
+            #
+            #     if tr.accDest is None:
+            #         details_mov.append(mov.details)
+            #     else:
+            #         details_mov.append(mov.details+' realizado a la cuenta de '+tr.accDest.product.customer.get_name())
+            #     data['mov'][i].append(details_mov)
+
+            # data['mov'][i].sort(reverse=True)
 
             details_acc = ['Cuenta ' + a.name,
                            a.numAcc[:10] + "******" + a.numAcc[16:],
@@ -156,19 +260,17 @@ def data_customer(request):
                             l.paidAmount, l.date]
 
             data['loan'].append(details_loan)
-        #
-        # var
-        # date = ['21/04/2017', '18/04/2017', '17/04/2017', '17/04/2017', '14/04/2017', '13/04/2017'];
-        # var
-        # ref = ['1123456', '1113456', '1109456', '1108756', '1106556', '1102156'];
-        # var
-        # trans = ['Depósito', 'Retiro', 'Pago', 'Transferencia', 'POS', 'POS'];
-        # var
-        # amount = ['+2.000,00', '-700,00', '-21.000,00', '-13.000,00', '-1.760,67', '-14.743,90'];
-        # var
-        # balance = ['172.096,77', '170.796,77', '191.796,77', '204.796,77', '206.556,67', '221.299,64'];
-
-
+            #
+            # var
+            # date = ['21/04/2017', '18/04/2017', '17/04/2017', '17/04/2017', '14/04/2017', '13/04/2017'];
+            # var
+            # ref = ['1123456', '1113456', '1109456', '1108756', '1106556', '1102156'];
+            # var
+            # trans = ['Depósito', 'Retiro', 'Pago', 'Transferencia', 'POS', 'POS'];
+            # var
+            # amount = ['+2.000,00', '-700,00', '-21.000,00', '-13.000,00', '-1.760,67', '-14.743,90'];
+            # var
+            # balance = ['172.096,77', '170.796,77', '191.796,77', '204.796,77', '206.556,67', '221.299,64'];
 
     print(data)
     print(len(data['account']))
