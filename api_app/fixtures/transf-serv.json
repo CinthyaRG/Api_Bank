@@ -6,7 +6,8 @@
         "type": "Transferencia",
         "accSource": 1,
         "accDest": 11,
-        "amountResult": 1157364.24
+        "amountSource": 1157364.24,
+        "amountDest": 0
     },
     "pk": 1
   },
@@ -17,7 +18,8 @@
         "type": "Transferencia",
         "accSource": 2,
         "accDest": 12,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 2
   },
@@ -28,7 +30,8 @@
         "type": "Transferencia",
         "accSource": 12,
         "accDest": 1,
-        "amountResult": 1256156.32
+        "amountSource": 0,
+        "amountDest": 1256156.32
     },
     "pk": 3
   },
@@ -39,7 +42,8 @@
         "type": "Transferencia",
         "accSource": 13,
         "accDest": 1,
-        "amountResult": 1234864.24
+        "amountSource": 0,
+        "amountDest": 1234864.24
     },
     "pk": 4
   },
@@ -50,7 +54,8 @@
         "type": "Transferencia",
         "accSource": 13,
         "accDest": 2,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 5
   },
@@ -61,7 +66,8 @@
         "type": "Transferencia",
         "accSource": 11,
         "accDest": 2,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 6
   },
@@ -72,7 +78,8 @@
         "type": "Transferencia",
         "accSource": 12,
         "accDest": 11,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 7
   },
@@ -83,7 +90,8 @@
         "type": "Transferencia",
         "accSource": 1,
         "accDest": 12,
-        "amountResult": 1253656.32
+        "amountSource": 1253656.32,
+        "amountDest": 0
     },
     "pk": 8
   },
@@ -94,7 +102,8 @@
         "type": "Transferencia",
         "accSource": 11,
         "accDest": 5,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 9
   },
@@ -105,7 +114,8 @@
         "type": "Transferencia",
         "accSource": 5,
         "accDest": 2,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 10
   },
@@ -116,7 +126,8 @@
         "type": "Transferencia",
         "accSource": 5,
         "accDest": 2,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 11
   },
@@ -127,7 +138,8 @@
         "type": "Pagos",
         "accSource": 1,
         "accDest": 20,
-        "amountResult": 1212498.32
+        "amountSource": 1212498.32,
+        "amountDest": 0
     },
     "pk": 12
   },
@@ -138,7 +150,9 @@
         "type": "Pagos",
         "accSource": 2,
         "accDest": 20,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
+
     },
     "pk": 13
   },
@@ -149,7 +163,8 @@
         "type": "Pagos",
         "accSource": 13,
         "accDest": 20,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 14
   },
@@ -160,7 +175,8 @@
         "type": "Pagos",
         "accSource": 11,
         "accDest": 20,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 15
   },
@@ -171,7 +187,8 @@
         "type": "Pagos",
         "accSource": 12,
         "accDest": 20,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 16
   },
@@ -182,7 +199,8 @@
         "type": "Pagos",
         "accSource": 2,
         "accDest": 6,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 17
   },
@@ -193,7 +211,8 @@
         "type": "Pagos",
         "accSource": 12,
         "accDest": 6,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 18
   },
@@ -204,7 +223,8 @@
         "type": "Pagos",
         "accSource": 5,
         "accDest": 6,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 19
   },
@@ -215,7 +235,8 @@
         "type": "Pagos",
         "accSource": 5,
         "accDest": 6,
-        "amountResult": 0
+        "amountSource": 0,
+        "amountDest": 0
     },
     "pk": 20
   },
@@ -226,7 +247,8 @@
         "type": "Pagos",
         "accSource": 1,
         "accDest": 6,
-        "amountResult": 1275156.32
+        "amountSource": 1275156.32,
+        "amountDest": 0
     },
     "pk": 21
   }

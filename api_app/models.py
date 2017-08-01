@@ -185,7 +185,8 @@ class TransferServices(models.Model):
     ]
     type = models.CharField(choices=transaction_type, max_length=13)
     movement = models.ForeignKey(Movement)
-    amountResult = models.DecimalField(max_digits=30, decimal_places=2, default=0)
+    amountSource = models.DecimalField(max_digits=30, decimal_places=2, default=0)
+    amountDest = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     accSource = models.ForeignKey(Account, related_name="accSource")
     accDest = models.ForeignKey(Account, related_name="accDest", null=True, blank=True)
 

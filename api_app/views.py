@@ -145,15 +145,6 @@ def data_customer(request):
                                                  movement__date__lte=datetime.date(today.year, today.month,
                                                                                    end_day)).order_by('id')
 
-            # transf_in = (TransferServices.objects.filter(accDest=a.pk,
-            #                                              movement__date__gte=datetime.date(today.year, today.month, 1),
-            #                                              movement__date__lte=datetime.date(today.year, today.month,
-            #                                                                                end_day)) |
-            #              TransferServices.objects.filter(accSource=a.pk,
-            #                                              movement__date__gte=datetime.date(today.year, today.month, 1),
-            #                                              movement__date__lte=datetime.date(today.year, today.month,
-            #                                                                                end_day))).order_by('id')
-
             if a.name == 'Ahorro':
                 i = 0
             else:
@@ -172,8 +163,11 @@ def data_customer(request):
                                t.amountResult]
 
                 if t.type == 'Pagos':
-                    details = mov.details + ' --Pago de TDC ' + t.tdc.name +\
-                              ' perteneciente a ' + t.tdc.product.customer.get_name()
+                    if t.tdc is None:
+                        details = mov.details
+                    else:
+                        details = mov.details + ' --Pago de TDC ' + t.tdc.name + \
+                                  ' perteneciente a ' + t.tdc.product.customer.get_name()
                 else:
                     details = mov.details
 
@@ -190,20 +184,19 @@ def data_customer(request):
                 details_mov = [mov.date,
                                mov.ref,
                                tr.get_type_display(),
-                               '+' + str(mov.amount),
-                               tr.amountResult]
+                               '+' + str(mov.amount)]
 
                 if tr.accDest.id == a.id:
+                    details_mov.append(tr.amountDest)
                     details = mov.details + ' --' + tr.get_type_display() + ' recibid' +\
-                              w + ' de la cuenta de ' + \
-                              tr.accSource.product.customer.get_name()
+                        w + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
                 else:
+                    details_mov.append(tr.amountSource)
                     if tr.accDest is None:
                         details = mov.details
                     else:
                         details = mov.details + ' --' + tr.get_type_display() + ' realizad' +\
-                                  w + ' a la cuenta de ' + \
-                                  tr.accDest.product.customer.get_name()
+                            w + ' a la cuenta de ' + tr.accDest.product.customer.get_name()
 
                 details_mov.append(details)
 
@@ -221,21 +214,6 @@ def data_customer(request):
                 data['mov'][i].append(details_mov)
 
             data['mov'][i].sort(reverse=True)
-
-            # for tr in transf_out:
-            #     mov = Movement.objects.get(pk=tr.movement.id)
-            #     details_mov = [mov.date,
-            #                    mov.ref,
-            #                    tr.get_type_display(),
-            #                    '-' + str(mov.amount)]
-            #
-            #     if tr.accDest is None:
-            #         details_mov.append(mov.details)
-            #     else:
-            #         details_mov.append(mov.details+' realizado a la cuenta de '+tr.accDest.product.customer.get_name())
-            #     data['mov'][i].append(details_mov)
-
-            # data['mov'][i].sort(reverse=True)
 
             details_acc = ['Cuenta ' + a.name,
                            a.numAcc[:10] + "******" + a.numAcc[16:],
@@ -260,22 +238,6 @@ def data_customer(request):
                             l.paidAmount, l.date]
 
             data['loan'].append(details_loan)
-            #
-            # var
-            # date = ['21/04/2017', '18/04/2017', '17/04/2017', '17/04/2017', '14/04/2017', '13/04/2017'];
-            # var
-            # ref = ['1123456', '1113456', '1109456', '1108756', '1106556', '1102156'];
-            # var
-            # trans = ['Depósito', 'Retiro', 'Pago', 'Transferencia', 'POS', 'POS'];
-            # var
-            # amount = ['+2.000,00', '-700,00', '-21.000,00', '-13.000,00', '-1.760,67', '-14.743,90'];
-            # var
-            # balance = ['172.096,77', '170.796,77', '191.796,77', '204.796,77', '206.556,67', '221.299,64'];
-
-    print(data)
-    print(len(data['account']))
-    print(len(data['tdc']))
-    print(len(data['loan']))
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
@@ -409,7 +371,6 @@ class LoansViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
-
 
     # class UsuarioViewSet(viewsets.ModelViewSet):
     #    """
