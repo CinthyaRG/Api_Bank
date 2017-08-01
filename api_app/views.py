@@ -239,6 +239,8 @@ def data_customer(request):
 
             data['loan'].append(details_loan)
 
+    print(data['mov'])
+
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'

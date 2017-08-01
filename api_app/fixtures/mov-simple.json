@@ -15,7 +15,7 @@
         "movement": 4,
         "account": 2,
         "type": "Retiro",
-        "amountResult": 0
+        "amountResult": 261354.56
     },
     "pk": 2
   },
@@ -25,7 +25,7 @@
         "movement": 17,
         "account": 2,
         "type": "Deposito",
-        "amountResult": 0
+        "amountResult": 157854.56
     },
     "pk": 3
   },
@@ -35,7 +35,7 @@
         "movement": 18,
         "account": 2,
         "type": "Deposito",
-        "amountResult": 0
+        "amountResult": 209854.56
     },
     "pk": 4
   },
@@ -55,7 +55,7 @@
         "movement": 20,
         "account": 2,
         "type": "Retiro",
-        "amountResult": 0
+        "amountResult": 244854.56
     },
     "pk": 6
   },
@@ -65,7 +65,7 @@
         "movement": 21,
         "account": 2,
         "type": "Retiro",
-        "amountResult": 0
+        "amountResult": 232354.56
     },
     "pk": 7
   },
@@ -165,7 +165,7 @@
         "movement": 9,
         "account": 2,
         "type": "POS",
-        "amountResult": 0
+        "amountResult": 272641.65
     },
     "pk": 17
   },
@@ -407,7 +407,7 @@
         "account": 2,
         "tdc": 2,
         "type": "Pagos",
-        "amountResult": 0
+        "amountResult": 205097.50
     },
     "pk": 41
   },
@@ -451,7 +451,7 @@
         "account": 2,
         "tdc": 1,
         "type": "Pagos",
-        "amountResult": 0
+        "amountResult": 256799.39
     },
     "pk": 45
   },
