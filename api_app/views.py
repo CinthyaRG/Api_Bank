@@ -1,5 +1,4 @@
 import calendar
-
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import viewsets
@@ -102,7 +101,11 @@ def conv_int(cadena):
 @ensure_csrf_cookie
 def data_customer(request):
     num = request.GET.get('num', None)
-    print(num)
+    option = request.GET.get('option', 0)
+    startDate = request.GET.get('start', None)
+    endDate = request.GET.get('end', None)
+    print(startDate)
+    print(endDate)
 
     data = {'product': Product.objects.filter(numCard=num).exists(),
             'account': [],
@@ -118,102 +121,7 @@ def data_customer(request):
         products = Product.objects.filter(customer=customer.id).exclude(numCard=num)
         loans = Loan.objects.filter(customer=customer.id)
 
-        today = datetime.datetime.today()
-        end_day = calendar.monthrange(today.year, today.month)[1]
-
         for a in accounts:
-            trans_simple = TransactionSimple.objects.filter(account=a.pk,
-                                                            movement__date__gte=datetime.date(today.year, today.month,
-                                                                                              1),
-                                                            movement__date__lte=datetime.date(today.year, today.month,
-                                                                                              end_day))
-
-            transf_out = TransferServices.objects.filter(accSource=a.pk,
-                                                         movement__date__gte=datetime.date(today.year, today.month, 1),
-                                                         movement__date__lte=datetime.date(today.year, today.month,
-                                                                                           end_day)).order_by('id')
-
-            transf_in = TransferServices.objects.filter(accDest=a.pk,
-                                                        movement__date__gte=datetime.date(today.year, today.month, 1),
-                                                        movement__date__lte=datetime.date(today.year, today.month,
-                                                                                          end_day)).order_by('id')
-
-            transaction = transf_out | transf_in
-
-            payments = PaymentTlf.objects.filter(account=a.pk,
-                                                 movement__date__gte=datetime.date(today.year, today.month, 1),
-                                                 movement__date__lte=datetime.date(today.year, today.month,
-                                                                                   end_day)).order_by('id')
-
-            if a.name == 'Ahorro':
-                i = 0
-            else:
-                i = 1
-
-            for t in trans_simple:
-                mov = Movement.objects.get(pk=t.movement.id)
-                if t.type == 'Deposito':
-                    sig = '+'
-                else:
-                    sig = '-'
-                details_mov = [mov.date,
-                               mov.ref,
-                               t.get_type_display(),
-                               sig + str(mov.amount),
-                               t.amountResult]
-
-                if t.type == 'Pagos':
-                    if t.tdc is None:
-                        details = mov.details
-                    else:
-                        details = mov.details + ' --Pago de TDC ' + t.tdc.name + \
-                                  ' perteneciente a ' + t.tdc.product.customer.get_name()
-                else:
-                    details = mov.details
-
-                details_mov.append(details)
-
-                data['mov'][i].append(details_mov)
-
-            for tr in transaction:
-                mov = Movement.objects.get(pk=tr.movement.id)
-                if tr.type == 'Pagos':
-                    w = 'o'
-                else:
-                    w = 'a'
-                details_mov = [mov.date,
-                               mov.ref,
-                               tr.get_type_display(),
-                               '+' + str(mov.amount)]
-
-                if tr.accDest.id == a.id:
-                    details_mov.append(tr.amountDest)
-                    details = mov.details + ' --' + tr.get_type_display() + ' recibid' +\
-                        w + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
-                else:
-                    details_mov.append(tr.amountSource)
-                    if tr.accDest is None:
-                        details = mov.details
-                    else:
-                        details = mov.details + ' --' + tr.get_type_display() + ' realizad' +\
-                            w + ' a la cuenta de ' + tr.accDest.product.customer.get_name()
-
-                details_mov.append(details)
-
-                data['mov'][i].append(details_mov)
-
-            for p in payments:
-                mov = Movement.objects.get(pk=p.movement.id)
-                details_mov = [mov.date,
-                               mov.ref,
-                               'Pagos',
-                               '-' + str(mov.amount),
-                               p.amountResult,
-                               mov.details + ' --Recarga a operadora ' +
-                               p.get_operator_display() + ' al número (' + p.numTlf + ')']
-                data['mov'][i].append(details_mov)
-
-            data['mov'][i].sort(reverse=True)
 
             details_acc = ['Cuenta ' + a.name,
                            a.numAcc[:10] + "******" + a.numAcc[16:],
@@ -222,6 +130,128 @@ def data_customer(request):
                            a.branch.name]
 
             data['account'].append(details_acc)
+
+            if option == 0:
+                if startDate is None and endDate is None:
+                    today = datetime.datetime.today()
+                    end_day = calendar.monthrange(today.year, today.month)[1]
+                    start = str(today.year) + '-' + str(today.month) + '-1'
+                    if today.day == end_day:
+                        today = today + datetime.timedelta(days=1)
+                        end = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
+                    else:
+                        end = str(today.year) + '-0' + str(today.month) + '-' + str(today.day+1)
+                else:
+                    today = startDate.split('/')
+                    end_date = endDate.split('/')
+                    end_day = calendar.monthrange(int(today[2]), int(today[1]))[1]
+                    start = today[2] + '-' + today[1] + '-' + today[0]
+                    if int(end_date[0]) == end_day:
+                        today = datetime.date(int(end_date[2]), int(end_date[1]), int(end_date[0])) + datetime.timedelta(days=1)
+                        end = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
+                    else:
+                        end = end_date[2] + '-' + end_date[1] + '-' + str((int(end_date[0])+1))
+
+                date__range = ["2011-01-01", "2011-01-31"]
+                print(start)
+                print(end)
+
+                trans_simple = TransactionSimple.objects.filter(account=a.pk,
+                                                                movement__date__range=[start, end])
+
+                transf_out = TransferServices.objects.filter(accSource=a.pk,
+                                                             movement__date__range=[start, end]).order_by('id')
+
+                transf_in = TransferServices.objects.filter(accDest=a.pk,
+                                                            movement__date__range=[start, end]).order_by('id')
+
+                transaction = transf_out | transf_in
+                print("transaccion simple")
+                print(transaction)
+                print("transferencias")
+                print(trans_simple)
+                #
+                # payments = PaymentTlf.objects.filter(account=a.pk,
+                #                                      movement__date__gte=datetime.date(start['year'],
+                #                                                                        start['month'],
+                #                                                                        start['day']),
+                #                                      movement__date__lte=datetime.date(end['year'],
+                #                                                                        end['month'],
+                #                                                                        end['day'])).order_by('id')
+                # print("pagos")
+                # print(payments)
+
+                if a.name == 'Ahorro':
+                    i = 0
+                else:
+                    i = 1
+
+                for t in trans_simple:
+                    mov = Movement.objects.get(pk=t.movement.id)
+                    if t.type == 'Deposito':
+                        sig = '+'
+                    else:
+                        sig = '-'
+                    details_mov = [mov.date,
+                                   mov.ref,
+                                   t.get_type_display(),
+                                   sig + str(mov.amount),
+                                   t.amountResult]
+
+                    if t.type == 'Pagos':
+                        if t.tdc is None:
+                            details = mov.details
+                        else:
+                            details = mov.details + ' --Pago de TDC ' + t.tdc.name + \
+                                      ' perteneciente a ' + t.tdc.product.customer.get_name()
+                    else:
+                        details = mov.details
+
+                    details_mov.append(details)
+
+                    data['mov'][i].append(details_mov)
+
+                for tr in transaction:
+                    mov = Movement.objects.get(pk=tr.movement.id)
+                    if tr.type == 'Pagos':
+                        w = 'o'
+                    else:
+                        w = 'a'
+                    details_mov = [mov.date,
+                                   mov.ref,
+                                   tr.get_type_display(),
+                                   '+' + str(mov.amount)]
+
+                    if tr.accDest.id == a.id:
+                        details_mov.append(tr.amountDest)
+                        details = mov.details + ' --' + tr.get_type_display() + ' recibid' + \
+                                  w + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
+                    else:
+                        details_mov.append(tr.amountSource)
+                        if tr.accDest is None:
+                            details = mov.details
+                        else:
+                            details = mov.details + ' --' + tr.get_type_display() + ' realizad' + \
+                                      w + ' a la cuenta de ' + tr.accDest.product.customer.get_name()
+
+                    details_mov.append(details)
+
+                    data['mov'][i].append(details_mov)
+                #
+                # for p in payments:
+                #     mov = Movement.objects.get(pk=p.movement.id)
+                #     details_mov = [mov.date,
+                #                    mov.ref,
+                #                    'Pagos',
+                #                    '-' + str(mov.amount),
+                #                    p.amountResult,
+                #                    mov.details + ' --Recarga a operadora ' +
+                #                    p.get_operator_display() + ' al número (' + p.numTlf + ')']
+                #     data['mov'][i].append(details_mov)
+
+                data['mov'][i].sort(reverse=True)
+
+                print(data['mov'])
 
         for p in products:
             tdc = Tdc.objects.get(product=p.id)
@@ -238,8 +268,6 @@ def data_customer(request):
                             l.paidAmount, l.date]
 
             data['loan'].append(details_loan)
-
-    print(data['mov'])
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
