@@ -102,7 +102,7 @@ def conv_int(cadena):
 def data_customer(request):
     num = request.GET.get('num', None)
     option = request.GET.get('option', 0)
-    print(option)
+    select = request.GET.get('select', '0')
     startDate = request.GET.get('start', None)
     endDate = request.GET.get('end', None)
 
@@ -110,7 +110,7 @@ def data_customer(request):
             'account': [],
             'tdc': [],
             'loan': [],
-            'mov': [[], []]
+            'mov-acc': [[], []]
             }
 
     if data['product']:
@@ -130,7 +130,7 @@ def data_customer(request):
 
             data['account'].append(details_acc)
 
-            if not(option == 'inicio'):
+            if option != 'inicio':
                 if startDate is None and endDate is None:
                     today = datetime.datetime.today()
                     end_day = calendar.monthrange(today.year, today.month)[1]
@@ -139,32 +139,51 @@ def data_customer(request):
                         today = today + datetime.timedelta(days=1)
                         end = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
                     else:
-                        end = str(today.year) + '-0' + str(today.month) + '-' + str(today.day+1)
+                        end = str(today.year) + '-0' + str(today.month) + '-' + str(today.day + 1)
                 else:
                     today = startDate.split('/')
                     end_date = endDate.split('/')
                     end_day = calendar.monthrange(int(today[2]), int(today[1]))[1]
                     start = today[2] + '-' + today[1] + '-' + today[0]
                     if int(end_date[0]) == end_day:
-                        today = datetime.date(int(end_date[2]), int(end_date[1]), int(end_date[0])) + datetime.timedelta(days=1)
+                        today = datetime.date(int(end_date[2]), int(end_date[1]), int(end_date[0])) + \
+                                datetime.timedelta(days=1)
                         end = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
                     else:
-                        end = end_date[2] + '-' + end_date[1] + '-' + str((int(end_date[0])+1))
+                        end = end_date[2] + '-' + end_date[1] + '-' + str((int(end_date[0]) + 1))
 
+                if select != '0':
+                    select.replace('ó', 'o')
 
-                trans_simple = TransactionSimple.objects.filter(account=a.pk,
-                                                                movement__date__range=[start, end])
+                    trans_simple = TransactionSimple.objects.filter(account=a.pk,
+                                                                    type=select,
+                                                                    movement__date__range=[start, end])
 
-                transf_out = TransferServices.objects.filter(accSource=a.pk,
-                                                             movement__date__range=[start, end]).order_by('id')
+                    transf_out = TransferServices.objects.filter(accSource=a.pk,
+                                                                 type=select,
+                                                                 movement__date__range=[start, end]).order_by('id')
 
-                transf_in = TransferServices.objects.filter(accDest=a.pk,
-                                                            movement__date__range=[start, end]).order_by('id')
+                    transf_in = TransferServices.objects.filter(accDest=a.pk,
+                                                                type=select,
+                                                                movement__date__range=[start, end]).order_by('id')
+
+                    payments = PaymentTlf.objects.filter(account=a.pk,
+                                                         type=select,
+                                                         movement__date__range=[start, end]).order_by('id')
+                else:
+                    trans_simple = TransactionSimple.objects.filter(account=a.pk,
+                                                                    movement__date__range=[start, end])
+
+                    transf_out = TransferServices.objects.filter(accSource=a.pk,
+                                                                 movement__date__range=[start, end]).order_by('id')
+
+                    transf_in = TransferServices.objects.filter(accDest=a.pk,
+                                                                movement__date__range=[start, end]).order_by('id')
+
+                    payments = PaymentTlf.objects.filter(account=a.pk,
+                                                         movement__date__range=[start, end]).order_by('id')
 
                 transaction = transf_out | transf_in
-                
-                payments = PaymentTlf.objects.filter(account=a.pk,
-                                                     movement__date__range=[start, end]).order_by('id')
 
                 if a.name == 'Ahorro':
                     i = 0
@@ -194,7 +213,7 @@ def data_customer(request):
 
                     details_mov.append(details)
 
-                    data['mov'][i].append(details_mov)
+                    data['mov-acc'][i].append(details_mov)
 
                 for tr in transaction:
                     mov = Movement.objects.get(pk=tr.movement.id)
@@ -209,8 +228,8 @@ def data_customer(request):
 
                     if tr.accDest.id == a.id:
                         details_mov.append(tr.amountDest)
-                        details = mov.details + ' --' + tr.get_type_display() + ' recibid' + \
-                                  w + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
+                        details = mov.details + ' --' + tr.get_type_display() + ' recibid' + w \
+                                  + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
                     else:
                         details_mov.append(tr.amountSource)
                         if tr.accDest is None:
@@ -221,20 +240,20 @@ def data_customer(request):
 
                     details_mov.append(details)
 
-                    data['mov'][i].append(details_mov)
-                
+                    data['mov-acc'][i].append(details_mov)
+
                 for p in payments:
                     mov = Movement.objects.get(pk=p.movement.id)
                     details_mov = [mov.date,
                                    mov.ref,
-                                   'Pagos',
+                                   p.type,
                                    '-' + str(mov.amount),
                                    p.amountResult,
                                    mov.details + ' --Recarga a operadora ' +
                                    p.get_operator_display() + ' al número (' + p.numTlf + ')']
-                    data['mov'][i].append(details_mov)
+                    data['mov-acc'][i].append(details_mov)
 
-                data['mov'][i].sort(reverse=True)
+                data['mov-acc'][i].sort(reverse=True)
 
             else:
                 pass
@@ -255,7 +274,6 @@ def data_customer(request):
 
             data['loan'].append(details_loan)
 
-    print(data)
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'

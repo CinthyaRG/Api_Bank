@@ -211,6 +211,7 @@ class PaymentTlf(models.Model):
         ('MOVISTAR', 'MOVISTAR'),
     ]
     operator = models.CharField(choices=operator, max_length=10)
+    type = models.CharField(default='Pagos', max_length=5)
     numTlf = models.CharField(max_length=11)
     amountResult = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     movement = models.ForeignKey(Movement)
