@@ -102,10 +102,9 @@ def conv_int(cadena):
 def data_customer(request):
     num = request.GET.get('num', None)
     option = request.GET.get('option', 0)
+    print(option)
     startDate = request.GET.get('start', None)
     endDate = request.GET.get('end', None)
-    print(startDate)
-    print(endDate)
 
     data = {'product': Product.objects.filter(numCard=num).exists(),
             'account': [],
@@ -131,7 +130,7 @@ def data_customer(request):
 
             data['account'].append(details_acc)
 
-            if option == 0:
+            if not(option == 'inicio'):
                 if startDate is None and endDate is None:
                     today = datetime.datetime.today()
                     end_day = calendar.monthrange(today.year, today.month)[1]
@@ -152,9 +151,6 @@ def data_customer(request):
                     else:
                         end = end_date[2] + '-' + end_date[1] + '-' + str((int(end_date[0])+1))
 
-                date__range = ["2011-01-01", "2011-01-31"]
-                print(start)
-                print(end)
 
                 trans_simple = TransactionSimple.objects.filter(account=a.pk,
                                                                 movement__date__range=[start, end])
@@ -166,20 +162,9 @@ def data_customer(request):
                                                             movement__date__range=[start, end]).order_by('id')
 
                 transaction = transf_out | transf_in
-                print("transaccion simple")
-                print(transaction)
-                print("transferencias")
-                print(trans_simple)
-                #
-                # payments = PaymentTlf.objects.filter(account=a.pk,
-                #                                      movement__date__gte=datetime.date(start['year'],
-                #                                                                        start['month'],
-                #                                                                        start['day']),
-                #                                      movement__date__lte=datetime.date(end['year'],
-                #                                                                        end['month'],
-                #                                                                        end['day'])).order_by('id')
-                # print("pagos")
-                # print(payments)
+                
+                payments = PaymentTlf.objects.filter(account=a.pk,
+                                                     movement__date__range=[start, end]).order_by('id')
 
                 if a.name == 'Ahorro':
                     i = 0
@@ -237,21 +222,22 @@ def data_customer(request):
                     details_mov.append(details)
 
                     data['mov'][i].append(details_mov)
-                #
-                # for p in payments:
-                #     mov = Movement.objects.get(pk=p.movement.id)
-                #     details_mov = [mov.date,
-                #                    mov.ref,
-                #                    'Pagos',
-                #                    '-' + str(mov.amount),
-                #                    p.amountResult,
-                #                    mov.details + ' --Recarga a operadora ' +
-                #                    p.get_operator_display() + ' al número (' + p.numTlf + ')']
-                #     data['mov'][i].append(details_mov)
+                
+                for p in payments:
+                    mov = Movement.objects.get(pk=p.movement.id)
+                    details_mov = [mov.date,
+                                   mov.ref,
+                                   'Pagos',
+                                   '-' + str(mov.amount),
+                                   p.amountResult,
+                                   mov.details + ' --Recarga a operadora ' +
+                                   p.get_operator_display() + ' al número (' + p.numTlf + ')']
+                    data['mov'][i].append(details_mov)
 
                 data['mov'][i].sort(reverse=True)
 
-                print(data['mov'])
+            else:
+                pass
 
         for p in products:
             tdc = Tdc.objects.get(product=p.id)
@@ -269,6 +255,7 @@ def data_customer(request):
 
             data['loan'].append(details_loan)
 
+    print(data)
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
