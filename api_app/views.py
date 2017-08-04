@@ -110,7 +110,7 @@ def data_customer(request):
             'account': [],
             'tdc': [],
             'loan': [],
-            'mov-acc': [[], []]
+            'mov_acc': [[], []]
             }
 
     if data['product']:
