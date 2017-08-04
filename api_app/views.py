@@ -213,7 +213,7 @@ def data_customer(request):
 
                     details_mov.append(details)
 
-                    data['mov-acc'][i].append(details_mov)
+                    data['mov_acc'][i].append(details_mov)
 
                 for tr in transaction:
                     mov = Movement.objects.get(pk=tr.movement.id)
@@ -240,7 +240,7 @@ def data_customer(request):
 
                     details_mov.append(details)
 
-                    data['mov-acc'][i].append(details_mov)
+                    data['mov_acc'][i].append(details_mov)
 
                 for p in payments:
                     mov = Movement.objects.get(pk=p.movement.id)
@@ -251,9 +251,9 @@ def data_customer(request):
                                    p.amountResult,
                                    mov.details + ' --Recarga a operadora ' +
                                    p.get_operator_display() + ' al número (' + p.numTlf + ')']
-                    data['mov-acc'][i].append(details_mov)
+                    data['mov_acc'][i].append(details_mov)
 
-                data['mov-acc'][i].sort(reverse=True)
+                data['mov_acc'][i].sort(reverse=True)
 
             else:
                 pass
