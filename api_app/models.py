@@ -1,3 +1,4 @@
+import decimal
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -125,6 +126,18 @@ class Tdc(models.Model):
     def __str__(self):
         return self.name + " (" + str(self.product) + ")"
 
+    def get_available(self):
+        return self.limit - self.balance
+
+    def get_min(self):
+        a = self.balance * decimal.Decimal('0.01')
+        b = (self.balance - a) * decimal.Decimal('0.0392')
+
+        return a + b
+
+    balanceAvailable = property(get_available)
+    minimumPayment = property(get_min)
+
 
 class Loan(models.Model):
     numInstallments = models.IntegerField()
@@ -167,15 +180,8 @@ class TransactionSimple(models.Model):
     account = models.ForeignKey(Account, null=True, blank=True)
     tdc = models.ForeignKey(Tdc, null=True, blank=True)
 
-    # def get_amount(self):
-    #     available = Account.objects.get(pk=self.account.id)
-    #     amount = Movement.objects.get(pk=self.movement.id)
-    #     if self.type == 'Deposito':
-    #         return available + amount
-    #     else:
-    #         return available - amount
-
-    # amount_res = property(get_amount)
+    def __str__(self):
+        return self.type + ' ' + str(self.movement)
 
 
 class TransferServices(models.Model):

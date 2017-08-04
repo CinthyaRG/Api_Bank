@@ -98,6 +98,28 @@ def conv_int(cadena):
     return s
 
 
+def conv_balance(a):
+    a = str(a).split('.')
+    b = a[0][::-1]
+    l = len(b)
+    i = 0
+    j = 3
+    amount = ''
+    while i < l:
+        if j >= l:
+            amount = amount + b[i:l]
+        else:
+            amount = amount + b[i:j] + '.'
+        i = i + 3
+        j = j + 3
+    amount = amount[::-1]
+    if len(a) == 2:
+        amount = amount+','+a[1][:2]
+    else:
+        amount = amount+',00'
+    return amount
+
+
 @ensure_csrf_cookie
 def data_customer(request):
     num = request.GET.get('num', None)
@@ -110,7 +132,8 @@ def data_customer(request):
             'account': [],
             'tdc': [],
             'loan': [],
-            'mov_acc': [[], []]
+            'mov_acc': [[], []],
+            'mov_tdc': [[], [], []]
             }
 
     if data['product']:
@@ -125,12 +148,13 @@ def data_customer(request):
             details_acc = ['Cuenta ' + a.name,
                            a.numAcc[:10] + "******" + a.numAcc[16:],
                            "Activa",
-                           [a.balance.available, a.balance.deferrer, a.balance.lock],
+                           [conv_balance(a.balance.available), conv_balance(a.balance.deferrer),
+                            conv_balance(a.balance.lock)],
                            a.branch.name]
 
             data['account'].append(details_acc)
 
-            if option != 'inicio':
+            if option == 'consultar-cuenta':
                 if startDate is None and endDate is None:
                     today = datetime.datetime.today()
                     end_day = calendar.monthrange(today.year, today.month)[1]
@@ -255,17 +279,89 @@ def data_customer(request):
 
                 data['mov_acc'][i].sort(reverse=True)
 
-            else:
-                pass
-
         for p in products:
             tdc = Tdc.objects.get(product=p.id)
+            payment = TransactionSimple.objects.filter(tdc=tdc.pk, type='Pagos').order_by('-movement')[0]
+            movement = Movement.objects.get(pk=payment.movement.pk)
             details_tdc = [tdc.name,
                            p.numCard[:4] + "********" + p.numCard[12:],
-                           tdc.balance,
-                           tdc.date]
+                           movement.date,
+                           conv_balance(movement.amount),
+                           conv_balance(tdc.balance),
+                           conv_balance(tdc.balanceAvailable),
+                           conv_balance(tdc.minimumPayment),
+                           tdc.date,
+                           conv_balance(tdc.limit)]
+            if tdc.status:
+                details_tdc.insert(2, 'Activa')
+            else:
+                details_tdc.insert(2, 'Inactiva')
 
             data['tdc'].append(details_tdc)
+
+            if option == 'consultar-tdc':
+                if startDate is None and endDate is None:
+                    today = datetime.datetime.today()
+                    end_day = calendar.monthrange(today.year, today.month)[1]
+                    start = str(today.year) + '-' + str(today.month) + '-1'
+                    if today.day == end_day:
+                        today = today + datetime.timedelta(days=1)
+                        end = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
+                    else:
+                        end = str(today.year) + '-0' + str(today.month) + '-' + str(today.day + 1)
+                else:
+                    today = startDate.split('/')
+                    end_date = endDate.split('/')
+                    end_day = calendar.monthrange(int(today[2]), int(today[1]))[1]
+                    start = today[2] + '-' + today[1] + '-' + today[0]
+                    if int(end_date[0]) == end_day:
+                        today = datetime.date(int(end_date[2]), int(end_date[1]), int(end_date[0])) + \
+                                datetime.timedelta(days=1)
+                        end = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
+                    else:
+                        end = end_date[2] + '-' + end_date[1] + '-' + str((int(end_date[0]) + 1))
+
+                if select != '0':
+                    trans_simple = TransactionSimple.objects.filter(tdc=tdc.pk,
+                                                                    type=select,
+                                                                    movement__date__range=[start, end])
+                else:
+                    trans_simple = TransactionSimple.objects.filter(tdc=tdc.pk,
+                                                                    movement__date__range=[start, end])
+
+                if tdc.name == 'VISA':
+                    i = 0
+                elif tdc.name == 'MASTERCARD':
+                    i = 1
+                else:
+                    i = 2
+
+                for t in trans_simple:
+                    mov = Movement.objects.get(pk=t.movement.id)
+                    if t.type == 'Pagos':
+                        sig = '+'
+                    else:
+                        sig = '-'
+                    details_mov = [mov.date,
+                                   mov.ref,
+                                   t.get_type_display(),
+                                   sig + str(mov.amount),
+                                   t.amountResult]
+
+                    if t.type == 'Pagos':
+                        if t.tdc is None:
+                            details = mov.details
+                        else:
+                            details = mov.details + ' --Pago de TDC ' + t.tdc.name + \
+                                      ' perteneciente a ' + t.tdc.product.customer.get_name()
+                    else:
+                        details = mov.details
+
+                    details_mov.append(details)
+
+                    data['mov_tdc'][i].append(details_mov)
+
+                data['mov_tdc'][i].sort(reverse=True)
 
         for l in loans:
             details_loan = [conv_int('PRESTAMO') + str(l.id),
