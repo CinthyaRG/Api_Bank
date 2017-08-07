@@ -114,9 +114,9 @@ def conv_balance(a):
         j = j + 3
     amount = amount[::-1]
     if len(a) == 2:
-        amount = amount+','+a[1][:2]
+        amount = amount + ',' + a[1][:2]
     else:
-        amount = amount+',00'
+        amount = amount + ',00'
     return amount
 
 
@@ -223,8 +223,8 @@ def data_customer(request):
                     details_mov = [mov.date,
                                    mov.ref,
                                    t.get_type_display(),
-                                   sig + str(mov.amount),
-                                   t.amountResult]
+                                   sig + conv_balance(mov.amount),
+                                   conv_balance(t.amountResult)]
 
                     if t.type == 'Pagos':
                         if t.tdc is None:
@@ -248,14 +248,14 @@ def data_customer(request):
                     details_mov = [mov.date,
                                    mov.ref,
                                    tr.get_type_display(),
-                                   '+' + str(mov.amount)]
+                                   '+' + conv_balance(mov.amount)]
 
                     if tr.accDest.id == a.id:
-                        details_mov.append(tr.amountDest)
+                        details_mov.append(conv_balance(tr.amountDest))
                         details = mov.details + ' --' + tr.get_type_display() + ' recibid' + w \
                                   + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
                     else:
-                        details_mov.append(tr.amountSource)
+                        details_mov.append(conv_balance(tr.amountSource))
                         if tr.accDest is None:
                             details = mov.details
                         else:
@@ -271,8 +271,8 @@ def data_customer(request):
                     details_mov = [mov.date,
                                    mov.ref,
                                    p.type,
-                                   '-' + str(mov.amount),
-                                   p.amountResult,
+                                   '-' + conv_balance(mov.amount),
+                                   conv_balance(p.amountResult),
                                    mov.details + ' --Recarga a operadora ' +
                                    p.get_operator_display() + ' al número (' + p.numTlf + ')']
                     data['mov_acc'][i].append(details_mov)
@@ -343,30 +343,27 @@ def data_customer(request):
                     else:
                         sig = '-'
                     details_mov = [mov.date,
-                                   mov.ref,
                                    t.get_type_display(),
-                                   sig + str(mov.amount),
-                                   t.amountResult]
-
-                    if t.type == 'Pagos':
-                        if t.tdc is None:
-                            details = mov.details
-                        else:
-                            details = mov.details + ' --Pago de TDC ' + t.tdc.name + \
-                                      ' perteneciente a ' + t.tdc.product.customer.get_name()
-                    else:
-                        details = mov.details
-
-                    details_mov.append(details)
+                                   sig + conv_balance(mov.amount)]
 
                     data['mov_tdc'][i].append(details_mov)
 
                 data['mov_tdc'][i].sort(reverse=True)
 
+            print(data['mov_tdc'])
+
         for l in loans:
             details_loan = [conv_int('PRESTAMO') + str(l.id),
-                            'Cuenta ' + l.account.name + ' *****' + l.account.numAcc[16:],
-                            l.paidAmount, l.date]
+                            'Cuenta ' + l.account.name + ' ****' + l.account.numAcc[16:],
+                            conv_balance(l.paidAmount),
+                            l.date_payment,
+                            l.numInstallments,
+                            conv_balance(l.startingAmount),
+                            conv_balance(l.overdue_amount),
+                            l.date,
+                            l.date_expires,
+                            l.paidInstallments,
+                            l.overdueInstallments]
 
             data['loan'].append(details_loan)
 

@@ -1,4 +1,6 @@
 import decimal
+
+import datetime
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -146,12 +148,33 @@ class Loan(models.Model):
     startingAmount = models.DecimalField(max_digits=30, decimal_places=2)
     paidAmount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     date = models.DateField()
+    date_payment = models.DateField()
     customer = models.ForeignKey(Customer)
     account = models.ForeignKey(Account)
 
     def __str__(self):
         return str(self.id) + " (" + str(self.customer) + " -- " + \
                str(self.account) + ")"
+
+    def overdue_amount(self):
+        return self.startingAmount - self.paidAmount
+
+    def date_expires(self):
+        a = self.numInstallments
+        today = self.date
+        month = today.month + (a % 12)
+        year = a // 12
+
+        if month > 12:
+            year = year + 1
+            month = (a % 12) - (12 - today.month)
+        else:
+            month = a % 12
+
+        return datetime.datetime(today.year+year, month, today.day)
+
+    overdue_amount = property(overdue_amount)
+    date_expires = property(date_expires)
 
 
 class Movement(models.Model):
