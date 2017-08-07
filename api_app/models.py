@@ -168,8 +168,6 @@ class Loan(models.Model):
         if month > 12:
             year = year + 1
             month = (a % 12) - (12 - today.month)
-        else:
-            month = a % 12
 
         return datetime.datetime(today.year+year, month, today.day)
 
