@@ -14,4 +14,8 @@ urlpatterns = [
         r'^ajax/data-customer/$',
         data_customer,
         name='data_customer'),
+    url(
+        r'^ajax/send-transfer/$',
+        send_transfer,
+        name='send _transfer'),
 ]

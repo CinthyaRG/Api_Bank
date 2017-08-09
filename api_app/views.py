@@ -445,6 +445,22 @@ def validate_data_forgot(request):
     return response
 
 
+def send_transfer(request):
+    acc_source = request.GET.get('acc_source', None)
+    acc_dest = request.GET.get('acc_dest', None)
+    amount = request.GET.get('amount', None)
+    num = request.GET.get('num', None)
+
+    data = {'product': Product.objects.filter(numCard=num).exists()}
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
+
+
 class CustomersViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
