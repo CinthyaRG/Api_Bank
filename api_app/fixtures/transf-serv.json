@@ -18,7 +18,7 @@
         "type": "Transferencia",
         "accSource": 2,
         "accDest": 12,
-        "amountSource": 215641.39,
+        "amountSource": 203055.81,
         "amountDest": 0
     },
     "pk": 2
@@ -55,7 +55,7 @@
         "accSource": 13,
         "accDest": 2,
         "amountSource": 0,
-        "amountDest": 196354.56
+        "amountDest": 261354.56
     },
     "pk": 5
   },
@@ -67,7 +67,7 @@
         "accSource": 11,
         "accDest": 2,
         "amountSource": 0,
-        "amountDest": 198781.65
+        "amountDest": 205097.50
     },
     "pk": 6
   },
@@ -115,7 +115,7 @@
         "accSource": 5,
         "accDest": 2,
         "amountSource": 0,
-        "amountDest": 251141.65
+        "amountDest": 272641.65
     },
     "pk": 10
   },
@@ -127,7 +127,7 @@
         "accSource": 5,
         "accDest": 2,
         "amountSource": 0,
-        "amountDest": 241141.39
+        "amountDest": 243641.39
     },
     "pk": 11
   },
@@ -150,7 +150,7 @@
         "type": "Pagos",
         "accSource": 2,
         "accDest": 20,
-        "amountSource": 243641.39,
+        "amountSource": 215641.39,
         "amountDest": 0
 
     },
@@ -199,7 +199,7 @@
         "type": "Pagos",
         "accSource": 2,
         "accDest": 6,
-        "amountSource": 203055.81,
+        "amountSource": 157854.56,
         "amountDest": 0
     },
     "pk": 17

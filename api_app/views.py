@@ -247,14 +247,15 @@ def data_customer(request):
                         w = 'a'
                     details_mov = [mov.date,
                                    mov.ref,
-                                   tr.get_type_display(),
-                                   '+' + conv_balance(mov.amount)]
+                                   tr.get_type_display()]
 
                     if tr.accDest.id == a.id:
+                        details_mov.append('+' + conv_balance(mov.amount))
                         details_mov.append(conv_balance(tr.amountDest))
                         details = mov.details + ' --' + tr.get_type_display() + ' recibid' + w \
                                   + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
                     else:
+                        details_mov.append('-' + conv_balance(mov.amount))
                         details_mov.append(conv_balance(tr.amountSource))
                         if tr.accDest is None:
                             details = mov.details
@@ -350,8 +351,6 @@ def data_customer(request):
 
                 data['mov_tdc'][i].sort(reverse=True)
 
-            print(data['mov_tdc'])
-
         for l in loans:
             details_loan = [conv_int('PRESTAMO') + str(l.id),
                             'Cuenta ' + l.account.name + ' ****' + l.account.numAcc[16:],
@@ -445,13 +444,61 @@ def validate_data_forgot(request):
     return response
 
 
+@ensure_csrf_cookie
 def send_transfer(request):
-    acc_source = request.GET.get('acc_source', None)
-    acc_dest = request.GET.get('acc_dest', None)
-    amount = request.GET.get('amount', None)
+    acc_source = request.GET.get('acc_source', None).split(' ')
+    acc_dest = request.GET.get('acc_dest', None).split(' ')
+    amount = decimal.Decimal(request.GET.get('amount', None))
     num = request.GET.get('num', None)
+    type = request.GET.get('type', None)
+    name = 'TRANSFERENCIA'
 
-    data = {'product': Product.objects.filter(numCard=num).exists()}
+    data = {'product': Product.objects.filter(numCard=num).exists(),
+            'success': False,
+            'msg': 'Ha ocurrido un error validando sus datos'
+            }
+
+    if data['product']:
+        product = Product.objects.get(numCard=num)
+        s = Account.objects.filter(name=acc_source[0],
+                                   numAcc__endswith=acc_source[1].replace('*', '')).exists()
+        d = Account.objects.filter(name=acc_dest[0],
+                                   numAcc__endswith=acc_dest[1].replace('*', '')).exists()
+
+        if type == 'transf-mis-cuentas':
+            if s and d:
+                source = Account.objects.filter(name=acc_source[0],
+                                                numAcc__endswith=acc_source[1].replace('*', ''))[0]
+                dest = Account.objects.filter(name=acc_dest[0],
+                                              numAcc__endswith=acc_dest[1].replace('*', ''))[0]
+                if source.product.customer_id == dest.product.customer_id:
+                    if source.product.customer_id == product.customer_id:
+                        bs = Balance.objects.get(pk=source.balance_id)
+                        bd = Balance.objects.get(pk=dest.balance_id)
+
+                        bs.available = bs.available - amount
+                        bd.available = bd.available + amount
+
+                        num = TransferServices.objects.filter(type=name.capitalize()).count()
+
+                        mov = Movement(ref=conv_int(name)+str(num+1),
+                                       amount=amount,
+                                       details='Transferencia entre sus cuentas',
+                                       date=datetime.datetime.today())
+                        mov.save()
+                        transf = TransferServices(type=name.capitalize(),
+                                                  movement=mov,
+                                                  accSource=source,
+                                                  accDest=dest,
+                                                  amountSource=bs.available,
+                                                  amountDest=bd.available)
+                        transf.save()
+                        bs.save()
+                        bd.save()
+                        print(transf)
+                        print('mandaaaa')
+                        data['success'] = True
+                        data['msg'] = 'Transferencia realizada satisfactoriamente.'
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'

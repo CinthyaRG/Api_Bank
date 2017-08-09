@@ -5,7 +5,7 @@
         "ref": "8482651",
         "amount": 12585.58,
         "details": "pago de herramientas",
-        "date": "2017-08-10 07:15"
+        "date": "2017-07-21 07:15"
     },
     "pk": 1
   },
@@ -15,7 +15,7 @@
         "ref": "8482652",
         "amount": 2500.00,
         "details": "pagos varios",
-        "date": "2017-08-02 18:03"
+        "date": "2017-07-16 18:03"
     },
     "pk": 2
   },
@@ -25,7 +25,7 @@
         "ref": "6869801",
         "amount": 12500.00,
         "details": "Depósito realizado en la agencia La California",
-        "date": "2017-08-15 13:15"
+        "date": "2017-08-02 13:15"
     },
     "pk": 3
   },
@@ -35,7 +35,7 @@
         "ref": "8269841",
         "amount": 16500,
         "details": "Retiro realizado en la agencia C.C. Milenium",
-        "date": "2017-08-25 05:45"
+        "date": "2017-08-08 05:45"
     },
     "pk": 4
   },
@@ -45,7 +45,7 @@
         "ref": "8075711",
         "amount": 28000,
         "details": "Pago de electricidad 08/2017",
-        "date": "2017-08-03 16:04"
+        "date": "2017-07-17 16:04"
     },
     "pk": 5
   },
@@ -65,7 +65,7 @@
         "ref": "8075712",
         "amount": 45201.25,
         "details": "pago de Banavih mes mayo",
-        "date": "2017-08-10 11:14"
+        "date": "2017-07-21 11:14"
     },
     "pk": 7
   },
@@ -75,7 +75,7 @@
         "ref": "8469761",
         "amount": 1500,
         "details": "recarga digitel",
-        "date": "2017-08-21 15:52"
+        "date": "2017-08-04 15:52"
     },
     "pk": 8
   },
@@ -85,7 +85,7 @@
         "ref": "8089831",
         "amount": 15842.26,
         "details": "Compra POS",
-        "date": "2017-08-02 9:10"
+        "date": "2017-07-16 9:10"
     },
     "pk": 9
   },
@@ -95,7 +95,7 @@
         "ref": "8089832",
         "amount": 32548.50,
         "details": "Compra POS",
-        "date": "2017-08-08 12:24"
+        "date": "2017-07-19 12:24"
     },
     "pk": 10
   },
@@ -115,7 +115,7 @@
         "ref": "8089834",
         "amount": 2088.26,
         "details": "Compra POS",
-        "date": "2017-08-22 12:56"
+        "date": "2017-08-07 12:56"
     },
     "pk": 12
   },
@@ -135,7 +135,7 @@
         "ref": "8468672",
         "amount": 15658.00,
         "details": "Pago de tarjeta de crédito",
-        "date": "2017-08-02 10:52"
+        "date": "2017-07-16 10:52"
     },
     "pk": 14
   },
@@ -145,7 +145,7 @@
         "ref": "8468673",
         "amount": 8523.00,
         "details": "Pago de tarjeta de crédito",
-        "date": "2017-08-03 14:41"
+        "date": "2017-07-17 14:41"
     },
     "pk": 15
   },
@@ -155,7 +155,7 @@
         "ref": "8482653",
         "amount": 65000,
         "details": "Pagos de trabajos varios",
-        "date": "2017-08-18 14:42"
+        "date": "2017-08-03 14:42"
     },
     "pk": 16
   },
@@ -165,7 +165,7 @@
         "ref": "6869802",
         "amount": 52000,
         "details": "Depósito realizado en la agencia La trinidad",
-        "date": "2017-08-12 13:36"
+        "date": "2017-07-25 13:36"
     },
     "pk": 17
   },
@@ -175,7 +175,7 @@
         "ref": "6869803",
         "amount": 22500,
         "details": "Depósito realizado en la agencia C.C.C.T",
-        "date": "2017-08-14 17:25"
+        "date": "2017-08-01 17:25"
     },
     "pk": 18
   },
@@ -185,7 +185,7 @@
         "ref": "8269842",
         "amount": 10000,
         "details": "Retiro realizado en la agencia Santa Mónica",
-        "date": "2017-08-09 15:41"
+        "date": "2017-07-20 15:41"
     },
     "pk": 19
   },
@@ -195,7 +195,7 @@
         "ref": "8269843",
         "amount": 5400,
         "details": "Retiro realizado en la agencia Plaza Venezuela",
-        "date": "2017-08-26 12:52"
+        "date": "2017-08-09 07:52"
     },
     "pk": 20
   },
@@ -205,7 +205,7 @@
         "ref": "8269844",
         "amount": 36000,
         "details": "Retiro realizado en la agencia C.C. Lider",
-        "date": "2017-08-15 16:41"
+        "date": "2017-08-02 16:41"
     },
     "pk": 21
   },
