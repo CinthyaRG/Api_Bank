@@ -14,6 +14,7 @@ def validate_data(request):
     month = request.GET.get('month', None)
     year = request.GET.get('year', None)
     ci = request.GET.get('ci', None)
+    profile = request.GET.get('profile', None)
     msj_error = 'Los datos introducidos no son correctos, por favor verifíquelos'
 
     data = {'product': Product.objects.filter(numCard=numtarj).exists(),
@@ -27,15 +28,15 @@ def validate_data(request):
 
         product = Product.objects.get(numCard=numtarj)
 
-        if (product.month == month) and (product.year == year) and (product.ccv == ccv):
+        if ((product.month == month) and (product.year == year) and (product.ccv == ccv)) or not(profile is None):
             data['customer'] = Customer.objects.filter(id=product.customer.id).exists()
             data['account'] = Account.objects.filter(product=product.id).exists()
-            if data['customer'] and data['account']:
+            if data['customer'] and data['account'] or not(profile is None):
                 customer = Customer.objects.get(id=product.customer.id)
                 accounts = Account.objects.filter(product=product.id)
-                if customer.ident == ci:
+                if customer.ident == ci or not(profile is None):
                     for a in accounts:
-                        if a.pin == pin:
+                        if a.pin == pin or not(profile is None):
                             data['correct'] = True
                             data['customer_name'] = customer.firstName
                             data['customer_last'] = customer.lastName
@@ -81,6 +82,7 @@ def validate_data(request):
     if not (data['correct']):
         data['error'] = msj_error
 
+    print(data)
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
