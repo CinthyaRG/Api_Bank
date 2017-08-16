@@ -131,13 +131,15 @@ def data_customer(request):
     select = request.GET.get('select', '0')
     startDate = request.GET.get('start', None)
     endDate = request.GET.get('end', None)
+    print(option)
 
     data = {'product': Product.objects.filter(numCard=num).exists(),
             'account': [],
             'tdc': [],
             'loan': [],
             'mov_acc': [[], []],
-            'mov_tdc': [[], [], []]
+            'mov_tdc': [[], [], []],
+            'management': [[], []]
             }
 
     if request.method.lower() != "options":
@@ -286,6 +288,15 @@ def data_customer(request):
 
                     data['mov_acc'][i].sort(reverse=True)
 
+                if option == 'gestion-productos':
+
+                    if a.name == 'Corriente':
+                        check = Checkbook.objects.filter(account=a.id, numCheck__gte=1)
+
+                        for c in check:
+                            data['management'][0].append('Chequera '+str(c.numCheckbook))
+                            data['management'][1].append(c.status)
+
             for p in products:
                 tdc = Tdc.objects.get(product=p.id)
                 payment = TransactionSimple.objects.filter(tdc=tdc.pk, type='Pagos').order_by('-movement')[0]
@@ -356,6 +367,10 @@ def data_customer(request):
                         data['mov_tdc'][i].append(details_mov)
 
                     data['mov_tdc'][i].sort(reverse=True)
+
+                if option == 'gestion-productos':
+                    data['management'][0].append(tdc.name + '****' + p.numCard[12:])
+                    data['management'][1].append(tdc.status)
 
             for l in loans:
                 details_loan = [conv_int('PRESTAMO') + str(l.id),

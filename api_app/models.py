@@ -1,8 +1,8 @@
-import decimal
 
-import datetime
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MaxValueValidator
 from django.db import models
+import decimal
+import datetime
 
 # Validador para cédula
 ID_VALIDATOR = RegexValidator(
@@ -102,14 +102,15 @@ class Account(models.Model):
         ordering = ["name"]
 
 
-class Check(models.Model):
-    numCheck = models.IntegerField(unique=True, primary_key=True)
+class Checkbook(models.Model):
+    numCheckbook = models.IntegerField(unique=True, primary_key=True)
     status = models.BooleanField(default=False)
+    numCheck = models.PositiveSmallIntegerField(validators=[MaxValueValidator(50)])
     account = models.ForeignKey(Account)
 
     def __str__(self):
-        return str(self.numCheck) + " (" + str(self.account) + \
-               " -- " + str(self.status) + ")"
+        return str(self.numCheckbook) + " (" + str(self.account) + \
+               " -- " + str(self.status) + " -- " + str(self.numCheck) + ")"
 
 
 class Tdc(models.Model):
@@ -142,9 +143,9 @@ class Tdc(models.Model):
 
 
 class Loan(models.Model):
-    numInstallments = models.IntegerField()
-    paidInstallments = models.IntegerField()
-    overdueInstallments = models.IntegerField()
+    numInstallments = models.PositiveSmallIntegerField(validators=[MaxValueValidator(36)])
+    paidInstallments = models.PositiveSmallIntegerField(validators=[MaxValueValidator(36)])
+    overdueInstallments = models.PositiveSmallIntegerField(validators=[MaxValueValidator(36)])
     startingAmount = models.DecimalField(max_digits=30, decimal_places=2)
     paidAmount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
     date = models.DateField()
