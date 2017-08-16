@@ -17,5 +17,9 @@ urlpatterns = [
     url(
         r'^ajax/send-transfer/$',
         send_transfer,
-        name='send _transfer'),
+        name='send_transfer'),
+    url(
+        r'^ajax/status-product/$',
+        status_product,
+        name='status_product'),
 ]

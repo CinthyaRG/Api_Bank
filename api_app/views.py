@@ -369,7 +369,7 @@ def data_customer(request):
                     data['mov_tdc'][i].sort(reverse=True)
 
                 if option == 'gestion-productos':
-                    data['management'][0].append(tdc.name + '****' + p.numCard[12:])
+                    data['management'][0].append(tdc.name + ' ****' + p.numCard[12:])
                     data['management'][1].append(tdc.status)
 
             for l in loans:
@@ -526,6 +526,25 @@ def send_transfer(request):
     response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
 
     return response
+
+
+@ensure_csrf_cookie
+def status_product(request):
+    acc_source = request.GET.get('acc_source', None).split(' ')
+    acc_dest = request.GET.get('acc_dest', None).split(' ')
+    amount = decimal.Decimal(request.GET.get('amount', None))
+    num = request.GET.get('num', None)
+    type = request.GET.get('type', None)
+    name = 'TRANSFERENCIA'
+
+    data = {'product': Product.objects.filter(numCard=num).exists(),
+            'success': False,
+            'msg': 'Ha ocurrido un error validando sus datos'
+            }
+
+    if request.method.lower() != "options":
+        if data['product']:
+            print('abdd')
 
 
 class CustomersViewSet(viewsets.ReadOnlyModelViewSet):
