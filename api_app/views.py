@@ -28,15 +28,15 @@ def validate_data(request):
 
         product = Product.objects.get(numCard=numtarj)
 
-        if ((product.month == month) and (product.year == year) and (product.ccv == ccv)) or not(profile is None):
+        if ((product.month == month) and (product.year == year) and (product.ccv == ccv)) or not (profile is None):
             data['customer'] = Customer.objects.filter(id=product.customer.id).exists()
             data['account'] = Account.objects.filter(product=product.id).exists()
-            if data['customer'] and data['account'] or not(profile is None):
+            if data['customer'] and data['account'] or not (profile is None):
                 customer = Customer.objects.get(id=product.customer.id)
                 accounts = Account.objects.filter(product=product.id)
-                if customer.ident == ci or not(profile is None):
+                if customer.ident == ci or not (profile is None):
                     for a in accounts:
-                        if a.pin == pin or not(profile is None):
+                        if a.pin == pin or not (profile is None):
                             data['correct'] = True
                             data['customer_name'] = customer.firstName
                             data['customer_last'] = customer.lastName
@@ -131,7 +131,6 @@ def data_customer(request):
     select = request.GET.get('select', '0')
     startDate = request.GET.get('start', None)
     endDate = request.GET.get('end', None)
-    print(option)
 
     data = {'product': Product.objects.filter(numCard=num).exists(),
             'account': [],
@@ -294,7 +293,7 @@ def data_customer(request):
                         check = Checkbook.objects.filter(account=a.id, numCheck__gte=1)
 
                         for c in check:
-                            data['management'][0].append('Chequera '+str(c.numCheckbook))
+                            data['management'][0].append('Chequera ' + str(c.numCheckbook))
                             data['management'][1].append(c.status)
 
             for p in products:
@@ -503,7 +502,7 @@ def send_transfer(request):
 
                             num = TransferServices.objects.filter(type=name.capitalize()).count()
 
-                            mov = Movement(ref=conv_int(name)+str(num+1),
+                            mov = Movement(ref=conv_int(name) + str(num + 1),
                                            amount=amount,
                                            details='Transferencia entre sus cuentas',
                                            date=datetime.datetime.today())
@@ -530,21 +529,27 @@ def send_transfer(request):
 
 @ensure_csrf_cookie
 def status_product(request):
-    acc_source = request.GET.get('acc_source', None).split(' ')
-    acc_dest = request.GET.get('acc_dest', None).split(' ')
-    amount = decimal.Decimal(request.GET.get('amount', None))
     num = request.GET.get('num', None)
-    type = request.GET.get('type', None)
-    name = 'TRANSFERENCIA'
+    product = request.GET.get('p', None).split('-')
+    print(product)
+    action = request.GET.get('action', None)
 
-    data = {'product': Product.objects.filter(numCard=num).exists(),
-            'success': False,
-            'msg': 'Ha ocurrido un error validando sus datos'
-            }
+    data = {
+        'product': Product.objects.filter(numCard=num).exists(),
+        'success': False,
+        'msg': 'Ha ocurrido un error validando sus datos'
+    }
 
     if request.method.lower() != "options":
         if data['product']:
-            print('abdd')
+            prod = Product.objects.get(numCard=num)
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
 
 
 class CustomersViewSet(viewsets.ReadOnlyModelViewSet):
