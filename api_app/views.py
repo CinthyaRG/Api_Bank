@@ -536,13 +536,77 @@ def status_product(request):
 
     data = {
         'product': Product.objects.filter(numCard=num).exists(),
-        'success': False,
-        'msg': 'Ha ocurrido un error validando sus datos'
+        'correct': False,
+        'msg': 'Ha ocurrido un problema validando sus datos. Intente nuevamente.'
     }
 
-    if request.method.lower() != "options":
-        if data['product']:
-            prod = Product.objects.get(numCard=num)
+    if request.method.lower() != "options" and data['product']:
+        prod = Product.objects.get(numCard=num)
+        customer = Customer.objects.get(pk=prod.customer_id)
+
+        if product[0] == 'Chequera':
+            try:
+                account = Account.objects.get(name='Corriente',
+                                              checkbook__numCheckbook=product[1],
+                                              product__customer=customer.pk)
+
+                checkbook = Checkbook.objects.get(account=account.pk, numCheckbook=product[1])
+                if action == 'act':
+                    other_act = Checkbook.objects.filter(status='True', account=checkbook.account_id).count()
+                    if other_act > 0:
+                        data['msg'] = 'No se puede activar su ' + product[0] + ' ' + product[1] + ', porque ' + \
+                                      'ya tiene otra chequera de la misma cuenta activada.'
+                    else:
+                        checkbook.status = True
+                        checkbook.save()
+                        data['correct'] = True
+                        data['msg'] = 'Se ha activado su ' + product[0] + ' ' + product[1] + ' satisfactoriamente.'
+                else:
+                    if checkbook.numCheck > 0:
+                        data['msg'] = 'Se ha desactivado su ' + product[0] + ' ' + product[1] + ' satisfactoriamente.' \
+                                      + ' Tenga en cuenta que los cheques restantes de dicha chequera quedan anulados.'
+                        checkbook.numCheck = 0
+                    else:
+                        data['msg'] = 'Se ha desactivado su ' + product[0] + ' ' + product[1] + ' satisfactoriamente.'
+
+                    checkbook.status = False
+                    checkbook.save()
+                    data['correct'] = True
+
+            except Account.DoesNotExist:
+                data['msg'] = 'Intente nuevamente ocurrió un problema en el servidor.'
+
+                response = JsonResponse(data)
+                response['Access-Control-Allow-Origin'] = '*'
+                response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+                response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+                return response
+
+        else:
+            try:
+                tdc = Tdc.objects.filter(name=product[0],
+                                         product__numCard__endswith=product[1].replace('*', ''),
+                                         product__customer=customer.pk)[0]
+                if action == 'act':
+                    tdc.status = True
+                    data['msg'] = 'Se ha activado su TDC ' + product[0] + ' ' + product[1] + ' satisfactoriamente.'
+                else:
+                    tdc.status = False
+                    data['msg'] = 'Se ha desactivado su TDC ' + product[0] + ' ' + product[1] + ' satisfactoriamente.'
+
+                tdc.save()
+                data['correct'] = True
+
+            except Tdc.DoesNotExist:
+                data['msg'] = 'Intente nuevamente ocurrió un problema en el servidor.'
+
+                response = JsonResponse(data)
+                response['Access-Control-Allow-Origin'] = '*'
+                response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+                response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+                return response
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
