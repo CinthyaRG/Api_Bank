@@ -31,6 +31,5 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('api_app.urls')),
-    url(r'^router/clientes/', views.CustomersViewSet, name='user-detail'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
