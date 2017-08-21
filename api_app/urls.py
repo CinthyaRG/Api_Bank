@@ -22,4 +22,8 @@ urlpatterns = [
         r'^ajax/status-product/$',
         status_product,
         name='status_product'),
+    url(
+        r'^ajax/get-product/$',
+        get_product,
+        name='get_product'),
 ]

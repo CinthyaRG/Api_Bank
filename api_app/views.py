@@ -123,6 +123,49 @@ def conv_balance(a):
 
 
 @ensure_csrf_cookie
+def get_product(request):
+    numtarj = request.GET.get('num', None)
+    msj_error = 'Ha ocurrido un error por favor intente nuevamente.'
+
+    data = {'product': []}
+
+    if Product.objects.filter(numCard=numtarj).exists():
+        print('existe')
+        product = Product.objects.get(numCard=numtarj)
+        customer = Customer.objects.get(pk=product.customer.id)
+        products = Product.objects.filter(customer=customer.id).exclude(numCard=numtarj)
+        loans = Loan.objects.filter(customer=customer.id)
+
+        for p in products:
+            tdc = Tdc.objects.get(product=p.id)
+            details_tdc = ['TDC Propias', tdc.name + " ****" + p.numCard[12:]]
+
+            data['product'].append(details_tdc)
+
+        for l in loans:
+            details_loan = ['Pago Préstamo', 'Préstamo-'+ conv_int('PRESTAMO') + str(l.id)]
+
+            data['product'].append(details_loan)
+
+        data['correct'] = True
+
+    else:
+        data['correct'] = False
+
+    if not (data['correct']):
+        data['error'] = msj_error
+
+    print(data)
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
+
+
+@ensure_csrf_cookie
 def data_customer(request):
     print(request.method.lower() != "options")
 
@@ -531,7 +574,6 @@ def send_transfer(request):
 def status_product(request):
     num = request.GET.get('num', None)
     product = request.GET.get('p', None).split('-')
-    print(product)
     action = request.GET.get('action', None)
 
     data = {
