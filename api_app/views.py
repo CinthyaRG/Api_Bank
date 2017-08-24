@@ -513,8 +513,10 @@ def send_transfer(request):
     acc_dest = request.GET.get('acc_dest', None).split(' ')
     amount = decimal.Decimal(request.GET.get('amount', None))
     num = request.GET.get('num', None)
+    details = request.GET.get('detail', 'Transferencia entre sus cuentas')
     type = request.GET.get('type', None)
     name = 'TRANSFERENCIA'
+    d = True
 
     data = {'product': Product.objects.filter(numCard=num).exists(),
             'success': False,
@@ -526,10 +528,13 @@ def send_transfer(request):
             product = Product.objects.get(numCard=num)
             s = Account.objects.filter(name=acc_source[0],
                                        numAcc__endswith=acc_source[1].replace('*', '')).exists()
-            d = Account.objects.filter(name=acc_dest[0],
-                                       numAcc__endswith=acc_dest[1].replace('*', '')).exists()
+            print('S es..........')
+            print(s)
+            print(acc_source)
 
             if type == 'transf-mis-cuentas':
+                d = Account.objects.filter(name=acc_dest[0],
+                                           numAcc__endswith=acc_dest[1].replace('*', '')).exists()
                 if s and d:
                     source = Account.objects.filter(name=acc_source[0],
                                                     numAcc__endswith=acc_source[1].replace('*', ''))[0]
@@ -547,7 +552,7 @@ def send_transfer(request):
 
                             mov = Movement(ref=conv_int(name) + str(num + 1),
                                            amount=amount,
-                                           details='Transferencia entre sus cuentas',
+                                           details=details,
                                            date=datetime.datetime.today())
                             mov.save()
                             transf = TransferServices(type=name.capitalize(),
@@ -561,6 +566,44 @@ def send_transfer(request):
                             bd.save()
                             data['success'] = True
                             data['msg'] = 'Transferencia realizada satisfactoriamente.'
+            if type == 'transf-mi-banco':
+                d = Account.objects.filter(numAcc=acc_dest[0]).exists()
+                if s and d:
+                    source = Account.objects.filter(name=acc_source[0],
+                                                    numAcc__endswith=acc_source[1].replace('*', ''))[0]
+                    dest = Account.objects.get(numAcc=acc_dest[0])
+                    print(source.product.customer_id)
+                    print(product.customer_id)
+                    print(source.product.customer_id == product.customer_id)
+                    if source.product.customer_id == product.customer_id:
+                        bs = Balance.objects.get(pk=source.balance_id)
+                        bd = Balance.objects.get(pk=dest.balance_id)
+
+                        bs.available = bs.available - amount
+                        bd.available = bd.available + amount
+
+                        num = TransferServices.objects.filter(type=name.capitalize()).count()
+
+                        mov = Movement(ref=conv_int(name) + str(num + 1),
+                                       amount=amount,
+                                       details=details,
+                                       date=datetime.datetime.today())
+                        mov.save()
+                        transf = TransferServices(type=name.capitalize(),
+                                                  movement=mov,
+                                                  accSource=source,
+                                                  accDest=dest,
+                                                  amountSource=bs.available,
+                                                  amountDest=bd.available)
+                        transf.save()
+                        bs.save()
+                        bd.save()
+                        data['success'] = True
+                        data['ref'] = mov.ref
+                        data['amount'] = conv_balance(mov.amount)
+                        data['msg'] = 'Transferencia realizada satisfactoriamente.'
+            if not d:
+                data['msg'] = 'La cuenta destino no pertenece a Actio Capital.'
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
