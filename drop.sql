@@ -1,6 +1,6 @@
 drop table api_app_bank CASCADE;
 drop table api_app_account CASCADE;
-drop table api_app_check CASCADE;
+drop table api_app_checkbook CASCADE;
 drop table api_app_appointment CASCADE;
 drop table api_app_balance CASCADE;
 drop table api_app_branch CASCADE;

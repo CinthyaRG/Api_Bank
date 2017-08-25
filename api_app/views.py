@@ -82,7 +82,6 @@ def validate_data(request):
     if not (data['correct']):
         data['error'] = msj_error
 
-    print(data)
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
@@ -155,7 +154,66 @@ def get_product(request):
     if not (data['correct']):
         data['error'] = msj_error
 
-    print(data)
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
+
+
+@ensure_csrf_cookie
+def get_references(request):
+    ref = request.GET.get('ref', None)
+
+    data = {
+        'amount': '',
+        'description': ''
+    }
+
+    if Movement.objects.filter(ref=ref).exists():
+        print('existe')
+        mov = Movement.objects.get(ref=ref)
+
+        data['amount'] = conv_balance(mov.amount)
+        data['description'] = mov.details
+        data['correct'] = True
+
+    else:
+        data['correct'] = False
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
+
+
+@ensure_csrf_cookie
+def exist_account(request):
+    ci = request.GET.get('ci', None)
+    account = request.GET.get('acc', None)
+
+    data = {
+        'ident': False,
+        'acc': False,
+        'customer': False,
+        'exist': False
+    }
+
+    if Customer.objects.filter(ident=ci).exists():
+        customer = Customer.objects.get(ident=ci)
+        if Account.objects.filter(numAcc=account).exists():
+            if Account.objects.filter(product__customer=customer.id,
+                                      numAcc=account).exists():
+                data['exist'] = True
+            else:
+                data['customer'] = True
+        else:
+            data['acc'] = True
+    else:
+        data['ident'] = True
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
@@ -167,8 +225,6 @@ def get_product(request):
 
 @ensure_csrf_cookie
 def data_customer(request):
-    print(request.method.lower() != "options")
-
     num = request.GET.get('num', None)
     option = request.GET.get('option', 0)
     select = request.GET.get('select', '0')
@@ -185,7 +241,6 @@ def data_customer(request):
             }
 
     if request.method.lower() != "options":
-        print('entro')
         if data['product']:
             product = Product.objects.get(numCard=num)
             customer = Customer.objects.get(pk=product.customer.id)
@@ -194,6 +249,7 @@ def data_customer(request):
             loans = Loan.objects.filter(customer=customer.id)
 
             for a in accounts:
+                print(a)
 
                 details_acc = ['Cuenta ' + a.name,
                                a.numAcc[:10] + "******" + a.numAcc[16:],
@@ -299,12 +355,13 @@ def data_customer(request):
                                        mov.ref,
                                        tr.get_type_display()]
 
-                        if tr.accDest.id == a.id:
-                            details_mov.append('+' + conv_balance(mov.amount))
-                            details_mov.append(conv_balance(tr.amountDest))
-                            details = mov.details + ' --' + tr.get_type_display() + ' recibid' + w \
-                                      + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
-                        else:
+                        if tr.accDest is not None:
+                            if tr.accDest.id == a.id:
+                                details_mov.append('+' + conv_balance(mov.amount))
+                                details_mov.append(conv_balance(tr.amountDest))
+                                details = mov.details + ' --' + tr.get_type_display() + ' recibid' + w \
+                                          + ' de la cuenta de ' + tr.accSource.product.customer.get_name()
+                        if tr.accDest is None or tr.accDest.id != a.id:
                             details_mov.append('-' + conv_balance(mov.amount))
                             details_mov.append(conv_balance(tr.amountSource))
                             if tr.accDest is None:
@@ -528,9 +585,6 @@ def send_transfer(request):
             product = Product.objects.get(numCard=num)
             s = Account.objects.filter(name=acc_source[0],
                                        numAcc__endswith=acc_source[1].replace('*', '')).exists()
-            print('S es..........')
-            print(s)
-            print(acc_source)
 
             if type == 'transf-mis-cuentas':
                 d = Account.objects.filter(name=acc_dest[0],
@@ -572,9 +626,6 @@ def send_transfer(request):
                     source = Account.objects.filter(name=acc_source[0],
                                                     numAcc__endswith=acc_source[1].replace('*', ''))[0]
                     dest = Account.objects.get(numAcc=acc_dest[0])
-                    print(source.product.customer_id)
-                    print(product.customer_id)
-                    print(source.product.customer_id == product.customer_id)
                     if source.product.customer_id == product.customer_id:
                         bs = Balance.objects.get(pk=source.balance_id)
                         bd = Balance.objects.get(pk=dest.balance_id)
@@ -602,6 +653,45 @@ def send_transfer(request):
                         data['ref'] = mov.ref
                         data['amount'] = conv_balance(mov.amount)
                         data['msg'] = 'Transferencia realizada satisfactoriamente.'
+            if type == 'transf-otros-bancos':
+                extra = 'COMISION'
+                if s:
+                    source = Account.objects.filter(name=acc_source[0],
+                                                    numAcc__endswith=acc_source[1].replace('*', ''))[0]
+                    if source.product.customer_id == product.customer_id:
+                        bs = Balance.objects.get(pk=source.balance_id)
+                        bs.available = bs.available - amount
+
+                        num = TransferServices.objects.filter(type=name.capitalize()).count()
+                        num_extra = TransactionSimple.objects.filter(type=extra.capitalize()).count()
+
+                        mov = Movement(ref=conv_int(name) + str(num + 1),
+                                       amount=amount,
+                                       details=details,
+                                       date=datetime.datetime.today())
+                        mov_extra = Movement(ref=conv_int(extra) + str(num_extra + 1),
+                                             amount=decimal.Decimal(27),
+                                             details='Comisión de la transferencia con Ref.' + mov.ref,
+                                             date=datetime.datetime.today())
+                        mov.save()
+                        mov_extra.save()
+                        transf = TransferServices(type=name.capitalize(),
+                                                  movement=mov,
+                                                  accSource=source,
+                                                  amountSource=bs.available)
+                        transf.save()
+                        bs.available = bs.available - decimal.Decimal(27)
+                        transf_extra = TransactionSimple(type=extra.capitalize(),
+                                                         movement=mov_extra,
+                                                         amountResult=bs.available,
+                                                         account=source)
+                        transf_extra.save()
+                        bs.save()
+                        data['success'] = True
+                        data['ref'] = mov.ref
+                        data['amount'] = conv_balance(mov.amount)
+                        data['msg'] = 'Transferencia realizada satisfactoriamente.'
+
             if not d:
                 data['msg'] = 'La cuenta destino no pertenece a Actio Capital.'
 

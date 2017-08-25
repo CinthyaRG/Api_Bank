@@ -195,6 +195,7 @@ class TransactionSimple(models.Model):
         ('Retiro', 'Retiro'),
         ('POS', 'POS'),
         ('Pagos', 'Pagos'),
+        ('Comision', 'Comisión')
     ]
     type = models.CharField(choices=transaction_type, max_length=10)
     movement = models.ForeignKey(Movement)
