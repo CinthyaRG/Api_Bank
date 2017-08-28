@@ -766,9 +766,9 @@ def pay_services(request):
             s = Account.objects.filter(name=acc_source[0],
                                        numAcc__endswith=acc_source[1].replace('*', '')).exists()
 
-            if type == 'transf-mis-cuentas':
-                d = Account.objects.filter(name=acc_dest[0],
-                                           numAcc__endswith=acc_dest[1].replace('*', '')).exists()
+            if (service.find('Banavih') == 0 or service.find('Electricidad') == 0 or service.find('Impuestos') == 0
+                or service.find('DirecTV') == 0):
+                d = Account.objects.filter(numAcc__contains=service).exists()
                 if s and d:
                     source = Account.objects.filter(name=acc_source[0],
                                                     numAcc__endswith=acc_source[1].replace('*', ''))[0]
