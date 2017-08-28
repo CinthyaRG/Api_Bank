@@ -179,7 +179,7 @@ class Loan(models.Model):
 class Movement(models.Model):
     ref = models.CharField(unique=True, max_length=30)
     amount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
-    details = models.CharField(max_length=128, blank=True)
+    details = models.CharField(max_length=256, blank=True)
     date = models.DateTimeField()
 
     def __str__(self):

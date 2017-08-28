@@ -34,4 +34,12 @@ urlpatterns = [
         r'^ajax/exist-account/$',
         exist_account,
         name='exist_account'),
+    url(
+        r'^ajax/exist-tdc/$',
+        exist_tdc,
+        name='exist_tdc'),
+    url(
+        r'^ajax/pay-services/$',
+        pay_services,
+        name='pay_services'),
 ]
