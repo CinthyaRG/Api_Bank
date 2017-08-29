@@ -271,7 +271,8 @@ def data_customer(request):
             'loan': [],
             'mov_acc': [[], []],
             'mov_tdc': [[], [], []],
-            'management': [[], []]
+            'management': [[], []],
+            'chart': [['Meses', 'Activos', 'Pasivos']]
             }
 
     if request.method.lower() != "options":
@@ -281,9 +282,9 @@ def data_customer(request):
             accounts = Account.objects.filter(product=product.id).order_by('name')
             products = Product.objects.filter(customer=customer.id).exclude(numCard=num)
             loans = Loan.objects.filter(customer=customer.id)
+            balance_acc = 0
 
             for a in accounts:
-                print(a)
 
                 details_acc = ['Cuenta ' + a.name,
                                a.numAcc[:10] + "******" + a.numAcc[16:],
@@ -293,6 +294,9 @@ def data_customer(request):
                                a.branch.name]
 
                 data['account'].append(details_acc)
+
+                balance_acc = (a.balance.available/1000) + balance_acc
+                print(type(balance_acc))
 
                 if option == 'consultar-cuenta':
                     if startDate is None and endDate is None:
@@ -420,7 +424,7 @@ def data_customer(request):
                                        '-' + conv_balance(mov.amount),
                                        conv_balance(p.amountResult),
                                        mov.details + ' --Recarga a operadora ' +
-                                       p.get_operator_display() + ' al número (' + p.numTlf + ')']
+                                       p.get_operator_display()]
                         data['mov_acc'][i].append(details_mov)
 
                     data['mov_acc'][i].sort(reverse=True)
@@ -434,6 +438,7 @@ def data_customer(request):
                             data['management'][0].append('Chequera ' + str(c.numCheckbook))
                             data['management'][1].append(c.status)
 
+            data['chart'].append(['Agosto', float(balance_acc), float(balance_acc)])
             for p in products:
                 tdc = Tdc.objects.get(product=p.id)
                 payment = TransactionSimple.objects.filter(tdc=tdc.pk, type='Pagos').order_by('-movement')[0]
@@ -751,7 +756,6 @@ def pay_services(request):
     amount = decimal.Decimal(request.GET.get('amount', None))
     details = request.GET.get('detail', '')
     num = request.GET.get('num', None)
-
     name = 'PAGOS'
     d = True
 
@@ -768,9 +772,8 @@ def pay_services(request):
 
             if (service.find('Banavih Aportes FAOV') == 0 or service.find('Electricidad de Caracas') == 0 or
                         service.find('Pago de Impuestos Nacionales Terceros') == 0 or
-                        service.find('DirecTV Previo Pago') == 0 or service.find('DirecTV Prepago') == 0  or
-                        service.find('Pago de Impuestos Nacionales Propios') == 0 ):
-                print('entro')
+                        service.find('DirecTV Previo Pago') == 0 or service.find('DirecTV Prepago') == 0 or
+                        service.find('Pago de Impuestos Nacionales Propios') == 0):
                 if service == 'Pago de Impuestos Nacionales Terceros' or service == 'Pago de Impuestos Nacionales Terceros' :
                     service = 'SENIAT'
                 elif service == 'DirecTV Previo Pago' or service == 'DirecTV Prepago':
@@ -787,7 +790,9 @@ def pay_services(request):
                         bs.available = bs.available - amount
                         bd.available = bd.available + amount
 
-                        num = TransferServices.objects.filter(type=name.capitalize()).count()
+                        num = Movement.objects.filter(ref__startswith=conv_int(name)).count()
+                        print('num************')
+                        print(num)
 
                         mov = Movement(ref=conv_int(name) + str(num + 1),
                                        amount=amount,
@@ -811,10 +816,78 @@ def pay_services(request):
                 if service == 'TDC Propias':
                     d = Tdc.objects.filter(product__numCard__endswith=product_service[1].replace('*', ''),
                                            name=product_service[0]).exists()
+                if service == 'TDC de Terceros mismo banco':
+                    d = Tdc.objects.filter(product__numCard=product_service[0]).exists()
                 if s and d:
                     source = Account.objects.filter(name=acc_source[0],
                                                     numAcc__endswith=acc_source[1].replace('*', ''))[0]
-                    dest = Account.objects.get(numAcc=acc_dest[0])
+                    if service == 'TDC Propias':
+                        dest = Tdc.objects.filter(product__numCard__endswith=product_service[1].replace('*', ''),
+                                                  name=product_service[0],
+                                                  product__customer=product.customer.id)[0]
+                    if service == 'TDC de Terceros mismo banco':
+                        dest = Tdc.objects.get(product__numCard=product_service[0])
+
+                    if service == 'TDC Propias' or service == 'TDC de Terceros mismo banco':
+                        if source.product.customer_id == product.customer_id:
+                            bs = Balance.objects.get(pk=source.balance_id)
+
+                            bs.available = bs.available - amount
+                            dest.balance = dest.balance - amount
+
+                            num = Movement.objects.filter(ref__startswith=conv_int(name)).count()
+                            print('num*************')
+                            print(num)
+
+                            mov = Movement(ref=conv_int(name) + str(num + 1),
+                                           amount=amount,
+                                           details=details,
+                                           date=datetime.datetime.today())
+                            mov.save()
+                            transf = TransactionSimple(type=name.capitalize(),
+                                                       movement=mov,
+                                                       amountResult=bs.available,
+                                                       account=source,
+                                                       tdc=dest)
+                            transf.save()
+                            bs.save()
+                            dest.save()
+                            data['success'] = True
+                            data['ref'] = mov.ref
+                            data['amount'] = conv_balance(mov.amount)
+                            data['msg'] = 'Pago de servicio realizado satisfactoriamente.'
+
+                    if service == 'TDC de Terceros otros bancos':
+                        if source.product.customer_id == product.customer_id:
+                            bs = Balance.objects.get(pk=source.balance_id)
+
+                            bs.available = bs.available - amount
+                            num = Movement.objects.filter(ref__startswith=conv_int(name)).count()
+                            print('num*************')
+                            print(num)
+
+                            mov = Movement(ref=conv_int(name) + str(num + 1),
+                                           amount=amount,
+                                           details=details,
+                                           date=datetime.datetime.today())
+                            mov.save()
+                            transf = TransactionSimple(type=name.capitalize(),
+                                                       movement=mov,
+                                                       amountResult=bs.available,
+                                                       account=source)
+                            transf.save()
+                            bs.save()
+                            data['success'] = True
+                            data['ref'] = mov.ref
+                            data['amount'] = conv_balance(mov.amount)
+                            data['msg'] = 'Pago de servicio realizado satisfactoriamente.'
+            if (service.find('Digitel') == 0 or service.find('Movistar') == 0 or
+                        service.find('CANTV') == 0 or service.find('Movilnet') == 0):
+                d = Account.objects.filter(product__customer__firstName__icontains=service.upper()).exists()
+                if s and d:
+                    source = Account.objects.filter(name=acc_source[0],
+                                                    numAcc__endswith=acc_source[1].replace('*', ''))[0]
+                    dest = Account.objects.filter(product__customer__firstName__icontains=service.upper())[0]
                     if source.product.customer_id == product.customer_id:
                         bs = Balance.objects.get(pk=source.balance_id)
                         bd = Balance.objects.get(pk=dest.balance_id)
@@ -822,66 +895,24 @@ def pay_services(request):
                         bs.available = bs.available - amount
                         bd.available = bd.available + amount
 
-                        num = TransferServices.objects.filter(type=name.capitalize()).count()
+                        num = Movement.objects.filter(ref__startswith=conv_int(name)).count()
 
                         mov = Movement(ref=conv_int(name) + str(num + 1),
                                        amount=amount,
                                        details=details,
                                        date=datetime.datetime.today())
                         mov.save()
-                        transf = TransferServices(type=name.capitalize(),
-                                                  movement=mov,
-                                                  accSource=source,
-                                                  accDest=dest,
-                                                  amountSource=bs.available,
-                                                  amountDest=bd.available)
+                        transf = PaymentTlf(operator=service.upper(),
+                                            numTlf=product_service[0],
+                                            amountResult=bs.available,
+                                            movement=mov,
+                                            account=source)
                         transf.save()
                         bs.save()
                         bd.save()
                         data['success'] = True
+                        data['msg'] = 'Pago de servicio realizado satisfactoriamente.'
                         data['ref'] = mov.ref
-                        data['amount'] = conv_balance(mov.amount)
-                        data['msg'] = 'Transferencia realizada satisfactoriamente.'
-            if type == 'transf-otros-bancos':
-                extra = 'COMISION'
-                if s:
-                    source = Account.objects.filter(name=acc_source[0],
-                                                    numAcc__endswith=acc_source[1].replace('*', ''))[0]
-                    if source.product.customer_id == product.customer_id:
-                        bs = Balance.objects.get(pk=source.balance_id)
-                        bs.available = bs.available - amount
-
-                        num = TransferServices.objects.filter(type=name.capitalize()).count()
-                        num_extra = TransactionSimple.objects.filter(type=extra.capitalize()).count()
-
-                        mov = Movement(ref=conv_int(name) + str(num + 1),
-                                       amount=amount,
-                                       details=details + '--Transferencia a otros bancos realizada a la cuenta de ' +
-                                               acc_dest[0].replace('_', ' ') + ' del banco ' + acc_dest[1].replace('_', ' '),
-                                       date=datetime.datetime.today())
-                        mov_extra = Movement(ref=conv_int(extra) + str(num_extra + 1),
-                                             amount=decimal.Decimal(27),
-                                             details='Comisión de la transferencia con Ref. ' + mov.ref,
-                                             date=datetime.datetime.today())
-                        mov.save()
-                        mov_extra.save()
-                        transf = TransferServices(type=name.capitalize(),
-                                                  movement=mov,
-                                                  accSource=source,
-                                                  amountSource=bs.available)
-                        transf.save()
-                        bs.available = bs.available - decimal.Decimal(27)
-                        transf_extra = TransactionSimple(type=extra.capitalize(),
-                                                         movement=mov_extra,
-                                                         amountResult=bs.available,
-                                                         account=source)
-                        transf_extra.save()
-                        bs.save()
-                        data['success'] = True
-                        data['ref'] = mov.ref
-                        data['amount'] = conv_balance(mov.amount)
-                        data['msg'] = 'Transferencia realizada satisfactoriamente.'
-
 
     print(data)
     response = JsonResponse(data)
@@ -978,6 +1009,23 @@ def status_product(request):
     response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
 
     return response
+
+
+@ensure_csrf_cookie
+def chart(request):
+    num = request.GET.get('num', None)
+
+    data = {
+        'product': Product.objects.filter(numCard=num).exists()
+    }
+
+    if request.method.lower() != "options" and data['product']:
+
+        today = datetime.date.today()
+        trans_simple = TransactionSimple.objects.filter(tdc=tdc.pk,
+                                                        type=select,
+                                                        movement__date__range=[start, end])
+
 
 
 class CustomersViewSet(viewsets.ReadOnlyModelViewSet):
