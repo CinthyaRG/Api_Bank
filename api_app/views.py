@@ -707,7 +707,7 @@ def send_transfer(request):
                         mov = Movement(ref=conv_int(name) + str(num + 1),
                                        amount=amount,
                                        details=details + '--Transferencia a otros bancos realizada a la cuenta de ' +
-                                       acc_dest[0].replace('_', ' ') + ' del banco ' + acc_dest[1].replace('_', ' '),
+                                               acc_dest[0].replace('_', ' ') + ' del banco ' + acc_dest[1].replace('_', ' '),
                                        date=datetime.datetime.today())
                         mov_extra = Movement(ref=conv_int(extra) + str(num_extra + 1),
                                              amount=decimal.Decimal(27),
@@ -747,7 +747,7 @@ def send_transfer(request):
 def pay_services(request):
     acc_source = request.GET.get('acc', None).split(' ')
     service = request.GET.get('service', None)
-    product = request.GET.get('product', None).split(' ')
+    product_service = request.GET.get('product', None).split(' ')
     amount = decimal.Decimal(request.GET.get('amount', None))
     details = request.GET.get('detail', '')
     num = request.GET.get('num', None)
@@ -766,42 +766,51 @@ def pay_services(request):
             s = Account.objects.filter(name=acc_source[0],
                                        numAcc__endswith=acc_source[1].replace('*', '')).exists()
 
-            if (service.find('Banavih') == 0 or service.find('Electricidad') == 0 or service.find('Impuestos') == 0
-                or service.find('DirecTV') == 0):
-                d = Account.objects.filter(numAcc__contains=service).exists()
+            if (service.find('Banavih Aportes FAOV') == 0 or service.find('Electricidad de Caracas') == 0 or
+                        service.find('Pago de Impuestos Nacionales Terceros') == 0 or
+                        service.find('DirecTV Previo Pago') == 0 or service.find('DirecTV Prepago') == 0  or
+                        service.find('Pago de Impuestos Nacionales Propios') == 0 ):
+                print('entro')
+                if service == 'Pago de Impuestos Nacionales Terceros' or service == 'Pago de Impuestos Nacionales Terceros' :
+                    service = 'SENIAT'
+                elif service == 'DirecTV Previo Pago' or service == 'DirecTV Prepago':
+                    service = 'DirecTV'
+                d = Account.objects.filter(product__customer__firstName__icontains=service).exists()
                 if s and d:
                     source = Account.objects.filter(name=acc_source[0],
                                                     numAcc__endswith=acc_source[1].replace('*', ''))[0]
-                    dest = Account.objects.filter(name=acc_dest[0],
-                                                  numAcc__endswith=acc_dest[1].replace('*', ''))[0]
-                    if source.product.customer_id == dest.product.customer_id:
-                        if source.product.customer_id == product.customer_id:
-                            bs = Balance.objects.get(pk=source.balance_id)
-                            bd = Balance.objects.get(pk=dest.balance_id)
+                    dest = Account.objects.filter(product__customer__firstName=service)[0]
+                    if source.product.customer_id == product.customer_id:
+                        bs = Balance.objects.get(pk=source.balance_id)
+                        bd = Balance.objects.get(pk=dest.balance_id)
 
-                            bs.available = bs.available - amount
-                            bd.available = bd.available + amount
+                        bs.available = bs.available - amount
+                        bd.available = bd.available + amount
 
-                            num = TransferServices.objects.filter(type=name.capitalize()).count()
+                        num = TransferServices.objects.filter(type=name.capitalize()).count()
 
-                            mov = Movement(ref=conv_int(name) + str(num + 1),
-                                           amount=amount,
-                                           details=details,
-                                           date=datetime.datetime.today())
-                            mov.save()
-                            transf = TransferServices(type=name.capitalize(),
-                                                      movement=mov,
-                                                      accSource=source,
-                                                      accDest=dest,
-                                                      amountSource=bs.available,
-                                                      amountDest=bd.available)
-                            transf.save()
-                            bs.save()
-                            bd.save()
-                            data['success'] = True
-                            data['msg'] = 'Transferencia realizada satisfactoriamente.'
-            if type == 'transf-mi-banco':
-                d = Account.objects.filter(numAcc=acc_dest[0]).exists()
+                        mov = Movement(ref=conv_int(name) + str(num + 1),
+                                       amount=amount,
+                                       details=details,
+                                       date=datetime.datetime.today())
+                        mov.save()
+                        transf = TransferServices(type=name.capitalize(),
+                                                  movement=mov,
+                                                  accSource=source,
+                                                  accDest=dest,
+                                                  amountSource=bs.available,
+                                                  amountDest=bd.available)
+                        transf.save()
+                        bs.save()
+                        bd.save()
+                        data['success'] = True
+                        data['msg'] = 'Pago de servicio realizado satisfactoriamente.'
+                        data['ref'] = mov.ref
+            if service.find('TDC') == 0:
+                print('entro tdc')
+                if service == 'TDC Propias':
+                    d = Tdc.objects.filter(product__numCard__endswith=product_service[1].replace('*', ''),
+                                           name=product_service[0]).exists()
                 if s and d:
                     source = Account.objects.filter(name=acc_source[0],
                                                     numAcc__endswith=acc_source[1].replace('*', ''))[0]
@@ -848,7 +857,7 @@ def pay_services(request):
                         mov = Movement(ref=conv_int(name) + str(num + 1),
                                        amount=amount,
                                        details=details + '--Transferencia a otros bancos realizada a la cuenta de ' +
-                                       acc_dest[0].replace('_', ' ') + ' del banco ' + acc_dest[1].replace('_', ' '),
+                                               acc_dest[0].replace('_', ' ') + ' del banco ' + acc_dest[1].replace('_', ' '),
                                        date=datetime.datetime.today())
                         mov_extra = Movement(ref=conv_int(extra) + str(num_extra + 1),
                                              amount=decimal.Decimal(27),
@@ -873,9 +882,8 @@ def pay_services(request):
                         data['amount'] = conv_balance(mov.amount)
                         data['msg'] = 'Transferencia realizada satisfactoriamente.'
 
-            if not d:
-                data['msg'] = 'La cuenta destino no pertenece a Actio Capital.'
 
+    print(data)
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'

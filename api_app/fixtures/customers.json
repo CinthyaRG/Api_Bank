@@ -207,5 +207,16 @@
         "birthday": "1945-07-12"
     },
     "pk": 19
+  },
+  {
+    "model": "api_app.customer",
+    "fields": {
+        "firstName":"SENIAT",
+        "lastName":"Servicio",
+        "ident": "J-214586325",
+        "phone": 7,
+        "birthday": "1991-05-23"
+    },
+    "pk": 20
   }
 ]
