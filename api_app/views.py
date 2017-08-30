@@ -296,7 +296,6 @@ def data_customer(request):
                 data['account'].append(details_acc)
 
                 balance_acc = (a.balance.available/1000) + balance_acc
-                print(type(balance_acc))
 
                 if option == 'consultar-cuenta':
                     if startDate is None and endDate is None:
@@ -1026,6 +1025,31 @@ def chart(request):
                                                         type=select,
                                                         movement__date__range=[start, end])
 
+
+@ensure_csrf_cookie
+def checkbook(request):
+    num = request.GET.get('num', None)
+    checkbook = request.GET.get('checkbook', None)
+    check = request.GET.get('check', None)
+
+    data = {
+        'success': False
+    }
+
+    if Product.objects.filter(numCard=num).exists():
+        product = Product.objects.filter(numCard=num)
+        account = Account.objects.filter(name=Corriente, product=)
+        
+    else:
+        data['tdc'] = True
+
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
 
 
 class CustomersViewSet(viewsets.ReadOnlyModelViewSet):

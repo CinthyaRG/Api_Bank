@@ -46,4 +46,8 @@ urlpatterns = [
         r'^ajax/chart/$',
         chart,
         name='chart'),
+    url(
+        r'^ajax/checkbook/$',
+        checkbook,
+        name='checkbook'),
 ]
