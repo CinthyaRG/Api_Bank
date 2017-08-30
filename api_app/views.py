@@ -1021,28 +1021,54 @@ def chart(request):
     if request.method.lower() != "options" and data['product']:
 
         today = datetime.date.today()
-        trans_simple = TransactionSimple.objects.filter(tdc=tdc.pk,
-                                                        type=select,
-                                                        movement__date__range=[start, end])
 
 
 @ensure_csrf_cookie
-def checkbook(request):
+def appointment(request):
     num = request.GET.get('num', None)
-    checkbook = request.GET.get('checkbook', None)
-    check = request.GET.get('check', None)
+    d = request.GET.get('date', None).split('/')
+    branch = request.GET.get('branch', None)
 
     data = {
-        'success': False
+        'success': False,
+        'msg': 'Hubo un problema con el servidor, intente de Nuevo.'
     }
 
-    if Product.objects.filter(numCard=num).exists():
-        product = Product.objects.filter(numCard=num)
-        account = Account.objects.filter(name=Corriente, product=)
-        
-    else:
-        data['tdc'] = True
+    if request.method.lower() != "options" and Product.objects.filter(numCard=num).exists():
+        product = Product.objects.get(numCard=num)
+        customer = Customer.objects.get(id=product.customer_id)
+        branch = Branch.objects.get(name=branch)
+        date = d[2] + '-' + d[1] + '-' + d[0]
+        print(date)
+        num = Appointment.objects.filter(bank=branch.id, dateAppointment=date).count()
+        if num < 10:
+            app = Appointment(customer=customer,
+                              bank=branch,
+                              dateAppointment=date)
+            app.save()
+            data['success'] = True
+        else:
+            data['msg'] = 'La sucursal seleccionada no tiene citas disponibles en esa fecha. ' \
+                          'Seleccione otra sucursal u otra fecha.'
 
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
+
+
+@ensure_csrf_cookie
+def branches(request):
+
+    data = {
+        'branches': []
+    }
+
+    branches = Branch.objects.filter()
+    for b in branches:
+        data['branches'].append(b.name)
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
