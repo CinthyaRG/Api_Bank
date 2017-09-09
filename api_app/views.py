@@ -294,8 +294,9 @@ def data_customer(request):
             else:
                 m_s = m - 5
 
-            while m_s <=m:
-                data['chart'].append([month[m_s-1],0,0])
+            while m_s <= m:
+                data['chart'].append([month[m_s-1], 0, 0])
+                m_s+=1
 
             for a in accounts:
 
@@ -308,7 +309,7 @@ def data_customer(request):
 
                 data['account'].append(details_acc)
 
-                while m_s <= m:
+                # while m_s <= m:
 
 
                 if option == 'consultar-cuenta':

@@ -15,7 +15,7 @@
     "pk": 1
   },
   {
-    "model": "api_app.tdc",
+    "model": "api_app.loan",
     "fields": {
       "numInstallments": 18,
       "paidInstallments": 6,
