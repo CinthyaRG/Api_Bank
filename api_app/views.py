@@ -284,6 +284,19 @@ def data_customer(request):
             loans = Loan.objects.filter(customer=customer.id)
             balance_acc = 0
 
+            month = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                     'Julio', 'Agosto', 'Septembre', 'Octubre','Noviembre',
+                     'Diciembre']
+
+            m = datetime.datetime.today().month
+            if m < 6:
+                m_s = 1
+            else:
+                m_s = m - 5
+
+            while m_s <=m:
+                data['chart'].append([month[m_s-1],0,0])
+
             for a in accounts:
 
                 details_acc = ['Cuenta ' + a.name,
@@ -295,7 +308,8 @@ def data_customer(request):
 
                 data['account'].append(details_acc)
 
-                balance_acc = (a.balance.available/1000) + balance_acc
+                while m_s <= m:
+
 
                 if option == 'consultar-cuenta':
                     if startDate is None and endDate is None:
@@ -429,7 +443,6 @@ def data_customer(request):
                     data['mov_acc'][i].sort(reverse=True)
 
                 if option == 'gestion-productos':
-
                     if a.name == 'Corriente':
                         check = Checkbook.objects.filter(account=a.id, numCheck__gte=1)
 

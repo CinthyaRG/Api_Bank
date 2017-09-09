@@ -1,0 +1,13 @@
+Django==1.11.1
+Pillow==4.2.1
+Pygments==2.2.0
+djangorestframework==3.6.2
+pip==9.0.1
+psycopg2==2.7.1
+pyparsing==2.2.0
+pytz==2017.2
+requests==2.14.2
+setuptools==35.0.2
+six==1.10.0	
+webencodings==0.5.1
+wheel==0.29.0
