@@ -139,14 +139,15 @@ def get_product(request):
 
         for p in products:
             tdc = Tdc.objects.get(product=p.id)
-            details_tdc = ['TDC Propias', tdc.name + " ****" + p.numCard[12:]]
+            details_tdc = ['TDC Propias', tdc.name + " ****" + p.numCard[12:], '']
 
             data['product'].append(details_tdc)
 
         for l in loans:
-            details_loan = ['Pago Préstamo', 'Préstamo-'+ conv_int('PRESTAMO') + str(l.id)]
+            if l.date_expires > datetime.datetime.today(): 
+                details_loan = ['Pago Préstamo', 'Préstamo-'+ conv_int('PRESTAMO') + str(l.id), l.date_expires]
 
-            data['product'].append(details_loan)
+                data['product'].append(details_loan)
 
         data['correct'] = True
 
@@ -155,6 +156,48 @@ def get_product(request):
 
     if not (data['correct']):
         data['error'] = msj_error
+
+    response = JsonResponse(data)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
+    response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type, X-CSRFToken'
+
+    return response
+
+
+@ensure_csrf_cookie
+def get_amount(request):
+    name = request.GET.get('name', None).split(' ')
+    numtarj = request.GET.get('num', None)
+    msj_error = 'Ha ocurrido un error por favor intente nuevamente.'
+
+    data = {
+        'exist': Product.objects.filter(numCard=numtarj).exists()
+    }
+
+    if Product.objects.filter(numCard=numtarj).exists():
+        product = Product.objects.get(numCard=numtarj)
+        customer = Customer.objects.get(pk=product.customer.id)
+        if len(name) < 2:
+            name = name[0].split('-')
+
+        if name[0] == 'Préstamo':
+            loan = Loan.objects.get(customer=customer.id,id=int(name[1][6:]))
+            data['amount'] = loan.amount_installments
+        else:
+            p = Product.objects.get(numCard__endswith=name[1].replace('*', ''))
+            tdc = Tdc.objects.get(product=p.id, name=name[0])
+            data['amount'] = tdc.minimumPayment
+
+        data['correct'] = True
+
+    else:
+        data['correct'] = False
+
+    if not (data['correct']):
+        data['error'] = msj_error
+
+    print(data)
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
@@ -285,7 +328,7 @@ def data_customer(request):
             balance_acc = 0
 
             month = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                     'Julio', 'Agosto', 'Septembre', 'Octubre','Noviembre',
+                     'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre',
                      'Diciembre']
 
             m = datetime.datetime.today().month
@@ -297,6 +340,7 @@ def data_customer(request):
             while m_s <= m:
                 data['chart'].append([month[m_s-1], 0, 0])
                 m_s+=1
+            print(data['chart'])
 
             for a in accounts:
 
@@ -451,7 +495,6 @@ def data_customer(request):
                             data['management'][0].append('Chequera ' + str(c.numCheckbook))
                             data['management'][1].append(c.status)
 
-            data['chart'].append(['Agosto', float(balance_acc), float(balance_acc)])
             for p in products:
                 tdc = Tdc.objects.get(product=p.id)
                 payment = TransactionSimple.objects.filter(tdc=tdc.pk, type='Pagos').order_by('-movement')[0]
@@ -528,19 +571,21 @@ def data_customer(request):
                     data['management'][1].append(tdc.status)
 
             for l in loans:
-                details_loan = [conv_int('PRESTAMO') + str(l.id),
-                                'Cuenta ' + l.account.name + ' ****' + l.account.numAcc[16:],
-                                conv_balance(l.paidAmount),
-                                l.date_payment,
-                                l.numInstallments,
-                                conv_balance(l.startingAmount),
-                                conv_balance(l.overdue_amount),
-                                l.date,
-                                l.date_expires,
-                                l.paidInstallments,
-                                l.overdueInstallments]
+                if l.date_expires > datetime.datetime.today():
+                    details_loan = [conv_int('PRESTAMO') + str(l.id),
+                                    'Cuenta ' + l.account.name + ' ****' + l.account.numAcc[16:],
+                                    conv_balance(l.paidAmount),
+                                    l.date_payment,
+                                    l.numInstallments,
+                                    conv_balance(l.startingAmount),
+                                    conv_balance(l.overdue_amount),
+                                    l.date,
+                                    l.date_expires,
+                                    l.paidInstallments,
+                                    l.overdueInstallments]
 
-                data['loan'].append(details_loan)
+                    data['loan'].append(details_loan)
+                print(data['loan'])
 
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
@@ -825,7 +870,6 @@ def pay_services(request):
                         data['msg'] = 'Pago de servicio realizado satisfactoriamente.'
                         data['ref'] = mov.ref
             if service.find('TDC') == 0:
-                print('entro tdc')
                 if service == 'TDC Propias':
                     d = Tdc.objects.filter(product__numCard__endswith=product_service[1].replace('*', ''),
                                            name=product_service[0]).exists()
@@ -849,8 +893,6 @@ def pay_services(request):
                             dest.balance = dest.balance - amount
 
                             num = Movement.objects.filter(ref__startswith=conv_int(name)).count()
-                            print('num*************')
-                            print(num)
 
                             mov = Movement(ref=conv_int(name) + str(num + 1),
                                            amount=amount,
@@ -926,6 +968,38 @@ def pay_services(request):
                         data['success'] = True
                         data['msg'] = 'Pago de servicio realizado satisfactoriamente.'
                         data['ref'] = mov.ref
+            if (service == 'Pago Préstamo'):
+                if s:
+                    source = Account.objects.filter(name=acc_source[0],
+                                                    numAcc__endswith=acc_source[1].replace('*', ''))[0]
+                    if source.product.customer_id == product.customer_id:
+                        l = product_service[0].split('-')
+                        loan = Loan.objects.get(customer=product.customer_id,id=int(l[1][6:]))
+
+                        bs = Balance.objects.get(pk=source.balance_id)
+
+                        bs.available = bs.available - amount
+                        loan.paidInstallments+=1
+                        loan.paidAmount = loan.paidAmount + amount                
+
+                        num = Movement.objects.filter(ref__startswith=conv_int(name)).count()
+
+                        mov = Movement(ref=conv_int(name) + str(num + 1),
+                                       amount=amount,
+                                       details=details,
+                                       date=datetime.datetime.today())
+                        mov.save()
+                        transf = TransactionSimple(type=name.capitalize(),
+                                                   movement=mov,
+                                                   amountResult=bs.available,
+                                                   account=source)
+                        transf.save()
+                        bs.save()
+                        loan.save()
+                        data['success'] = True
+                        data['ref'] = mov.ref
+                        data['amount'] = conv_balance(mov.amount)
+                        data['msg'] = 'Pago de servicio realizado satisfactoriamente.'
 
     print(data)
     response = JsonResponse(data)

@@ -27,6 +27,10 @@ urlpatterns = [
         get_product,
         name='get_product'),
     url(
+        r'^ajax/get-amount/$',
+        get_amount,
+        name='get_amount'),
+    url(
         r'^ajax/get-references/$',
         get_references,
         name='get_references'),

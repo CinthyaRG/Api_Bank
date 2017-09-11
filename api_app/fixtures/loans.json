@@ -28,5 +28,50 @@
       "date": "2017-08-18"
     },
     "pk": 2
+  },
+  {
+    "model": "api_app.loan",
+    "fields": {
+      "numInstallments": 12,
+      "paidInstallments": 12,
+      "overdueInstallments": 0,
+      "startingAmount": 250000,
+      "paidAmount": 250000,
+      "date_payment": "2017-09-02",
+      "customer": 1,
+      "account": 2,
+      "date": "2012-03-12"
+    },
+    "pk": 3
+  },
+  {
+    "model": "api_app.loan",
+    "fields": {
+      "numInstallments": 18,
+      "paidInstallments": 6,
+      "overdueInstallments": 0,
+      "startingAmount": 300000,
+      "paidAmount": 57654.95,
+      "date_payment": "2017-09-22",
+      "customer": 12,
+      "account": 12,
+      "date": "2017-08-18"
+    },
+    "pk": 4
+  },
+  {
+    "model": "api_app.loan",
+    "fields": {
+      "numInstallments": 12,
+      "paidInstallments": 12,
+      "overdueInstallments": 0,
+      "startingAmount": 250000,
+      "paidAmount": 250000,
+      "date_payment": "2017-09-02",
+      "customer": 12,
+      "account": 12,
+      "date": "2012-03-12"
+    },
+    "pk": 5
   }
 ]

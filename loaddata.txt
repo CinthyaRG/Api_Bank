@@ -1,4 +1,1 @@
-loaddata banks phones branches customers products balances accounts checks tdc mov mov-simple transf-serv pay-tlf
-
-
-loaddata pay-tdc ----> ESTE NOOO!!!!
+loaddata banks phones branches customers products balances accounts checks tdc mov mov-simple transf-serv pay-tlf loans
