@@ -136,7 +136,7 @@ class Tdc(models.Model):
         a = self.balance * decimal.Decimal('0.01')
         b = (self.balance - a) * decimal.Decimal('0.0392')
 
-        return a + b
+        return round(a + b, 2)
 
     balanceAvailable = property(get_available)
     minimumPayment = property(get_min)
@@ -158,7 +158,13 @@ class Loan(models.Model):
                str(self.account) + ")"
 
     def overdue_amount(self):
-        return self.startingAmount - self.paidAmount
+        return round(self.startingAmount - self.paidAmount, 2)
+
+    def get_amount(self):
+        a = self.startingAmount * decimal.Decimal('0.29')
+        amount = round((self.startingAmount + a) / self.numInstallments, 2)
+
+        return amount
 
     def date_expires(self):
         a = self.numInstallments
@@ -174,6 +180,7 @@ class Loan(models.Model):
 
     overdue_amount = property(overdue_amount)
     date_expires = property(date_expires)
+    amount_installments = property(get_amount)
 
 
 class Movement(models.Model):
