@@ -227,16 +227,13 @@ class TransferServices(models.Model):
     accDest = models.ForeignKey(Account, related_name="accDest", null=True, blank=True)
 
     def __str__(self):
-        return str(self.id) + ': Origen ->' + str(self.accSource.product.customer) + ' Destino ->' + str(self.accDest.product.customer)
+        if self.accDest is None:
+            return str(self.id) + ': Origen ->' + str(self.accSource.product.customer) + ' Destino -> Ninguno'
+        else:
+            return str(self.id) + ': Origen ->' + str(self.accSource.product.customer) + ' Destino ->' + str(self.accDest.product.customer)
 
     class Meta:
         ordering = ["id"]
-
-
-# class PaymentTdc(models.Model):
-#     movement = models.ForeignKey(Movement)
-#     account = models.ForeignKey(Account)
-#     card_dest = models.ForeignKey(Tdc)
 
 
 class PaymentTlf(models.Model):
