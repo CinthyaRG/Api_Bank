@@ -197,8 +197,6 @@ def get_amount(request):
     if not (data['correct']):
         data['error'] = msj_error
 
-    print(data)
-
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
@@ -217,7 +215,6 @@ def get_references(request):
     }
 
     if Movement.objects.filter(ref=ref).exists():
-        print('existe')
         mov = Movement.objects.get(ref=ref)
 
         data['amount'] = conv_balance(mov.amount)
@@ -358,50 +355,71 @@ def data_customer(request):
                     m_s = m - 5
 
                 while m_s <= m:
-                    i = 0
                     month_act = month[m_s-1]
-                    # mov_simple = Movement.objects.filter(date__month=m_s, transactionsimple__account=a).exists()
-                    mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).exists()
-                    # mov_payment = Movement.objects.filter(date__month=m_s, paymenttlf__account=a).exists()
-                    mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).exists()
-                    # mov_transIn = Movement.objects.filter(date__month=m_s, transferservices__accDest=a).exists()
-                    # mov_transOut = Movement.objects.filter(date__month=m_s, transferservices__accSource=a).exists()
-                    mov_transIn = TransferServices.objects.filter(movement__date__month=m_s, accSource=a).exists()
-                    mov_transOut = TransferServices.objects.filter(movement__date__month=m_s, accDest=a).exists()
 
-                    if mov_transIn and mov_transOut:
-                        mov_trans = [True]
-                        mov_transIn = TransferServices.objects.filter(movement__date__month=m_s, accSource=a).order_by('-movement')[0]
-                        mov_transOut = TransferServices.objects.filter(movement__date__month=m_s, accDest=a).order_by('-movement')[0]
-                        if mov_transIn.movement.date < mov_transOut.movement.date:
+                    if datetime.date.today().month == m_s:
+                        i = 0
+                        while i <= (len(data['chart'])-1):
+                            if data['chart'][i][0] == month_act:
+                                data['chart'][i][1] += float(a.balance.available)
+                                break
+                            i += 1
+                    else:
+                        i = 0
+                        mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).exists()
+                        mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).exists()
+                        mov_transIn = TransferServices.objects.filter(movement__date__month=m_s, accSource=a).exists()
+                        mov_transOut = TransferServices.objects.filter(movement__date__month=m_s, accDest=a).exists()
+
+                        if mov_transIn and mov_transOut:
+                            mov_trans = [True]
+                            mov_transIn = TransferServices.objects.filter(movement__date__month=m_s, accSource=a).order_by('-movement')[0]
+                            mov_transOut = TransferServices.objects.filter(movement__date__month=m_s, accDest=a).order_by('-movement')[0]
+                            if mov_transIn.movement.date < mov_transOut.movement.date:
+                                mov_trans.append('out')
+                                mov_transaction = mov_transOut
+                            else:
+                                mov_trans.append('in')
+                                mov_transaction = mov_transIn
+                        elif mov_transIn:
+                            mov_transIn = TransferServices.objects.filter(movement__date__month=m_s, accSource=a).order_by('-movement')[0]
+                            mov_trans.append('in')
+                            mov_transaction = mov_transIn
+                        elif mov_transOut:
+                            mov_transOut = TransferServices.objects.filter(movement__date__month=m_s, accDest=a).order_by('-movement')[0]
                             mov_trans.append('out')
                             mov_transaction = mov_transOut
                         else:
-                            mov_trans.append('in')
-                            mov_transaction = mov_transIn
-                    elif mov_transIn:
-                        mov_transIn = TransferServices.objects.filter(movement__date__month=m_s, accSource=a).order_by('-movement')[0]
-                        mov_trans.append('in')
-                        mov_transaction = mov_transIn
-                    elif mov_transOut:
-                        mov_transOut = TransferServices.objects.filter(movement__date__month=m_s, accDest=a).order_by('-movement')[0]
-                        mov_trans.append('out')
-                        mov_transaction = mov_transOut
-                    else:
-                        mov_trans = [False]
+                            mov_trans = [False]
 
-                    if mov_simple and mov_payment and mov_trans[0]:
-                        mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
-                        mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
-                        if mov_simple.movement.date >= mov_payment.movement.date:
-                            if mov_simple.movement.date >= mov_transaction.movement.date:
+                        if mov_simple and mov_payment and mov_trans[0]:
+                            mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
+                            mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
+                            if mov_simple.movement.date >= mov_payment.movement.date:
+                                if mov_simple.movement.date >= mov_transaction.movement.date:
+                                    balance = mov_simple.amountResult
+                                else:
+                                    if mov_trans[1] == 'out':
+                                        balance = mov_transaction.amountSource
+                                    else:
+                                        balance = mov_transaction.amountDest
+                            else:
+                                if mov_payment.movement.date >= mov_transaction.movement.date:
+                                    balance = mov_payment.amount
+                                else:
+                                    if mov_trans[1] == 'out':
+                                        balance = mov_transaction.amountSource
+                                    else:
+                                        balance = mov_transaction.amountDest
+                        elif mov_simple and mov_payment:
+                            mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
+                            mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
+                            if mov_simple.movement.date >= mov_payment.movement.date:
                                 balance = mov_simple.amountResult
                             else:
-                                if mov_trans[1] == 'out':
-                                    balance = mov_transaction.amountSource
-                                else:
-                                    balance = mov_transaction.amountDest
-                        else:
+                                balance = mov_payment.amount
+                        elif mov_payment and mov_trans[0]:
+                            mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
                             if mov_payment.movement.date >= mov_transaction.movement.date:
                                 balance = mov_payment.amount
                             else:
@@ -409,50 +427,34 @@ def data_customer(request):
                                     balance = mov_transaction.amountSource
                                 else:
                                     balance = mov_transaction.amountDest
-                    elif mov_simple and mov_payment:
-                        mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
-                        mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
-                        if mov_simple.movement.date >= mov_payment.movement.date:
+                        elif mov_simple and mov_trans[0]:
+                            mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
+                            if mov_simple.movement.date >= mov_transaction.movement.date:
+                                balance = mov_simple.amountResult
+                            else:
+                                if mov_trans[1] == 'out':
+                                    balance = mov_transaction.amountSource
+                                else:
+                                    balance = mov_transaction.amountDest
+                        elif mov_simple:
+                            mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
                             balance = mov_simple.amountResult
-                        else:
+                        elif mov_payment:
+                            mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
                             balance = mov_payment.amount
-                    elif mov_payment and mov_trans[0]:
-                        mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
-                        if mov_payment.movement.date >= mov_transaction.movement.date:
-                            balance = mov_payment.amount
-                        else:
+                        elif mov_trans[0]:
                             if mov_trans[1] == 'out':
                                 balance = mov_transaction.amountSource
                             else:
                                 balance = mov_transaction.amountDest
-                    elif mov_simple and mov_trans[0]:
-                        mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
-                        if mov_simple.movement.date >= mov_transaction.movement.date:
-                            balance = mov_simple.amountResult
                         else:
-                            if mov_trans[1] == 'out':
-                                balance = mov_transaction.amountSource
-                            else:
-                                balance = mov_transaction.amountDest
-                    elif mov_simple:
-                        mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
-                        balance = mov_simple.amountResult
-                    elif mov_payment:
-                        mov_payment = PaymentTlf.objects.filter(movement__date__month=m_s, account=a).order_by('-movement')[0]
-                        balance = mov_payment.amount
-                    elif mov_trans[0]:
-                        if mov_trans[1] == 'out':
-                            balance = mov_transaction.amountSource
-                        else:
-                            balance = mov_transaction.amountDest
-                    else:
-                        balance = 0
+                            balance = 0
 
-                    while i < (len(data['chart'])-1):
-                        if data['chart'][i][0] == month_act:
-                            data['chart'][i][1] += balance
-                            break
-                        i += 1
+                        while i <= (len(data['chart'])-1):
+                            if data['chart'][i][0] == month_act:
+                                data['chart'][i][1] += float(balance)
+                                break
+                            i += 1
 
                     m_s += 1
 
@@ -479,7 +481,7 @@ def data_customer(request):
                             end = end_date[2] + '-' + end_date[1] + '-' + str((int(end_date[0]) + 1))
 
                     if select != '0':
-                        select.replace('ó', 'o')
+                        select = select.replace('ó', 'o')
 
                         trans_simple = TransactionSimple.objects.filter(account=a.pk,
                                                                         type=select,
@@ -677,17 +679,31 @@ def data_customer(request):
                     m_s = m - 5
 
                 while m_s <= m:
-                    i = 0
                     month_act = month[m_s - 1]
                     mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, tdc=p.id).exists()
 
-                    if mov_simple:
-                        mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, tdc=p.id).order_by('-movement')[0]
-                        while i < (len(data['chart'])-1):
+                    if datetime.date.today().month == m_s:
+                        i = 0
+                        while i <= (len(data['chart'])-1):
                             if data['chart'][i][0] == month_act:
-                                data['chart'][i][2] += mov_simple.amountResult
+                                data['chart'][i][2] += float(tdc.balance)
                                 break
                             i += 1
+                    else:
+                        i = 0
+                        if mov_simple:
+                            mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, tdc=p.id).order_by('-movement')[0]
+                            while i <= (len(data['chart'])-1):
+                                if data['chart'][i][0] == month_act:
+                                    data['chart'][i][2] += float(mov_simple.amountResult)
+                                    break
+                                i += 1
+                        else:
+                            while i <= (len(data['chart'])-1):
+                                if data['chart'][i][0] == month_act:
+                                    data['chart'][i][2] += 0
+                                    break
+                                i += 1
 
                     m_s += 1
 
@@ -714,21 +730,34 @@ def data_customer(request):
                     m_s = m - 5
 
                 while m_s <= m:
-                    i = 0
                     month_act = month[m_s - 1]
-                    mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, tdc=p.id).exists()
+                    amount = 0
 
-                    if mov_simple:
-                        mov_simple = TransactionSimple.objects.filter(movement__date__month=m_s, tdc=p.id).order_by('-movement')[0]
-                    while i < (len(data['chart']) - 1):
-                        if data['chart'][i][0] == month_act:
-                            data['chart'][i][2] += l.overdue_amount
-                            break
-                        i += 1
+                    if datetime.date.today().month == m_s:
+                        i = 0
+                        while i <= (len(data['chart'])-1):
+                            if data['chart'][i][0] == month_act:
+                                data['chart'][i][2] += float(l.overdue_amount)
+                                break
+                            i += 1
+                    else:
+                        i = 0
+                        while i <= l.paidInstallments:
+                            amount += float(l.amount_installments)
+                            i += 1
+
+                        i = 0
+                        while i <= (len(data['chart']) - 1):
+                            if data['chart'][i][0] == month_act:
+                                if data['chart'][i][1] == 0:
+                                    data['chart'][i][2] = 0
+                                else:
+                                    data['chart'][i][2] += amount
+                                break
+                            i += 1
 
                     m_s += 1
 
-    print(data['chart'])
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
@@ -974,7 +1003,7 @@ def pay_services(request):
                         service.find('Pago de Impuestos Nacionales Terceros') == 0 or
                         service.find('DirecTV Previo Pago') == 0 or service.find('DirecTV Prepago') == 0 or
                         service.find('Pago de Impuestos Nacionales Propios') == 0):
-                if service == 'Pago de Impuestos Nacionales Terceros' or service == 'Pago de Impuestos Nacionales Terceros' :
+                if service == 'Pago de Impuestos Nacionales Terceros' or service == 'Pago de Impuestos Nacionales Propios' :
                     service = 'SENIAT'
                 elif service == 'DirecTV Previo Pago' or service == 'DirecTV Prepago':
                     service = 'DirecTV'
@@ -1058,8 +1087,6 @@ def pay_services(request):
 
                             bs.available = bs.available - amount
                             num = Movement.objects.filter(ref__startswith=conv_int(name)).count()
-                            print('num*************')
-                            print(num)
 
                             mov = Movement(ref=conv_int(name) + str(num + 1),
                                            amount=amount,
@@ -1141,7 +1168,6 @@ def pay_services(request):
                         data['amount'] = conv_balance(mov.amount)
                         data['msg'] = 'Pago de servicio realizado satisfactoriamente.'
 
-    print(data)
     response = JsonResponse(data)
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'OPTIONS,GET,PUT,POST,DELETE'
@@ -1267,7 +1293,6 @@ def appointment(request):
         customer = Customer.objects.get(id=product.customer_id)
         branch = Branch.objects.get(name=branch)
         date = d[2] + '-' + d[1] + '-' + d[0]
-        print(date)
         num = Appointment.objects.filter(bank=branch.id, dateAppointment=date).count()
         if num < 10:
             app = Appointment(customer=customer,
