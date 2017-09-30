@@ -47,10 +47,6 @@ urlpatterns = [
         pay_services,
         name='pay_services'),
     url(
-        r'^ajax/chart/$',
-        chart,
-        name='chart'),
-    url(
         r'^ajax/appointment/$',
         appointment,
         name='appointment'),

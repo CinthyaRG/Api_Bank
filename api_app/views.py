@@ -1,11 +1,16 @@
 import calendar
+import datetime
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import viewsets
 from api_app.serializers import *
-import datetime
 
 
+# Función validate_data, se encarga de validar los datos del
+# cliente, con sus productos asociados al banco.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def validate_data(request):
     numtarj = request.GET.get('numtarj', None)
@@ -90,6 +95,11 @@ def validate_data(request):
     return response
 
 
+# Función conv_int, se encarga de convertir una cadena de caracteres 
+# en una cadena de caracteres numéricos de longitud 6.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 def conv_int(cadena):
     s = ''
     for c in cadena:
@@ -99,6 +109,12 @@ def conv_int(cadena):
     return s
 
 
+# Función conv_balance, se encarga de convertir un número con decimales
+# y sin separador en un número con separador de puntos y decimal con
+# coma.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 def conv_balance(a):
     a = str(a).split('.')
     b = a[0][::-1]
@@ -121,6 +137,11 @@ def conv_balance(a):
     return amount
 
 
+# Función get_product, se encarga de obtener los productos asociados
+# a un determinado cliente.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def get_product(request):
     numtarj = request.GET.get('num', None)
@@ -145,7 +166,7 @@ def get_product(request):
 
         for l in loans:
             if l.date_expires > datetime.datetime.today(): 
-                details_loan = ['Pago Préstamo', 'Préstamo-'+ conv_int('PRESTAMO') + str(l.id), l.date_expires]
+                details_loan = ['Pago Préstamo', 'Préstamo-' + conv_int('PRESTAMO') + str(l.id), l.date_expires]
 
                 data['product'].append(details_loan)
 
@@ -165,6 +186,11 @@ def get_product(request):
     return response
 
 
+# Función get_product, se encarga de obtener los productos asociados
+# a un determinado cliente.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def get_amount(request):
     name = request.GET.get('name', None).split(' ')
@@ -205,6 +231,11 @@ def get_amount(request):
     return response
 
 
+# Función get_references, se encarga de obtener la referencia asociada
+# a una transacción realizada por un determinado cliente.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def get_references(request):
     ref = request.GET.get('ref', None)
@@ -232,6 +263,11 @@ def get_references(request):
     return response
 
 
+# Función exist_account, se encarga de obtener si una determinada
+# cuenta pertenece a un cierto cliente dependiendo de la cédula.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def exist_account(request):
     ci = request.GET.get('ci', None)
@@ -265,6 +301,11 @@ def exist_account(request):
     return response
 
 
+# Función exist_tdc, se encarga de obtener si una determinada tarjeta
+# de crédito pertenece a un cierto cliente dependiendo de la cédula.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def exist_tdc(request):
     ci = request.GET.get('ci', None)
@@ -297,6 +338,12 @@ def exist_tdc(request):
     return response
 
 
+# Función data_customer, se encarga de obtener dependiendo de la opción
+# escogida los productos, las transacciones de los productos y el gráfico
+# asociado a las transacciones de los últimos seis meses del año.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def data_customer(request):
     num = request.GET.get('num', None)
@@ -766,6 +813,11 @@ def data_customer(request):
     return response
 
 
+# Función validate_data_forgot, se encarga de validar los datos del
+# cliente, con sus productos asociados al banco.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def validate_data_forgot(request):
     numtarj = request.GET.get('numtarj', None)
@@ -836,6 +888,11 @@ def validate_data_forgot(request):
     return response
 
 
+# Función send_transfer, se encarga de enviar las transferencias ya sea
+# del mismo banco u otros bancos.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def send_transfer(request):
     acc_source = request.GET.get('acc_source', None).split(' ')
@@ -977,6 +1034,10 @@ def send_transfer(request):
     return response
 
 
+# Función pay_services, se encarga de enviar los pagos de servicios.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def pay_services(request):
     acc_source = request.GET.get('acc', None).split(' ')
@@ -1176,6 +1237,11 @@ def pay_services(request):
     return response
 
 
+# Función status_product, se encarga de activar o desactivar un
+# producto de un usuario.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def status_product(request):
     num = request.GET.get('num', None)
@@ -1264,19 +1330,11 @@ def status_product(request):
     return response
 
 
-@ensure_csrf_cookie
-def chart(request):
-    num = request.GET.get('num', None)
-
-    data = {
-        'product': Product.objects.filter(numCard=num).exists()
-    }
-
-    if request.method.lower() != "options" and data['product']:
-
-        today = datetime.date.today()
-
-
+# Función appointment, se encarga de agendar citas en alguna de las
+# sucursales del banco.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def appointment(request):
     num = request.GET.get('num', None)
@@ -1312,6 +1370,11 @@ def appointment(request):
     return response
 
 
+# Función branches, se encarga de listar las sucursales que tiene el
+# banco.
+#
+# Parámetros:
+#     request: petición que se recibe por http.
 @ensure_csrf_cookie
 def branches(request):
 
@@ -1386,8 +1449,3 @@ class LoansViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
 
-    # class UsuarioViewSet(viewsets.ModelViewSet):
-    #    """
-    #   API endpoint that allows users to be viewed or edited.
-    #    """
-    #    queryset = Usuarios.objects.all().ord
